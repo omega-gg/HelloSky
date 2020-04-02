@@ -33,13 +33,6 @@ unix:!macx:!android:contains(QT_MAJOR_VERSION, 4) {
     LIBS += -lX11
 }
 
-macx {
-    PATH=$${DESTDIR}/$${TARGET}.app/Contents/MacOS
-
-    QMAKE_POST_LINK = install_name_tool -change @rpath/libvlccore.dylib \
-                      @loader_path/libvlccore.dylib $${DESTDIR}/libvlc.dylib;
-}
-
 OTHER_FILES += README.md \
                LICENSE.md \
                AUTHORS.md \
