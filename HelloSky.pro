@@ -8,9 +8,13 @@ TARGET = HelloSky
 DESTDIR = $$_PRO_FILE_PWD_/bin
 
 contains(QT_MAJOR_VERSION, 4) {
-    QT += opengl declarative network xml xmlpatterns
+    QT += opengl declarative network xml xmlpatterns svg
 } else {
-    QT += opengl qml network xml xmlpatterns
+    QT += opengl quick network xml xmlpatterns svg
+}
+
+contains(QT_MAJOR_VERSION, 5) {
+    win32:QT += winextras
 }
 
 DEFINES += SK_CORE_LIBRARY SK_GUI_LIBRARY
@@ -41,11 +45,24 @@ include(src/image/image.pri)
 include(src/graphicsview/graphicsview.pri)
 include(src/declarative/declarative.pri)
 include(src/models/models.pri)
+include(src/media/media.pri)
 
 include(src/3rdparty/qtsingleapplication/qtsingleapplication.pri)
 
 INCLUDEPATH += $$SK/include/SkCore \
                $$SK/include/SkGui \
+
+contains(QT_MAJOR_VERSION, 5) {
+    INCLUDEPATH += $$SK/include/Qt5 \
+                   $$SK/include/Qt5/QtCore \
+                   $$SK/include/Qt5/QtGui \
+                   $$SK/include/Qt5/QtQml \
+                   $$SK/include/Qt5/QtQuick
+}
+
+unix:contains(QT_MAJOR_VERSION, 4) {
+    INCLUDEPATH += $$SK/include/Qt4/QtCore
+}
 
 unix:!macx:!android:contains(QT_MAJOR_VERSION, 4) {
     LIBS += -lX11
