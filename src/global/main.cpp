@@ -14,8 +14,18 @@
 */
 //=================================================================================================
 
+// Sk includes
+#include <WApplication>
+
 //-------------------------------------------------------------------------------------------------
 // Functions
 //-------------------------------------------------------------------------------------------------
 
-int main(int argc, char * argv[]) {}
+int main(int argc, char * argv[])
+{
+    QApplication * application = WApplication::create(argc, argv);
+
+    if (application == NULL) return 0;
+
+    return application->exec();
+}
