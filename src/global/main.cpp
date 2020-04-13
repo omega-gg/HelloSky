@@ -27,5 +27,7 @@ int main(int argc, char * argv[])
 
     if (application == NULL) return 0;
 
+    sk->startScript();
+
     return application->exec();
 }
