@@ -5,7 +5,7 @@ set -e
 # Settings
 #--------------------------------------------------------------------------------------------------
 
-HelloConsole=".."
+HelloSky=".."
 
 external="$PWD/../3rdparty"
 
@@ -138,10 +138,10 @@ if [ $1 = "clean" ]; then
 fi
 
 #--------------------------------------------------------------------------------------------------
-# Build HelloConsole
+# Build HelloSky
 #--------------------------------------------------------------------------------------------------
 
-echo "BUILDING HelloConsole"
+echo "BUILDING HelloSky"
 echo "---------------------"
 
 if [ $1 = "qt4" ]; then
@@ -203,17 +203,17 @@ if [ "$3" = "deploy" ]; then
 
     if [ $2 = "android" ]; then
 
-        $qmake -r -spec $spec "$config" "ANDROID_ABIS = $abi" $HelloConsole
+        $qmake -r -spec $spec "$config" "ANDROID_ABIS = $abi" $HelloSky
     else
-        $qmake -r -spec $spec "$config" $HelloConsole
+        $qmake -r -spec $spec "$config" $HelloSky
     fi
 else
 
     if [ $2 = "android" ]; then
 
-        $qmake -r -spec $spec "$config" "ANDROID_ABIS = $abi" $HelloConsole
+        $qmake -r -spec $spec "$config" "ANDROID_ABIS = $abi" $HelloSky
     else
-        $qmake -r -spec $spec "$config" $HelloConsole
+        $qmake -r -spec $spec "$config" $HelloSky
     fi
 fi
 
@@ -227,16 +227,16 @@ fi
 echo "------------------"
 
 #--------------------------------------------------------------------------------------------------
-# Deploying HelloConsole
+# Deploying HelloSky
 #--------------------------------------------------------------------------------------------------
 
 if [ "$3" = "deploy" ]; then
 
     echo ""
-    echo "DEPLOYING HelloConsole"
+    echo "DEPLOYING HelloSky"
     echo "----------------------"
 
-    cd $HelloConsole
+    cd $HelloSky
 
     sh deploy.sh $1 $2
 

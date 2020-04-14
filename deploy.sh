@@ -105,14 +105,14 @@ elif [ $2 = "linux" ]; then
 fi
 
 #--------------------------------------------------------------------------------------------------
-# HelloConsole
+# HelloSky
 #--------------------------------------------------------------------------------------------------
 
-echo "COPYING HelloConsole"
+echo "COPYING HelloSky"
 
 if [ $2 = "macOS" ]; then
 
-    cp bin/HelloConsole deploy
+    cp bin/HelloSky deploy
 
     cd deploy
 
@@ -120,19 +120,19 @@ if [ $2 = "macOS" ]; then
     # Qt
 
     install_name_tool -change @rpath/QtCore.framework/Versions/5/QtCore \
-                              @loader_path/QtCore.dylib HelloConsole
+                              @loader_path/QtCore.dylib HelloSky
 
     install_name_tool -change @rpath/QtNetwork.framework/Versions/5/QtNetwork \
-                              @loader_path/QtNetwork.dylib HelloConsole
+                              @loader_path/QtNetwork.dylib HelloSky
 
     install_name_tool -change @rpath/QtQml.framework/Versions/5/QtQml \
-                              @loader_path/QtQml.dylib HelloConsole
+                              @loader_path/QtQml.dylib HelloSky
 
     install_name_tool -change @rpath/QtXml.framework/Versions/5/QtXml \
-                              @loader_path/QtXml.dylib HelloConsole
+                              @loader_path/QtXml.dylib HelloSky
 
     install_name_tool -change @rpath/QtXmlPatterns.framework/Versions/5/QtXmlPatterns \
-                              @loader_path/QtXmlPatterns.dylib HelloConsole
+                              @loader_path/QtXmlPatterns.dylib HelloSky
 
     #----------------------------------------------------------------------------------------------
 
@@ -140,7 +140,7 @@ if [ $2 = "macOS" ]; then
 
 elif [ $2 = "android" ]; then
 
-    cp bin/libHelloConsole* deploy
+    cp bin/libHelloSky* deploy
 else
-    cp bin/HelloConsole* deploy
+    cp bin/HelloSky* deploy
 fi

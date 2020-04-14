@@ -89,7 +89,7 @@ fi
 # MinGW
 #--------------------------------------------------------------------------------------------------
 
-echo "CONFIGURING HelloConsole"
+echo "CONFIGURING HelloSky"
 
 if [ $os = "windows" ]; then
 
