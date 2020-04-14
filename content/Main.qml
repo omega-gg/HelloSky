@@ -44,6 +44,15 @@ Application
             }
         }
 
+        ViewDrag
+        {
+            id: viewDrag
+
+            anchors.fill: parent
+
+            visible: (window.fullScreen == false)
+        }
+
         ImageScale
         {
             anchors.fill: parent
