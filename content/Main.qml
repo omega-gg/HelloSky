@@ -1,10 +1,10 @@
 //=================================================================================================
 /*
-    Copyright (C) 2015-2020 MotionBox authors united with omega. <http://omega.gg/about>
+    Copyright (C) 2015-2020 HelloSky authors united with omega. <http://omega.gg/about>
 
     Author: Benjamin Arnaud. <http://bunjee.me> <bunjee@omega.gg>
 
-    This file is part of MotionBox.
+    This file is part of HelloSky.
 
     - GNU General Public License Usage:
     This file may be used under the terms of the GNU General Public License version 3 as published
@@ -20,18 +20,19 @@ import Sky     1.0
 Application
 {
     //---------------------------------------------------------------------------------------------
+    // Properties style
+    //---------------------------------------------------------------------------------------------
+
+    property url sourceBackground: "pictures/sky.png"
+    property url sourceLogo      : "pictures/logoSky.svg"
+
+    //---------------------------------------------------------------------------------------------
     // Childs
     //---------------------------------------------------------------------------------------------
 
     Window
     {
-        st: Style
-        {
-            id: st
-
-            //border_size : dp8
-            //border_color: "#161616"
-        }
+        st: Style {}
 
         onKeyPressed:
         {
@@ -47,7 +48,7 @@ Application
         {
             anchors.fill: parent
 
-            source: "pictures/sky.png"
+            source: sourceBackground
 
             fillMode: Image.PreserveAspectCrop
 
@@ -65,7 +66,7 @@ Application
             width : Math.round(parent.width / 4)
             height: Math.round(width        / 1.454)
 
-            source: "pictures/logoSky.svg"
+            source: sourceLogo
         }
     }
 }
