@@ -15,6 +15,8 @@ contains(QT_MAJOR_VERSION, 4) {
 
 contains(QT_MAJOR_VERSION, 5) {
     win32:QT += winextras
+
+    unix:!macx:!android:QT += x11extras
 }
 
 DEFINES += SK_CORE_LIBRARY SK_GUI_LIBRARY
@@ -68,7 +70,7 @@ unix:!macx:!android:contains(QT_MAJOR_VERSION, 4) {
     LIBS += -lX11
 }
 
-RESOURCES = dist/MotionBox.qrc
+RESOURCES = dist/HelloSky.qrc
 
 OTHER_FILES += 3rdparty.sh \
                configure.sh \

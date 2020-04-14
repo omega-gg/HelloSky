@@ -25,12 +25,13 @@ Application
 
     Window
     {
-        //minimumWidth : st.minimumWidth
-        //minimumHeight: st.minimumHeight
+        st: Style
+        {
+            id: st
 
-        st: Style { id: st }
-
-        color: "black"
+            //border_size : dp8
+            //border_color: "#161616"
+        }
 
         onKeyPressed:
         {
@@ -40,6 +41,31 @@ Application
 
                 close();
             }
+        }
+
+        ImageScale
+        {
+            anchors.fill: parent
+
+            source: "pictures/sky.png"
+
+            fillMode: Image.PreserveAspectCrop
+
+            cache: false
+        }
+
+//#QT_4
+        ImageSvgScale
+//#ELSE
+        ImageSvg
+//#END
+        {
+            anchors.centerIn: parent
+
+            width : Math.round(parent.width / 4)
+            height: Math.round(width        / 1.454)
+
+            source: "pictures/logoSky.svg"
         }
     }
 }

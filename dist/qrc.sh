@@ -113,7 +113,7 @@ else
     defines="ANDROID"
 fi
 
-"$Sky"/deploy/deployer qrc $version MotionBox.qrc "$defines" \
+"$Sky"/deploy/deployer qrc $version HelloSky.qrc "$defines" \
 "$SkyBase"/Style.qml \
 "$SkyBase"/Window.qml \
 "$SkyBase"/RectangleBorders.qml \
