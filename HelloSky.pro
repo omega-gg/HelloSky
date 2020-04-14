@@ -68,7 +68,15 @@ unix:!macx:!android:contains(QT_MAJOR_VERSION, 4) {
     LIBS += -lX11
 }
 
-OTHER_FILES += README.md \
+RESOURCES = dist/MotionBox.qrc
+
+OTHER_FILES += 3rdparty.sh \
+               configure.sh \
+               build.sh \
+               deploy.sh \
+               README.md \
                LICENSE.md \
                AUTHORS.md \
                .azure-pipelines.yml \
+               content/Main.qml \
+               dist/qrc.sh \
