@@ -63,7 +63,9 @@ contains(QT_MAJOR_VERSION, 5) {
 }
 
 unix:contains(QT_MAJOR_VERSION, 4) {
-    INCLUDEPATH += $$SK/include/Qt4/QtCore
+    INCLUDEPATH += $$SK/include/Qt4/QtCore \
+                   $$SK/include/Qt4/QtGui \
+                   $$SK/include/Qt4/QtDeclarative
 }
 
 unix:!macx:!android:contains(QT_MAJOR_VERSION, 4) {
