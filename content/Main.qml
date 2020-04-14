@@ -49,8 +49,6 @@ Application
             id: viewDrag
 
             anchors.fill: parent
-
-            visible: (window.fullScreen == false)
         }
 
         ImageScale
