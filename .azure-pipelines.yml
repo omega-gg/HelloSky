@@ -15,7 +15,7 @@ jobs:
       cd ../s
       sh build.sh qt4 win32 deploy
   - publish: $(System.DefaultWorkingDirectory)/deploy
-    artifact: HelloConsole-win32-qt4
+    artifact: HelloSky-win32-qt4
 
 - job: win32_qt5
   pool:
@@ -29,7 +29,7 @@ jobs:
       cd ../s
       sh build.sh qt5 win32 deploy
   - publish: $(System.DefaultWorkingDirectory)/deploy
-    artifact: HelloConsole-win32-qt5
+    artifact: HelloSky-win32-qt5
 
 #--------------------------------------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ jobs:
       cd ../s
       sh build.sh qt5 win64 deploy
   - publish: $(System.DefaultWorkingDirectory)/deploy
-    artifact: HelloConsole-win64-qt5
+    artifact: HelloSky-win64-qt5
 
 #--------------------------------------------------------------------------------------------------
 # macOS
@@ -63,7 +63,7 @@ jobs:
       cd ../s
       sh build.sh qt5 macOS deploy
   - publish: $(System.DefaultWorkingDirectory)/deploy
-    artifact: HelloConsole-macOS-qt5
+    artifact: HelloSky-macOS-qt5
 
 #--------------------------------------------------------------------------------------------------
 # Linux
@@ -74,36 +74,36 @@ jobs:
     vmImage: "ubuntu-latest"
   steps:
   - bash: |
-      docker run -d --name ubuntu -v $PWD:/HelloConsole i386/ubuntu:18.04 tail -f /dev/null
-      docker exec -t ubuntu bash -c "cd /HelloConsole;
+      docker run -d --name ubuntu -v $PWD:/HelloSky i386/ubuntu:18.04 tail -f /dev/null
+      docker exec -t ubuntu bash -c "cd /HelloSky;
                                      apt-get update;
                                      apt-get -y install sudo curl git;
                                      sh 3rdparty.sh linux;
                                      sh configure.sh qt4 linux sky;
                                      cd ../Sky;
                                      sh build.sh qt4 linux tools;
-                                     cd ../HelloConsole;
+                                     cd ../HelloSky;
                                      sh build.sh qt4 linux deploy"
   - publish: $(System.DefaultWorkingDirectory)/deploy
-    artifact: HelloConsole-linux32-qt4
+    artifact: HelloSky-linux32-qt4
 
 - job: linux32_qt5
   pool:
     vmImage: "ubuntu-latest"
   steps:
   - bash: |
-      docker run -d --name ubuntu -v $PWD:/HelloConsole i386/ubuntu:18.04 tail -f /dev/null
-      docker exec -t ubuntu bash -c "cd /HelloConsole;
+      docker run -d --name ubuntu -v $PWD:/HelloSky i386/ubuntu:18.04 tail -f /dev/null
+      docker exec -t ubuntu bash -c "cd /HelloSky;
                                      apt-get update;
                                      apt-get -y install sudo curl git;
                                      sh 3rdparty.sh linux;
                                      sh configure.sh qt5 linux sky;
                                      cd ../Sky;
                                      sh build.sh qt5 linux tools;
-                                     cd ../HelloConsole;
+                                     cd ../HelloSky;
                                      sh build.sh qt5 linux deploy"
   - publish: $(System.DefaultWorkingDirectory)/deploy
-    artifact: HelloConsole-linux32-qt5
+    artifact: HelloSky-linux32-qt5
 
 #--------------------------------------------------------------------------------------------------
 
@@ -112,36 +112,36 @@ jobs:
     vmImage: "ubuntu-latest"
   steps:
   - bash: |
-      docker run -d --name ubuntu -v $PWD:/HelloConsole amd64/ubuntu:18.04 tail -f /dev/null
-      docker exec -t ubuntu bash -c "cd /HelloConsole;
+      docker run -d --name ubuntu -v $PWD:/HelloSky amd64/ubuntu:18.04 tail -f /dev/null
+      docker exec -t ubuntu bash -c "cd /HelloSky;
                                      apt-get update;
                                      apt-get -y install sudo curl git;
                                      sh 3rdparty.sh linux;
                                      sh configure.sh qt4 linux sky;
                                      cd ../Sky;
                                      sh build.sh qt4 linux tools;
-                                     cd ../HelloConsole;
+                                     cd ../HelloSky;
                                      sh build.sh qt4 linux deploy"
   - publish: $(System.DefaultWorkingDirectory)/deploy
-    artifact: HelloConsole-linux64-qt4
+    artifact: HelloSky-linux64-qt4
 
 - job: linux64_qt5
   pool:
     vmImage: "ubuntu-latest"
   steps:
   - bash: |
-      docker run -d --name ubuntu -v $PWD:/HelloConsole amd64/ubuntu:18.04 tail -f /dev/null
-      docker exec -t ubuntu bash -c "cd /HelloConsole;
+      docker run -d --name ubuntu -v $PWD:/HelloSky amd64/ubuntu:18.04 tail -f /dev/null
+      docker exec -t ubuntu bash -c "cd /HelloSky;
                                      apt-get update;
                                      apt-get -y install sudo curl git;
                                      sh 3rdparty.sh linux;
                                      sh configure.sh qt5 linux sky;
                                      cd ../Sky;
                                      sh build.sh qt5 linux tools;
-                                     cd ../HelloConsole;
+                                     cd ../HelloSky;
                                      sh build.sh qt5 linux deploy"
   - publish: $(System.DefaultWorkingDirectory)/deploy
-    artifact: HelloConsole-linux64-qt5
+    artifact: HelloSky-linux64-qt5
 
 #--------------------------------------------------------------------------------------------------
 # Android
@@ -152,8 +152,8 @@ jobs:
     vmImage: "ubuntu-latest"
   steps:
   - bash: |
-      docker run -d --name ubuntu -v $PWD:/HelloConsole amd64/ubuntu:18.04 tail -f /dev/null
-      docker exec -t ubuntu bash -c "cd /HelloConsole;
+      docker run -d --name ubuntu -v $PWD:/HelloSky amd64/ubuntu:18.04 tail -f /dev/null
+      docker exec -t ubuntu bash -c "cd /HelloSky;
                                      apt-get update;
                                      apt-get -y install sudo curl unzip git;
                                      sh 3rdparty.sh linux;
@@ -161,7 +161,7 @@ jobs:
                                      sh configure.sh qt5 android sky;
                                      cd ../Sky;
                                      sh build.sh qt5 linux tools;
-                                     cd ../HelloConsole;
+                                     cd ../HelloSky;
                                      sh build.sh qt5 android deploy"
   - publish: $(System.DefaultWorkingDirectory)/deploy
-    artifact: HelloConsole-android-qt5
+    artifact: HelloSky-android-qt5
