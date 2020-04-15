@@ -125,10 +125,33 @@ elif [ $2 = "macOS" ]; then
         mkdir deploy/imageformats
         mkdir deploy/QtQuick.2
 
-        cp "$path"/QtCore.dylib        deploy
-        cp "$path"/QtNetwork.dylib     deploy
-        cp "$path"/QtXml.dylib         deploy
-        cp "$path"/QtXmlPatterns.dylib deploy
+        cp "$path"/QtCore.dylib         deploy
+        cp "$path"/QtGui.dylib          deploy
+        cp "$path"/QtNetwork.dylib      deploy
+        cp "$path"/QtOpenGL.dylib       deploy
+        cp "$path"/QtCore.dylib         deploy
+        cp "$path"/QtQml.dylib          deploy
+        cp "$path"/QtQuick.dylib        deploy
+        cp "$path"/QtSvg.dylib          deploy
+        cp "$path"/QtWidgets.dylib      deploy
+        cp "$path"/QtXml.dylib          deploy
+        cp "$path"/QtXmlPatterns.dylib  deploy
+        cp "$path"/QtDBus.dylib         deploy
+        cp "$path"/QtPrintSupport.dylib deploy
+
+        if [ -f "$path"/QtQmlModels.dylib ]; then
+
+            cp "$path"/QtQmlModels.dylib       deploy
+            cp "$path"/QtQmlWorkerScript.dylib deploy
+        fi
+
+        cp "$path"/platforms/libqcocoa.dylib deploy/platforms
+
+        cp "$path"/imageformats/libqsvg.dylib  deploy/imageformats
+        cp "$path"/imageformats/libqjpeg.dylib deploy/imageformats
+
+        cp "$path"/QtQuick.2/libqtquick2plugin.dylib deploy/QtQuick.2
+        cp "$path"/QtQuick.2/qmldir                  deploy/QtQuick.2
     fi
 
 elif [ $2 = "linux" ]; then
@@ -137,20 +160,68 @@ elif [ $2 = "linux" ]; then
 
         mkdir deploy/imageformats
 
+        cp "$path"/libpng16.so.16 deploy
+
         cp "$path"/libQtCore.so.4        deploy
+        cp "$path"/libQtGui.so.4         deploy
+        cp "$path"/libQtDeclarative.so.4 deploy
         cp "$path"/libQtNetwork.so.4     deploy
+        cp "$path"/libQtOpenGL.so.4      deploy
         cp "$path"/libQtScript.so.4      deploy
+        cp "$path"/libQtSql.so.4         deploy
+        cp "$path"/libQtSvg.so.4         deploy
+        cp "$path"/libQtWebKit.so.4      deploy
         cp "$path"/libQtXml.so.4         deploy
         cp "$path"/libQtXmlPatterns.so.4 deploy
+
+        cp "$path"/imageformats/libqsvg.so  deploy/imageformats
+        cp "$path"/imageformats/libqjpeg.so deploy/imageformats
     else
         mkdir deploy/platforms
         mkdir deploy/imageformats
         mkdir deploy/QtQuick.2
+        mkdir deploy/xcbglintegrations
+
+        sudo cp "$path"/libz.so.1 deploy
+
+        sudo cp "$path"/libicudata.so.60 deploy
+        sudo cp "$path"/libicui18n.so.60 deploy
+        sudo cp "$path"/libicuuc.so.60   deploy
+
+        sudo cp "$path"/libdouble-conversion.so.1 deploy
+        sudo cp "$path"/libpng16.so.16            deploy
+        sudo cp "$path"/libharfbuzz.so.0          deploy
+        sudo cp "$path"/libxcb-xinerama.so.0      deploy
 
         cp "$path"/libQt5Core.so.5        deploy
+        cp "$path"/libQt5Gui.so.5         deploy
         cp "$path"/libQt5Network.so.5     deploy
+        cp "$path"/libQt5OpenGL.so.5      deploy
+        cp "$path"/libQt5Qml.so.5         deploy
+        cp "$path"/libQt5Quick.so.5       deploy
+        cp "$path"/libQt5Svg.so.5         deploy
+        cp "$path"/libQt5Widgets.so.5     deploy
         cp "$path"/libQt5Xml.so.5         deploy
         cp "$path"/libQt5XmlPatterns.so.5 deploy
+        cp "$path"/libQt5XcbQpa.so.5      deploy
+        cp "$path"/libQt5DBus.so.5        deploy
+
+        if [ -f "$path"/libQt5QmlModels.so.5 ]; then
+
+            cp "$path"/libQt5QmlModels.so.5       deploy
+            cp "$path"/libQt5QmlWorkerScript.so.5 deploy
+        fi
+
+        cp "$path"/platforms/libqxcb.so deploy/platforms
+
+        cp "$path"/imageformats/libqsvg.so  deploy/imageformats
+        cp "$path"/imageformats/libqjpeg.so deploy/imageformats
+
+        cp "$path"/xcbglintegrations/libqxcb-egl-integration.so deploy/xcbglintegrations
+        cp "$path"/xcbglintegrations/libqxcb-glx-integration.so deploy/xcbglintegrations
+
+        cp "$path"/QtQuick.2/libqtquick2plugin.so deploy/QtQuick.2
+        cp "$path"/QtQuick.2/qmldir               deploy/QtQuick.2
     fi
 fi
 
