@@ -68,17 +68,17 @@ if [ $os = "windows" ]; then
 
         mkdir deploy/imageformats
 
-        cp "$path"/libQtCore.so.4        deploy
-        cp "$path"/libQtGui.so.4         deploy
-        cp "$path"/libQtDeclarative.so.4 deploy
-        cp "$path"/libQtNetwork.so.4     deploy
-        cp "$path"/libQtOpenGL.so.4      deploy
-        cp "$path"/libQtScript.so.4      deploy
-        cp "$path"/libQtSql.so.4         deploy
-        cp "$path"/libQtSvg.so.4         deploy
-        cp "$path"/libQtWebKit.so.4      deploy
-        cp "$path"/libQtXml.so.4         deploy
-        cp "$path"/libQtXmlPatterns.so.4 deploy
+        cp "$path"/QtCore4.dll        deploy
+        cp "$path"/QtGui4.dll         deploy
+        cp "$path"/QtDeclarative4.dll deploy
+        cp "$path"/QtNetwork4.dll     deploy
+        cp "$path"/QtOpenGL4.dll      deploy
+        cp "$path"/QtScript4.dll      deploy
+        cp "$path"/QtSql4.dll         deploy
+        cp "$path"/QtSvg4.dll         deploy
+        cp "$path"/QtWebKit4.dll      deploy
+        cp "$path"/QtXml4.dll         deploy
+        cp "$path"/QtXmlPatterns4.dll deploy
 
         cp "$path"/imageformats/libqsvg.so deploy/imageformats
     else
