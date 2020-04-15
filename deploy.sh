@@ -80,8 +80,8 @@ if [ $os = "windows" ]; then
         cp "$path"/QtXml4.dll         deploy
         cp "$path"/QtXmlPatterns4.dll deploy
 
-        cp "$path"/imageformats/qsvg4.so  deploy/imageformats
-        cp "$path"/imageformats/qjpeg4.so deploy/imageformats
+        cp "$path"/imageformats/qsvg4.dll  deploy/imageformats
+        cp "$path"/imageformats/qjpeg4.dll deploy/imageformats
     else
         mkdir deploy/platforms
         mkdir deploy/imageformats
