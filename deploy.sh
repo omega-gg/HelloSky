@@ -51,6 +51,19 @@ fi
 echo ""
 
 #--------------------------------------------------------------------------------------------------
+# Bundle
+#--------------------------------------------------------------------------------------------------
+
+if [ $2 = "macOS" ]; then
+
+    cp -r bin/HelloSky.app deploy
+
+    deploy="deploy/HelloSky.app/Contents/MacOS"
+
+    rm $deploy/*.dylib
+fi
+
+#--------------------------------------------------------------------------------------------------
 # Sky
 #--------------------------------------------------------------------------------------------------
 
@@ -121,37 +134,37 @@ elif [ $2 = "macOS" ]; then
 
     if [ $1 = "qt5" ]; then
 
-        mkdir deploy/platforms
-        mkdir deploy/imageformats
-        mkdir deploy/QtQuick.2
+        mkdir $deploy/platforms
+        mkdir $deploy/imageformats
+        mkdir $deploy/QtQuick.2
 
-        cp "$path"/QtCore.dylib         deploy
-        cp "$path"/QtGui.dylib          deploy
-        cp "$path"/QtNetwork.dylib      deploy
-        cp "$path"/QtOpenGL.dylib       deploy
-        cp "$path"/QtCore.dylib         deploy
-        cp "$path"/QtQml.dylib          deploy
-        cp "$path"/QtQuick.dylib        deploy
-        cp "$path"/QtSvg.dylib          deploy
-        cp "$path"/QtWidgets.dylib      deploy
-        cp "$path"/QtXml.dylib          deploy
-        cp "$path"/QtXmlPatterns.dylib  deploy
-        cp "$path"/QtDBus.dylib         deploy
-        cp "$path"/QtPrintSupport.dylib deploy
+        cp "$path"/QtCore.dylib         $deploy
+        cp "$path"/QtGui.dylib          $deploy
+        cp "$path"/QtNetwork.dylib      $deploy
+        cp "$path"/QtOpenGL.dylib       $deploy
+        cp "$path"/QtCore.dylib         $deploy
+        cp "$path"/QtQml.dylib          $deploy
+        cp "$path"/QtQuick.dylib        $deploy
+        cp "$path"/QtSvg.dylib          $deploy
+        cp "$path"/QtWidgets.dylib      $deploy
+        cp "$path"/QtXml.dylib          $deploy
+        cp "$path"/QtXmlPatterns.dylib  $deploy
+        cp "$path"/QtDBus.dylib         $deploy
+        cp "$path"/QtPrintSupport.dylib $deploy
 
         if [ -f "$path"/QtQmlModels.dylib ]; then
 
-            cp "$path"/QtQmlModels.dylib       deploy
-            cp "$path"/QtQmlWorkerScript.dylib deploy
+            cp "$path"/QtQmlModels.dylib       $deploy
+            cp "$path"/QtQmlWorkerScript.dylib $deploy
         fi
 
-        cp "$path"/platforms/libqcocoa.dylib deploy/platforms
+        cp "$path"/platforms/libqcocoa.dylib $deploy/platforms
 
-        cp "$path"/imageformats/libqsvg.dylib  deploy/imageformats
-        cp "$path"/imageformats/libqjpeg.dylib deploy/imageformats
+        cp "$path"/imageformats/libqsvg.dylib  $deploy/imageformats
+        cp "$path"/imageformats/libqjpeg.dylib $deploy/imageformats
 
-        cp "$path"/QtQuick.2/libqtquick2plugin.dylib deploy/QtQuick.2
-        cp "$path"/QtQuick.2/qmldir                  deploy/QtQuick.2
+        cp "$path"/QtQuick.2/libqtquick2plugin.dylib $deploy/QtQuick.2
+        cp "$path"/QtQuick.2/qmldir                  $deploy/QtQuick.2
     fi
 
 elif [ $2 = "linux" ]; then
@@ -233,9 +246,7 @@ echo "COPYING HelloSky"
 
 if [ $2 = "macOS" ]; then
 
-    cp bin/HelloSky deploy
-
-    cd deploy
+    cd $deploy
 
     #----------------------------------------------------------------------------------------------
     # Qt
@@ -243,17 +254,82 @@ if [ $2 = "macOS" ]; then
     install_name_tool -change @rpath/QtCore.framework/Versions/5/QtCore \
                               @loader_path/QtCore.dylib HelloSky
 
+    install_name_tool -change @rpath/QtGui.framework/Versions/5/QtGui \
+                              @loader_path/QtGui.dylib HelloSky
+
     install_name_tool -change @rpath/QtNetwork.framework/Versions/5/QtNetwork \
                               @loader_path/QtNetwork.dylib HelloSky
 
+    install_name_tool -change @rpath/QtOpenGL.framework/Versions/5/QtOpenGL \
+                              @loader_path/QtOpenGL.dylib HelloSky
+
     install_name_tool -change @rpath/QtQml.framework/Versions/5/QtQml \
                               @loader_path/QtQml.dylib HelloSky
+
+    if [ -f QtQmlModels.dylib ]; then
+
+        install_name_tool -change @rpath/QtQmlModels.framework/Versions/5/QtQmlModels \
+                                  @loader_path/QtQmlModels.dylib HelloSky
+
+        install_name_tool -change @rpath/QtQmlWorkerScript.framework/Versions/5/QtQmlWorkerScript \
+                                  @loader_path/QtQmlWorkerScript.dylib HelloSky
+    fi
+
+    install_name_tool -change @rpath/QtQuick.framework/Versions/5/QtQuick \
+                              @loader_path/QtQuick.dylib HelloSky
+
+    install_name_tool -change @rpath/QtSvg.framework/Versions/5/QtSvg \
+                              @loader_path/QtSvg.dylib HelloSky
+
+    install_name_tool -change @rpath/QtWidgets.framework/Versions/5/QtWidgets \
+                              @loader_path/QtWidgets.dylib HelloSky
 
     install_name_tool -change @rpath/QtXml.framework/Versions/5/QtXml \
                               @loader_path/QtXml.dylib HelloSky
 
     install_name_tool -change @rpath/QtXmlPatterns.framework/Versions/5/QtXmlPatterns \
                               @loader_path/QtXmlPatterns.dylib HelloSky
+
+    #----------------------------------------------------------------------------------------------
+    # platforms
+
+    install_name_tool -change @rpath/QtCore.framework/Versions/5/QtCore \
+                              @loader_path/../QtCore.dylib platforms/libqcocoa.dylib
+
+    install_name_tool -change @rpath/QtGui.framework/Versions/5/QtGui \
+                              @loader_path/../QtGui.dylib platforms/libqcocoa.dylib
+
+    install_name_tool -change @rpath/QtWidgets.framework/Versions/5/QtWidgets \
+                              @loader_path/../QtWidgets.dylib platforms/libqcocoa.dylib
+
+    install_name_tool -change @rpath/QtDBus.framework/Versions/5/QtDBus \
+                              @loader_path/../QtDBus.dylib platforms/libqcocoa.dylib
+
+    install_name_tool -change @rpath/QtPrintSupport.framework/Versions/5/QtPrintSupport \
+                              @loader_path/../QtPrintSupport.dylib platforms/libqcocoa.dylib
+
+    #----------------------------------------------------------------------------------------------
+    # imageformats
+
+    install_name_tool -change @rpath/QtCore.framework/Versions/5/QtCore \
+                              @loader_path/../QtCore.dylib imageformats/libqjpeg.dylib
+
+    install_name_tool -change @rpath/QtGui.framework/Versions/5/QtGui \
+                              @loader_path/../QtGui.dylib imageformats/libqjpeg.dylib
+
+    #----------------------------------------------------------------------------------------------
+
+    install_name_tool -change @rpath/QtCore.framework/Versions/5/QtCore \
+                              @loader_path/../QtCore.dylib imageformats/libqsvg.dylib
+
+    install_name_tool -change @rpath/QtGui.framework/Versions/5/QtGui \
+                              @loader_path/../QtGui.dylib imageformats/libqsvg.dylib
+
+    install_name_tool -change @rpath/QtWidgets.framework/Versions/5/QtWidgets \
+                              @loader_path/../QtWidgets.dylib imageformats/libqsvg.dylib
+
+    install_name_tool -change @rpath/QtSvg.framework/Versions/5/QtSvg \
+                              @loader_path/../QtSvg.dylib imageformats/libqsvg.dylib
 
     #----------------------------------------------------------------------------------------------
 
