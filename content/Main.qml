@@ -70,8 +70,9 @@ Application
         {
             anchors.centerIn: parent
 
-            width : Math.round(parent.width / 4)
-            height: Math.round(width        / 1.454)
+            width: Math.round(height * 1.5)
+
+            height: Math.round(parent.height / 3.272)
 
             source: sourceLogo
         }

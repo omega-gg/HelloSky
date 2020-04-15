@@ -66,30 +66,74 @@ if [ $os = "windows" ]; then
 
     if [ $1 = "qt4" ]; then
 
-        cp "$path"/QtCore4.dll        deploy
-        cp "$path"/QtNetwork4.dll     deploy
-        cp "$path"/QtScript4.dll      deploy
-        cp "$path"/QtXml4.dll         deploy
-        cp "$path"/QtXmlPatterns4.dll deploy
+        mkdir deploy/imageformats
+
+        cp "$path"/libQtCore.so.4        deploy
+        cp "$path"/libQtGui.so.4         deploy
+        cp "$path"/libQtDeclarative.so.4 deploy
+        cp "$path"/libQtNetwork.so.4     deploy
+        cp "$path"/libQtOpenGL.so.4      deploy
+        cp "$path"/libQtScript.so.4      deploy
+        cp "$path"/libQtSql.so.4         deploy
+        cp "$path"/libQtSvg.so.4         deploy
+        cp "$path"/libQtWebKit.so.4      deploy
+        cp "$path"/libQtXml.so.4         deploy
+        cp "$path"/libQtXmlPatterns.so.4 deploy
+
+        cp "$path"/imageformats/libqsvg.so deploy/imageformats
     else
+        mkdir deploy/platforms
+        mkdir deploy/imageformats
+        mkdir deploy/QtQuick.2
+
+        cp "$path"/libEGL.dll    deploy
+        cp "$path"/libGLESv2.dll deploy
+
         cp "$path"/Qt5Core.dll        deploy
+        cp "$path"/Qt5Gui.dll         deploy
         cp "$path"/Qt5Network.dll     deploy
+        cp "$path"/Qt5OpenGL.dll      deploy
+        cp "$path"/Qt5Qml.dll         deploy
+        cp "$path"/Qt5Quick.dll       deploy
+        cp "$path"/Qt5Svg.dll         deploy
+        cp "$path"/Qt5Widgets.dll     deploy
         cp "$path"/Qt5Xml.dll         deploy
         cp "$path"/Qt5XmlPatterns.dll deploy
+        cp "$path"/Qt5WinExtras.dll   deploy
+
+        if [ -f "$path"/Qt5QmlModels.dll ]; then
+
+            cp "$path"/Qt5QmlModels.dll       deploy
+            cp "$path"/Qt5QmlWorkerScript.dll deploy
+        fi
+
+        cp "$path"/platforms/qwindows.dll deploy/platforms
+
+        cp "$path"/imageformats/qsvg.dll deploy/imageformats
+
+        cp "$path"/QtQuick.2/qtquick2plugin.dll deploy/QtQuick.2
+        cp "$path"/QtQuick.2/qmldir             deploy/QtQuick.2
     fi
 
 elif [ $2 = "macOS" ]; then
 
     if [ $1 = "qt5" ]; then
 
+        mkdir deploy/platforms
+        mkdir deploy/imageformats
+        mkdir deploy/QtQuick.2
+
         cp "$path"/QtCore.dylib        deploy
         cp "$path"/QtNetwork.dylib     deploy
         cp "$path"/QtXml.dylib         deploy
         cp "$path"/QtXmlPatterns.dylib deploy
     fi
+
 elif [ $2 = "linux" ]; then
 
     if [ $1 = "qt4" ]; then
+
+        mkdir deploy/imageformats
 
         cp "$path"/libQtCore.so.4        deploy
         cp "$path"/libQtNetwork.so.4     deploy
@@ -97,6 +141,10 @@ elif [ $2 = "linux" ]; then
         cp "$path"/libQtXml.so.4         deploy
         cp "$path"/libQtXmlPatterns.so.4 deploy
     else
+        mkdir deploy/platforms
+        mkdir deploy/imageformats
+        mkdir deploy/QtQuick.2
+
         cp "$path"/libQt5Core.so.5        deploy
         cp "$path"/libQt5Network.so.5     deploy
         cp "$path"/libQt5Xml.so.5         deploy
