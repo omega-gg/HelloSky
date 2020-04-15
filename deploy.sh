@@ -59,8 +59,6 @@ if [ $2 = "macOS" ]; then
     cp -r bin/HelloSky.app deploy
 
     deploy="deploy/HelloSky.app/Contents/MacOS"
-
-    rm $deploy/*.dylib
 fi
 
 #--------------------------------------------------------------------------------------------------
