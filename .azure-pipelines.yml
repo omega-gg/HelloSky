@@ -85,7 +85,7 @@ jobs:
       docker run -d --name ubuntu -v $PWD:/HelloSky i386/ubuntu:18.04 tail -f /dev/null
       docker exec -t ubuntu bash -c "cd /HelloSky;
                                      apt-get update;
-                                     apt-get -y install sudo curl git;
+                                     apt-get -y install sudo curl zip git;
                                      sh 3rdparty.sh linux;
                                      sh configure.sh qt4 linux sky;
                                      cd ../Sky;
@@ -105,7 +105,7 @@ jobs:
       docker run -d --name ubuntu -v $PWD:/HelloSky i386/ubuntu:18.04 tail -f /dev/null
       docker exec -t ubuntu bash -c "cd /HelloSky;
                                      apt-get update;
-                                     apt-get -y install sudo curl git;
+                                     apt-get -y install sudo curl zip git;
                                      sh 3rdparty.sh linux;
                                      sh configure.sh qt5 linux sky;
                                      cd ../Sky;
@@ -127,7 +127,7 @@ jobs:
       docker run -d --name ubuntu -v $PWD:/HelloSky amd64/ubuntu:18.04 tail -f /dev/null
       docker exec -t ubuntu bash -c "cd /HelloSky;
                                      apt-get update;
-                                     apt-get -y install sudo curl git;
+                                     apt-get -y install sudo curl zip git;
                                      sh 3rdparty.sh linux;
                                      sh configure.sh qt4 linux sky;
                                      cd ../Sky;
@@ -147,7 +147,7 @@ jobs:
       docker run -d --name ubuntu -v $PWD:/HelloSky amd64/ubuntu:18.04 tail -f /dev/null
       docker exec -t ubuntu bash -c "cd /HelloSky;
                                      apt-get update;
-                                     apt-get -y install sudo curl git;
+                                     apt-get -y install sudo curl zip git;
                                      sh 3rdparty.sh linux;
                                      sh configure.sh qt5 linux sky;
                                      cd ../Sky;
@@ -171,7 +171,7 @@ jobs:
       docker run -d --name ubuntu -v $PWD:/HelloSky amd64/ubuntu:18.04 tail -f /dev/null
       docker exec -t ubuntu bash -c "cd /HelloSky;
                                      apt-get update;
-                                     apt-get -y install sudo curl unzip git;
+                                     apt-get -y install sudo curl zip unzip git;
                                      sh 3rdparty.sh linux;
                                      sh 3rdparty.sh android;
                                      sh configure.sh qt5 android sky;
