@@ -19,6 +19,8 @@ import Sky     1.0
 
 Application
 {
+    id: application
+
     //---------------------------------------------------------------------------------------------
     // Properties style
     //---------------------------------------------------------------------------------------------
@@ -27,11 +29,35 @@ Application
     property url sourceLogo      : "pictures/logoSky.svg"
 
     //---------------------------------------------------------------------------------------------
+    // Functions
+    //---------------------------------------------------------------------------------------------
+
+    function takeShot()
+    {
+        var width = 1024;
+
+        window.width  = width;
+        window.height = width * 0.5625; // 16:9 ratio
+
+        sk.wait(1000);
+
+        var path = "../dist/HelloSky.png";
+
+        window.saveShot(path);
+
+        window.compressShot(path);
+
+        window.setDefaultGeometry();
+    }
+
+    //---------------------------------------------------------------------------------------------
     // Childs
     //---------------------------------------------------------------------------------------------
 
     Window
     {
+        id: window
+
         st: Style {}
 
         onKeyPressed:
@@ -41,6 +67,12 @@ Application
                 event.accepted = true;
 
                 close();
+            }
+            else if (event.key == Qt.Key_F12)
+            {
+                event.accepted = true;
+
+                application.takeShot();
             }
         }
 

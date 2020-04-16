@@ -1,4 +1,5 @@
 HelloSky
+<a href="http://omega.gg/Sky"><img src="dist/HelloSky.png" alt="HelloSky" width="512px"></a>
 ---
 [![azure](https://dev.azure.com/bunjee/HelloSky/_apis/build/status/omega-gg.HelloSky)](https://dev.azure.com/bunjee/HelloSky/_build)
 [![GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl.html)
