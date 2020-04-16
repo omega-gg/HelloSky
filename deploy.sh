@@ -242,7 +242,11 @@ fi
 
 echo "COPYING HelloSky"
 
-if [ $2 = "macOS" ]; then
+if [ $os = "windows" ]; then
+
+    cp bin/HelloSky.exe deploy
+
+elif [ $2 = "macOS" ]; then
 
     cd $deploy
 
@@ -333,9 +337,11 @@ if [ $2 = "macOS" ]; then
 
     cd -
 
+elif [ $2 = "linux" ]; then
+
+    cp bin/HelloSky deploy
+
 elif [ $2 = "android" ]; then
 
     cp bin/libHelloSky* deploy
-else
-    cp bin/HelloSky* deploy
 fi
