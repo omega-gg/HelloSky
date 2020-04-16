@@ -15,7 +15,7 @@ jobs:
       cd ../s
       sh build.sh qt4 win32 deploy
       cd deploy
-      7z a HelloSky.zip *
+      7z a ../HelloSky.zip *
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-win32-qt4
 
@@ -31,7 +31,7 @@ jobs:
       cd ../s
       sh build.sh qt5 win32 deploy
       cd deploy
-      7z a HelloSky.zip *
+      7z a ../HelloSky.zip *
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-win32-qt5
 
@@ -49,7 +49,7 @@ jobs:
       cd ../s
       sh build.sh qt5 win64 deploy
       cd deploy
-      7z a HelloSky.zip *
+      7z a ../HelloSky.zip *
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-win64-qt5
 
@@ -69,7 +69,7 @@ jobs:
       cd ../s
       sh build.sh qt5 macOS deploy
       cd deploy
-      zip -rq HelloSky.zip *
+      zip -rq ../HelloSky.zip *
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-macOS-qt5
 
@@ -93,7 +93,7 @@ jobs:
                                      cd ../HelloSky;
                                      sh build.sh qt4 linux deploy;
                                      cd deploy;
-                                     zip -rq HelloSky.zip *"
+                                     zip -rq ../HelloSky.zip *"
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-linux32-qt4
 
@@ -113,7 +113,7 @@ jobs:
                                      cd ../HelloSky;
                                      sh build.sh qt5 linux deploy;
                                      cd deploy;
-                                     zip -rq HelloSky.zip *"
+                                     zip -rq ../HelloSky.zip *"
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-linux32-qt5
 
@@ -135,7 +135,7 @@ jobs:
                                      cd ../HelloSky;
                                      sh build.sh qt4 linux deploy;
                                      cd deploy;
-                                     zip -rq HelloSky.zip *"
+                                     zip -rq ../HelloSky.zip *"
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-linux64-qt4
 
@@ -155,7 +155,7 @@ jobs:
                                      cd ../HelloSky;
                                      sh build.sh qt5 linux deploy;
                                      cd deploy;
-                                     zip -rq HelloSky.zip *"
+                                     zip -rq ../HelloSky.zip *"
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-linux64-qt5
 
@@ -180,6 +180,6 @@ jobs:
                                      cd ../HelloSky;
                                      sh build.sh qt5 android deploy;
                                      cd deploy;
-                                     zip -rq HelloSky.zip *"
+                                     zip -rq ../HelloSky.zip *"
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-android-qt5
