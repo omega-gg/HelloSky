@@ -72,6 +72,10 @@ unix:!macx:!android:contains(QT_MAJOR_VERSION, 4) {
     LIBS += -lX11
 }
 
+macx:ICON = dist/icon.icns
+
+RC_FILE = dist/HelloSky.rc
+
 RESOURCES = dist/HelloSky.qrc
 
 OTHER_FILES += 3rdparty.sh \
@@ -83,4 +87,5 @@ OTHER_FILES += 3rdparty.sh \
                AUTHORS.md \
                .azure-pipelines.yml \
                content/Main.qml \
+               dist/HelloSky.rc \
                dist/qrc.sh \

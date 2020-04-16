@@ -41,7 +41,7 @@ Application
 
         sk.wait(1000);
 
-        var path = "../dist/HelloSky.png";
+        var path = "../dist/pictures/HelloSky.png";
 
         window.saveShot(path);
 
