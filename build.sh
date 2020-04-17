@@ -147,8 +147,12 @@ echo "---------------------"
 if [ $1 = "qt4" ]; then
 
     export QT_SELECT=qt4
+
+    config="CONFIG += release"
 else
     export QT_SELECT=qt5
+
+    config="CONFIG += release qtquickcompiler"
 fi
 
 build="build"
@@ -188,6 +192,8 @@ cd dist
 
 if [ "$3" = "deploy" ]; then
 
+    config="$config deploy"
+
     sh qrc.sh $QT_SELECT $2 deploy
 else
     sh qrc.sh $QT_SELECT $2
@@ -196,13 +202,6 @@ fi
 echo ""
 
 cd ../$build
-
-if [ "$3" = "deploy" ]; then
-
-    config="CONFIG += release deploy"
-else
-    config="CONFIG += release"
-fi
 
 if [ $2 = "android" ]; then
 
