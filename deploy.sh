@@ -136,6 +136,9 @@ elif [ $2 = "macOS" ]; then
         mkdir $deploy/imageformats
         mkdir $deploy/QtQuick.2
 
+        # FIXME Qt 5.14 macOS: We have to copy qt.conf to avoid a segfault.
+        cp "$path"/qt.conf $deploy
+
         cp "$path"/QtCore.dylib         $deploy
         cp "$path"/QtGui.dylib          $deploy
         cp "$path"/QtNetwork.dylib      $deploy
@@ -249,9 +252,6 @@ if [ $os = "windows" ]; then
 elif [ $2 = "macOS" ]; then
 
     cd $deploy
-
-    # FIXME Qt 5.14: We have to create qt.conf to avoid a segfault.
-    touch qt.conf
 
     #----------------------------------------------------------------------------------------------
     # Qt
