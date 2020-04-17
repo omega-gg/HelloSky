@@ -192,8 +192,6 @@ cd dist
 
 if [ "$3" = "deploy" ]; then
 
-    config="$config deploy"
-
     sh qrc.sh $QT_SELECT $2 deploy
 else
     sh qrc.sh $QT_SELECT $2
@@ -202,6 +200,11 @@ fi
 echo ""
 
 cd ../$build
+
+if [ "$3" = "deploy" ]; then
+
+    config="$config deploy"
+fi
 
 if [ $2 = "android" ]; then
 

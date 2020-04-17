@@ -21,12 +21,6 @@ contains(QT_MAJOR_VERSION, 5) {
 
 DEFINES += SK_CORE_LIBRARY SK_GUI_LIBRARY
 
-deploy {
-    DEFINES += SK_DEPLOY
-
-    RESOURCES = dist/HelloSky.qrc
-}
-
 contains(QT_MAJOR_VERSION, 4) {
     DEFINES += QT_4
 
@@ -38,6 +32,12 @@ contains(QT_MAJOR_VERSION, 4) {
     DEFINES += QT_LATEST #SK_SOFTWARE
 
     win32:DEFINES += SK_WIN_NATIVE
+}
+
+deploy {
+    DEFINES += SK_DEPLOY
+
+    RESOURCES = dist/HelloSky.qrc
 }
 
 QMAKE_CXXFLAGS += -std=c++11

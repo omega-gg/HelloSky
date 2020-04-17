@@ -11,6 +11,8 @@ SkyBase="$Sky/src/SkyBase"
 
 #--------------------------------------------------------------------------------------------------
 
+bin="../bin"
+
 content="../content"
 
 #--------------------------------------------------------------------------------------------------
@@ -55,9 +57,9 @@ if [ $1 = "clean" -o "$3" = "deploy" ]; then
 
     rm -rf qrc/pictures
 
-    rm -f ../bin/*.qml
+    rm -f $bin/*.qml
 
-    rm -rf ../bin/pictures
+    rm -rf $bin/pictures
 
     if [ $1 = "clean" ]; then
 
@@ -148,4 +150,4 @@ fi
 "$SkyBase"/Window.qml \
 "$SkyBase"/RectangleBorders.qml \
 
-cp -r qrc/* ../bin
+cp -r qrc/* $bin
