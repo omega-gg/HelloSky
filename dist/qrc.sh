@@ -25,11 +25,11 @@ if [ $# != 2 -a $# != 3 ] \
    || \
    [ $2 != "win32" -a $2 != "win64" -a $2 != "macOS" -a $2 != "linux" -a $2 != "android" ] \
    || \
-   [ $# = 3 -a "$3" != "deploy" ]; then
+   [ $# = 3 -a "$3" != "all" -a "$3" != "deploy" ]; then
 
     echo "Usage: qrc <qt4 | qt5 | clean>"
     echo "           <win32 | win64 | macOS | linux | android>"
-    echo "           [deploy]"
+    echo "           [all | deploy]"
 
     exit 1
 fi
@@ -45,11 +45,18 @@ else
     os="default"
 fi
 
+if [ "$3" = "deploy" ]; then
+
+    path="qrc"
+else
+    path="$bin"
+fi
+
 #--------------------------------------------------------------------------------------------------
 # Clean
 #--------------------------------------------------------------------------------------------------
 
-if [ $1 = "clean" -o "$3" = "deploy" ]; then
+if [ $1 = "clean" ]; then
 
     echo "CLEANING"
 
@@ -61,12 +68,7 @@ if [ $1 = "clean" -o "$3" = "deploy" ]; then
 
     rm -rf $bin/pictures
 
-    if [ $1 = "clean" ]; then
-
-        exit 0
-    fi
-
-    echo ""
+    exit 0
 fi
 
 #--------------------------------------------------------------------------------------------------
@@ -75,17 +77,17 @@ fi
 
 echo "COPYING QML"
 
-cp "$content"/*.qml qrc
+cp "$content"/*.qml $path
 
 #--------------------------------------------------------------------------------------------------
 # Content
 #--------------------------------------------------------------------------------------------------
 
-if [ "$3" = "deploy" ]; then
+if [ "$3" = "all" -o "$3" = "deploy" ]; then
 
     echo "COPYING pictures"
 
-    cp -r "$content"/pictures qrc
+    cp -r "$content"/pictures $path
 fi
 
 #--------------------------------------------------------------------------------------------------
@@ -145,9 +147,7 @@ else
     defines="ANDROID"
 fi
 
-"$Sky"/deploy/deployer qrc $version HelloSky.qrc "$defines" \
+"$Sky"/deploy/deployer $path $version HelloSky.qrc "$defines" \
 "$SkyBase"/Style.qml \
 "$SkyBase"/Window.qml \
 "$SkyBase"/RectangleBorders.qml \
-
-cp -r qrc/* $bin
