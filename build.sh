@@ -153,8 +153,6 @@ fi
 
 build="build"
 
-config="CONFIG += release"
-
 if [ $os = "windows" ]; then
 
     spec=win32-g++
@@ -201,20 +199,16 @@ cd ../$build
 
 if [ "$3" = "deploy" ]; then
 
-    if [ $2 = "android" ]; then
-
-        $qmake -r -spec $spec "$config" "ANDROID_ABIS = $abi" $HelloSky
-    else
-        $qmake -r -spec $spec "$config" $HelloSky
-    fi
+    config="CONFIG += release deploy"
 else
+    config="CONFIG += release"
+fi
 
-    if [ $2 = "android" ]; then
+if [ $2 = "android" ]; then
 
-        $qmake -r -spec $spec "$config" "ANDROID_ABIS = $abi" $HelloSky
-    else
-        $qmake -r -spec $spec "$config" $HelloSky
-    fi
+    $qmake -r -spec $spec "$config" "ANDROID_ABIS = $abi" $HelloSky
+else
+    $qmake -r -spec $spec "$config" $HelloSky
 fi
 
 if [ $os = "windows" ]; then

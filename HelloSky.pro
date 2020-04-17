@@ -21,6 +21,12 @@ contains(QT_MAJOR_VERSION, 5) {
 
 DEFINES += SK_CORE_LIBRARY SK_GUI_LIBRARY
 
+deploy {
+    DEFINES += SK_DEPLOY
+
+    RESOURCES = dist/HelloSky.qrc
+}
+
 contains(QT_MAJOR_VERSION, 4) {
     DEFINES += QT_4
 
@@ -75,8 +81,6 @@ unix:!macx:!android:contains(QT_MAJOR_VERSION, 4) {
 macx:ICON = dist/icon.icns
 
 RC_FILE = dist/HelloSky.rc
-
-RESOURCES = dist/HelloSky.qrc
 
 OTHER_FILES += 3rdparty.sh \
                configure.sh \

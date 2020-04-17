@@ -55,6 +55,10 @@ if [ $1 = "clean" -o "$3" = "deploy" ]; then
 
     rm -rf qrc/pictures
 
+    rm -f ../bin/*.qml
+
+    rm -rf ../bin/pictures
+
     if [ $1 = "clean" ]; then
 
         exit 0
@@ -143,3 +147,5 @@ fi
 "$SkyBase"/Style.qml \
 "$SkyBase"/Window.qml \
 "$SkyBase"/RectangleBorders.qml \
+
+cp -r qrc/* ../bin

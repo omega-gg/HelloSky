@@ -68,6 +68,12 @@ Application
 
                 close();
             }
+            else if (event.key == Qt.Key_F1)
+            {
+                event.accepted = true;
+
+                sk.restartScript();
+            }
             else if (event.key == Qt.Key_F12)
             {
                 event.accepted = true;

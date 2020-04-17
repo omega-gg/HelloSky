@@ -27,6 +27,10 @@ int main(int argc, char * argv[])
 
     if (application == NULL) return 0;
 
+#ifndef SK_DEPLOY
+    sk->setQrc(false);
+#endif
+
     sk->startScript();
 
     return application->exec();
