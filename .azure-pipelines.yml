@@ -69,7 +69,9 @@ jobs:
       cd ../s
       sh build.sh qt5 macOS deploy
       cd deploy
-      zip -rq ../HelloSky.zip *
+      # FIXME: We need to use 7z on macOS or we can't sign the app
+      brew install p7zip
+      7z a ../HelloSky.zip *
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-macOS-qt5
 
