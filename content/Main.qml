@@ -58,7 +58,7 @@ Application
     {
         id: window
 
-        st: Style {}
+        st: Style { id: st }
 
         onKeyPressed:
         {
@@ -113,6 +113,21 @@ Application
             height: Math.round(parent.height / 3.272)
 
             source: sourceLogo
+        }
+
+        Text
+        {
+            anchors.left  : parent.left
+            anchors.bottom: parent.bottom
+
+            anchors.margins: st.dp8
+
+            text: "Sky " + sk.versionSky + "\nQt  " + sk.versionQt
+
+            color: "#fafafa"
+
+            font.family   : "consolas"
+            font.pixelSize: st.dp24
         }
     }
 }
