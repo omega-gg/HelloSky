@@ -112,8 +112,6 @@ if [ $2 = "macOS" ]; then
     iconutil -c icns icon.iconset
 
     rm -rf icon.iconset
-
-    cd -
 fi
 
 echo ""
