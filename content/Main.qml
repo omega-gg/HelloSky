@@ -87,6 +87,8 @@ Application
             id: viewDrag
 
             anchors.fill: parent
+
+            onDoubleClicked: window.maximized = !(window.maximized);
         }
 
         ImageScale

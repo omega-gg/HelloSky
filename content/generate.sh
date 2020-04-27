@@ -148,7 +148,7 @@ else
     defines="ANDROID"
 fi
 
-"$Sky"/deploy/deployer $path $version HelloSky.qrc "$defines" \
+"$Sky"/deploy/deployer $path $version ../dist/HelloSky.qrc "$defines" \
 "$SkyBase"/Style.qml \
 "$SkyBase"/Window.qml \
 "$SkyBase"/RectangleBorders.qml \
