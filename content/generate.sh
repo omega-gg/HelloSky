@@ -14,9 +14,6 @@ SkyBase="$Sky/src/SkyBase"
 content="../content"
 
 bin="../bin"
-qrc="../dist/qrc"
-
-pictures="../dist/pictures"
 
 #--------------------------------------------------------------------------------------------------
 # Syntax
@@ -50,10 +47,12 @@ fi
 
 if [ "$3" = "deploy" ]; then
 
-    path="$qrc"
+    path="qrc"
 else
     path="$bin"
 fi
+
+cd ../dist
 
 #--------------------------------------------------------------------------------------------------
 # Clean
@@ -63,11 +62,11 @@ if [ $1 = "clean" ]; then
 
     echo "CLEANING"
 
-    rm -f $qrc/*.qml
-    rm -f $bin/*.qml
-
-    rm -rf $qrc/pictures
+    rm -f  $bin/*.qml
     rm -rf $bin/pictures
+
+    rm -f  qrc/*.qml
+    rm -rf qrc/pictures
 
     exit 0
 fi
@@ -101,18 +100,20 @@ if [ $2 = "macOS" ]; then
 
     mkdir icon.iconset
 
-    cp $pictures/icon/16.png  icon.iconset/icon_16x16.png
-    cp $pictures/icon/24.png  icon.iconset/icon_24x24.png
-    cp $pictures/icon/32.png  icon.iconset/icon_32x32.png
-    cp $pictures/icon/48.png  icon.iconset/icon_48x48.png
-    cp $pictures/icon/64.png  icon.iconset/icon_64x64.png
-    cp $pictures/icon/128.png icon.iconset/icon_128x128.png
-    cp $pictures/icon/256.png icon.iconset/icon_256x256.png
-    cp $pictures/icon/512.png icon.iconset/icon_512x512.png
+    cp pictures/icon/16.png  icon.iconset/icon_16x16.png
+    cp pictures/icon/24.png  icon.iconset/icon_24x24.png
+    cp pictures/icon/32.png  icon.iconset/icon_32x32.png
+    cp pictures/icon/48.png  icon.iconset/icon_48x48.png
+    cp pictures/icon/64.png  icon.iconset/icon_64x64.png
+    cp pictures/icon/128.png icon.iconset/icon_128x128.png
+    cp pictures/icon/256.png icon.iconset/icon_256x256.png
+    cp pictures/icon/512.png icon.iconset/icon_512x512.png
 
     iconutil -c icns icon.iconset
 
     rm -rf icon.iconset
+
+    cd -
 fi
 
 echo ""
@@ -148,7 +149,7 @@ else
     defines="ANDROID"
 fi
 
-"$Sky"/deploy/deployer $path $version ../dist/HelloSky.qrc "$defines" \
+"$Sky"/deploy/deployer $path $version HelloSky.qrc "$defines" \
 "$SkyBase"/Style.qml \
 "$SkyBase"/Window.qml \
 "$SkyBase"/RectangleBorders.qml \
