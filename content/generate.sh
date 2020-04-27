@@ -14,6 +14,9 @@ SkyBase="$Sky/src/SkyBase"
 content="../content"
 
 bin="../bin"
+qrc="../dist/qrc"
+
+pictures="../dist/pictures"
 
 #--------------------------------------------------------------------------------------------------
 # Syntax
@@ -27,9 +30,9 @@ if [ $# != 2 -a $# != 3 ] \
    || \
    [ $# = 3 -a "$3" != "all" -a "$3" != "deploy" ]; then
 
-    echo "Usage: qrc <qt4 | qt5 | clean>"
-    echo "           <win32 | win64 | macOS | linux | android>"
-    echo "           [all | deploy]"
+    echo "Usage: generate <qt4 | qt5 | clean>"
+    echo "                <win32 | win64 | macOS | linux | android>"
+    echo "                [all | deploy]"
 
     exit 1
 fi
@@ -47,7 +50,7 @@ fi
 
 if [ "$3" = "deploy" ]; then
 
-    path="qrc"
+    path="$qrc"
 else
     path="$bin"
 fi
@@ -60,12 +63,10 @@ if [ $1 = "clean" ]; then
 
     echo "CLEANING"
 
-    rm -f qrc/*.qml
-
-    rm -rf qrc/pictures
-
+    rm -f $qrc/*.qml
     rm -f $bin/*.qml
 
+    rm -rf $qrc/pictures
     rm -rf $bin/pictures
 
     exit 0
@@ -77,7 +78,7 @@ fi
 
 echo "COPYING QML"
 
-cp "$content"/*.qml $path
+cp $content/*.qml $path
 
 #--------------------------------------------------------------------------------------------------
 # Content
@@ -87,7 +88,7 @@ if [ "$3" = "all" -o "$3" = "deploy" ]; then
 
     echo "COPYING pictures"
 
-    cp -r "$content"/pictures $path
+    cp -r $content/pictures $path
 fi
 
 #--------------------------------------------------------------------------------------------------
@@ -100,14 +101,14 @@ if [ $2 = "macOS" ]; then
 
     mkdir icon.iconset
 
-    cp pictures/icon/16.png  icon.iconset/icon_16x16.png
-    cp pictures/icon/24.png  icon.iconset/icon_24x24.png
-    cp pictures/icon/32.png  icon.iconset/icon_32x32.png
-    cp pictures/icon/48.png  icon.iconset/icon_48x48.png
-    cp pictures/icon/64.png  icon.iconset/icon_64x64.png
-    cp pictures/icon/128.png icon.iconset/icon_128x128.png
-    cp pictures/icon/256.png icon.iconset/icon_256x256.png
-    cp pictures/icon/512.png icon.iconset/icon_512x512.png
+    cp $pictures/icon/16.png  icon.iconset/icon_16x16.png
+    cp $pictures/icon/24.png  icon.iconset/icon_24x24.png
+    cp $pictures/icon/32.png  icon.iconset/icon_32x32.png
+    cp $pictures/icon/48.png  icon.iconset/icon_48x48.png
+    cp $pictures/icon/64.png  icon.iconset/icon_64x64.png
+    cp $pictures/icon/128.png icon.iconset/icon_128x128.png
+    cp $pictures/icon/256.png icon.iconset/icon_256x256.png
+    cp $pictures/icon/512.png icon.iconset/icon_512x512.png
 
     iconutil -c icns icon.iconset
 
@@ -151,3 +152,4 @@ fi
 "$SkyBase"/Style.qml \
 "$SkyBase"/Window.qml \
 "$SkyBase"/RectangleBorders.qml \
+"$SkyBase"/BaseButton.qml \
