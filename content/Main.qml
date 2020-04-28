@@ -131,5 +131,19 @@ Application
             font.family   : "consolas"
             font.pixelSize: st.dp24
         }
+
+//#DESKTOP
+        Button
+        {
+            anchors.top  : parent.top
+            anchors.right: parent.right
+
+            anchors.margins: st.dp16
+
+            text: qsTr("Exit")
+
+            onClicked: sk.quit()
+        }
+//#END
     }
 }
