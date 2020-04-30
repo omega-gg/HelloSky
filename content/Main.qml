@@ -112,7 +112,8 @@ Application
 
             width: Math.round(height * 1.5)
 
-            height: Math.round(parent.height / 3.272)
+            height: (parent.width < st.dp640) ? Math.round(parent.height / 5)
+                                              : Math.round(parent.height / 3.272)
 
             source: sourceLogo
         }
