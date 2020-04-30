@@ -82,14 +82,14 @@ Application
             }
         }
 
+//#DESKTOP
         ViewDrag
         {
-            id: viewDrag
-
             anchors.fill: parent
 
             onDoubleClicked: window.maximized = !(window.maximized);
         }
+//#END
 
         ImageScale
         {
@@ -122,7 +122,11 @@ Application
             anchors.left  : parent.left
             anchors.bottom: parent.bottom
 
+//#DESKTOP
             anchors.margins: st.dp8
+//#ELSE
+            anchors.margins: st.dp32
+//#END
 
             text: "Sky " + sk.versionSky + "\nQt  " + sk.versionQt
 
