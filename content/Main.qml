@@ -122,11 +122,7 @@ Application
             anchors.left  : parent.left
             anchors.bottom: parent.bottom
 
-//#DESKTOP
-            anchors.margins: st.dp8
-//#ELSE
             anchors.margins: st.dp32
-//#END
 
             text: "Sky " + sk.versionSky + "\nQt  " + sk.versionQt
 
@@ -142,7 +138,7 @@ Application
             anchors.top  : parent.top
             anchors.right: parent.right
 
-            anchors.margins: st.dp16
+            anchors.margins: st.dp32
 
             text: qsTr("Exit")
 

@@ -5,8 +5,6 @@ set -e
 # Settings
 #--------------------------------------------------------------------------------------------------
 
-HelloSky=".."
-
 external="$PWD/../3rdparty"
 
 #--------------------------------------------------------------------------------------------------
@@ -206,9 +204,9 @@ fi
 
 if [ $2 = "android" ]; then
 
-    $qmake -r -spec $spec "$config" "ANDROID_ABIS = $abi" $HelloSky
+    $qmake -r -spec $spec "$config" "ANDROID_ABIS = $abi" ..
 else
-    $qmake -r -spec $spec "$config" $HelloSky
+    $qmake -r -spec $spec "$config" ..
 fi
 
 if [ $os = "windows" ]; then
@@ -217,6 +215,8 @@ if [ $os = "windows" ]; then
 else
     make $make_arguments
 fi
+
+cd -
 
 echo "------------------"
 
@@ -229,8 +229,6 @@ if [ "$3" = "deploy" ]; then
     echo ""
     echo "DEPLOYING HelloSky"
     echo "----------------------"
-
-    cd $HelloSky
 
     sh deploy.sh $1 $2
 
