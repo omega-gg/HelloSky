@@ -155,8 +155,6 @@ else
     config="CONFIG += release qtquickcompiler"
 fi
 
-build="build"
-
 if [ $os = "windows" ]; then
 
     spec=win32-g++
@@ -199,7 +197,7 @@ fi
 
 echo ""
 
-cd ../$build
+cd ../build
 
 if [ "$3" = "deploy" ]; then
 
