@@ -29,9 +29,9 @@ BaseButton
     // Settings
     //---------------------------------------------------------------------------------------------
 
-    width: sk.textWidth(itemText.font, text) + st.dp64
+    width: sk.textWidth(itemText.font, text) + st.dp48
 
-    height: st.dp64
+    height: st.dp48
 
     cursor: Qt.PointingHandCursor
 
@@ -59,6 +59,6 @@ BaseButton
 
         color: "#dcdcdc"
 
-        font.pixelSize: st.dp32
+        font.pixelSize: st.dp20
     }
 }

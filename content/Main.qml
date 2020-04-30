@@ -123,14 +123,14 @@ Application
             anchors.left  : parent.left
             anchors.bottom: parent.bottom
 
-            anchors.margins: st.dp32
+            anchors.margins: st.dp24
 
             text: "Sky " + sk.versionSky + "\nQt  " + sk.versionQt
 
             color: "#fafafa"
 
             font.family   : "consolas"
-            font.pixelSize: st.dp24
+            font.pixelSize: st.dp16
         }
 
 //#DESKTOP
@@ -139,7 +139,7 @@ Application
             anchors.top  : parent.top
             anchors.right: parent.right
 
-            anchors.margins: st.dp32
+            anchors.margins: st.dp16
 
             text: qsTr("Exit")
 
