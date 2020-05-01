@@ -5,7 +5,7 @@ SK_GUI  = $$SK/src/SkGui/src
 
 TARGET = HelloSky
 
-DESTDIR = $$_PRO_FILE_PWD_/bin
+!android:DESTDIR = $$_PRO_FILE_PWD_/bin
 
 contains(QT_MAJOR_VERSION, 4) {
     QT += opengl declarative network xml xmlpatterns svg

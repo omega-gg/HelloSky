@@ -7,6 +7,21 @@ set -e
 
 Sky="../Sky"
 
+external="../3rdparty"
+
+#--------------------------------------------------------------------------------------------------
+
+Qt5_version="5.14.1"
+
+#--------------------------------------------------------------------------------------------------
+# Android
+
+JDK_version="8u251"
+
+JDK="$external/JDK/$JDK_version"
+
+androiddeployqt="$external/Qt/$Qt5_version/bin/androiddeployqt"
+
 #--------------------------------------------------------------------------------------------------
 # Syntax
 #--------------------------------------------------------------------------------------------------
@@ -366,5 +381,9 @@ elif [ $2 = "linux" ]; then
 
 elif [ $2 = "android" ]; then
 
-    cp bin/libHelloSky* deploy
+    "$androiddeployqt" --input build/android-HelloSky-deployment-settings.json \
+                       --output deploy \
+                       --android-platform android-29 \
+                       --jdk $JDK \
+                       --gradle
 fi
