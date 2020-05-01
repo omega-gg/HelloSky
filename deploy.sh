@@ -20,10 +20,6 @@ SDK_VERSION_android="29"
 
 JDK_version="8u251"
 
-JDK="$external/JDK/$JDK_version"
-
-androiddeployqt="$external/Qt/$Qt5_version/bin/androiddeployqt"
-
 #--------------------------------------------------------------------------------------------------
 # Syntax
 #--------------------------------------------------------------------------------------------------
@@ -43,9 +39,19 @@ fi
 # Configuration
 #--------------------------------------------------------------------------------------------------
 
+external="$external/$2"
+
 if [ $2 = "win32" -o $2 = "win64" ]; then
 
     os="windows"
+
+elif [ $2 = "android" ]; then
+
+    os="default"
+
+    JDK="$external/JDK/$JDK_version"
+
+    androiddeployqt="$external/Qt/$Qt5_version/bin/androiddeployqt"
 else
     os="default"
 fi
