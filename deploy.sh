@@ -16,6 +16,8 @@ Qt5_version="5.14.1"
 #--------------------------------------------------------------------------------------------------
 # Android
 
+SDK_VERSION_android="29"
+
 JDK_version="8u251"
 
 JDK="$external/JDK/$JDK_version"
@@ -383,7 +385,7 @@ elif [ $2 = "android" ]; then
 
     "$androiddeployqt" --input build/android-HelloSky-deployment-settings.json \
                        --output deploy \
-                       --android-platform android-29 \
+                       --android-platform $SDK_VERSION_android \
                        --jdk $JDK \
                        --gradle
 fi
