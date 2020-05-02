@@ -218,6 +218,11 @@ else
     make $make_arguments
 fi
 
+if [ $2 = "android" ]; then
+
+    make install INSTALL_ROOT=$BUILD_TARGET
+fi
+
 cd ..
 
 echo "------------------"
