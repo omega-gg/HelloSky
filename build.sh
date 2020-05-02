@@ -220,7 +220,7 @@ fi
 
 if [ $2 = "android" ]; then
 
-    sudo make "INSTALL_ROOT=$BUILD_TARGET" install
+    sudo make install "INSTALL_ROOT=$BUILD_TARGET"
 fi
 
 cd ..
