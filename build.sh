@@ -220,7 +220,7 @@ fi
 
 if [ $2 = "android" ]; then
 
-    make install "INSTALL_ROOT=$PWD/../deploy"
+    make install "INSTALL_ROOT=$PWD/android-build"
 fi
 
 cd ..

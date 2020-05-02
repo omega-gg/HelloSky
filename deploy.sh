@@ -389,8 +389,9 @@ elif [ $2 = "linux" ]; then
 
 elif [ $2 = "android" ]; then
 
-    "$androiddeployqt" --input build/android-HelloSky-deployment-settings.json \
-                       --output $PWD/deploy \
+    "$androiddeployqt" --release \
+                       --input build/android-HelloSky-deployment-settings.json \
+                       --output build/android-build \
                        --android-platform android-$SDK_version \
                        --jdk $JDK \
                        --gradle
