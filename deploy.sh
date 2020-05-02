@@ -395,6 +395,8 @@ elif [ $2 = "android" ]; then
     export ANDROID_SDK_ROOT="$external/SDK/$SDK_version"
     export ANDROID_NDK_ROOT="$external/NDK/$NDK_version"
 
+    PATH=$ANDROID_SDK_ROOT:$PATH
+
     "$androiddeployqt" --input build/android-HelloSky-deployment-settings.json \
                        --output deploy \
                        --android-platform android-$SDK_version \
