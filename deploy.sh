@@ -17,7 +17,6 @@ Qt5_version="5.14.1"
 # Android
 
 SDK_version="29"
-NDK_version="21"
 
 JDK_version="8u251"
 
@@ -389,13 +388,6 @@ elif [ $2 = "linux" ]; then
     cp bin/HelloSky deploy
 
 elif [ $2 = "android" ]; then
-
-    export ANDROID_HOME="$external/SDK/$SDK_version"
-
-    export ANDROID_SDK_ROOT="$external/SDK/$SDK_version"
-    export ANDROID_NDK_ROOT="$external/NDK/$NDK_version"
-
-    PATH=$ANDROID_SDK_ROOT:$PATH
 
     "$androiddeployqt" --input build/android-HelloSky-deployment-settings.json \
                        --output deploy \

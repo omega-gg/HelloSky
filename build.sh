@@ -21,6 +21,7 @@ make_arguments="-j 4"
 #--------------------------------------------------------------------------------------------------
 # Android
 
+SDK_version="29"
 NDK_version="21"
 
 #--------------------------------------------------------------------------------------------------
@@ -178,6 +179,7 @@ elif [ $2 = "android" ]; then
 
     spec=android-clang
 
+    export ANDROID_SDK_ROOT="$external/SDK/$SDK_version"
     export ANDROID_NDK_ROOT="$external/NDK/$NDK_version"
 fi
 
