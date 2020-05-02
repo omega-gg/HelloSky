@@ -389,6 +389,8 @@ elif [ $2 = "linux" ]; then
 
 elif [ $2 = "android" ]; then
 
+    export ANDROID_HOME="$external/SDK/$SDK_version"
+
     export ANDROID_SDK_ROOT="$external/SDK/$SDK_version"
 
     "$androiddeployqt" --input build/android-HelloSky-deployment-settings.json \
