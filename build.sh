@@ -220,7 +220,7 @@ fi
 
 if [ $2 = "android" ]; then
 
-    make install INSTALL_ROOT=$BUILD_TARGET
+    make "INSTALL_ROOT=$BUILD_TARGET" install
 fi
 
 cd ..
