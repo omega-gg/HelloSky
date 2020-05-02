@@ -206,7 +206,7 @@ fi
 
 if [ $2 = "android" ]; then
 
-    $qmake -r -spec $spec "$config" "ANDROID_ABIS = $abi" ..
+    $qmake -r -spec $spec "$config" "ANDROID_ABIS=$abi" ..
 else
     $qmake -r -spec $spec "$config" ..
 fi
@@ -220,7 +220,7 @@ fi
 
 if [ $2 = "android" ]; then
 
-    make "INSTALL_ROOT=$BUILD_TARGET" install
+    sudo make "INSTALL_ROOT=$BUILD_TARGET" install
 fi
 
 cd ..
