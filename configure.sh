@@ -124,7 +124,8 @@ if [ $2 = "android" ]; then
 
     yes | ./sdkmanager --sdk_root="$path" --licenses
 
-    ./sdkmanager --sdk_root="$path" "platforms;android-$SDK_version" \
+    ./sdkmanager --sdk_root="$path" "build-tools;$TOOLS_version" \
+                                    "platforms;android-$SDK_version" \
                                     "ndk;$NDK_version"
 
     ./sdkmanager --sdk_root="$path" --update
