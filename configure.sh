@@ -120,6 +120,8 @@ if [ $2 = "android" ]; then
 
     export JAVA_HOME="$external/JDK/$JDK_version"
 
+    yes | ./sdkmanager --sdk_root="$path" --licenses
+
     ./sdkmanager --sdk_root="$path" "build-tools;$TOOLS_version" \
                                     "platforms;android-$SDK_version" \
                                     "ndk;$NDK_version"
