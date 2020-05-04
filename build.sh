@@ -220,7 +220,7 @@ fi
 
 if [ $2 = "android" ]; then
 
-    make install "INSTALL_ROOT=android-build"
+    make install "INSTALL_ROOT=apk"
 fi
 
 cd ..

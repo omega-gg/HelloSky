@@ -391,8 +391,10 @@ elif [ $2 = "android" ]; then
 
     "$androiddeployqt" --release \
                        --input build/android-HelloSky-deployment-settings.json \
-                       --output build/android-build \
+                       --output build/apk \
                        --android-platform android-$SDK_version \
                        --jdk $JDK \
                        --gradle
+
+    mv build/apk/build/outputs/apk/release/apk-release-unsigned.apk deploy/HelloSky.apk
 fi
