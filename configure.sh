@@ -14,6 +14,16 @@ external="../3rdparty"
 MinGW_version="7.3.0"
 
 #--------------------------------------------------------------------------------------------------
+# Android
+
+JDK_version="8u251"
+
+TOOLS_version="30.0.0-rc3"
+
+SDK_version="29"
+NDK_version="21.1.6352462"
+
+#--------------------------------------------------------------------------------------------------
 # Syntax
 #--------------------------------------------------------------------------------------------------
 
@@ -36,7 +46,7 @@ fi
 # Configuration
 #--------------------------------------------------------------------------------------------------
 
-external="$external/$2"
+external="$PWD/$external/$2"
 
 if [ $2 = "win32" -o $2 = "win64" ]; then
 
@@ -96,4 +106,25 @@ if [ $os = "windows" ]; then
     cp "$MinGW"/libgcc_s_*-1.dll    bin
     cp "$MinGW"/libstdc++-6.dll     bin
     cp "$MinGW"/libwinpthread-1.dll bin
+fi
+
+#--------------------------------------------------------------------------------------------------
+# SDK
+#--------------------------------------------------------------------------------------------------
+
+if [ $2 = "android" ]; then
+
+    echo "CONFIGURING SDK"
+
+    cd "$SDK/tools/bin"
+
+    export JAVA_HOME="$external/JDK/$JDK_version"
+
+    ./sdkmanager --sdk_root="$path" "build-tools;$TOOLS_version" \
+                                    "platforms;android-$SDK_version" \
+                                    "ndk;$NDK_version"
+
+    ./sdkmanager --sdk_root="$path" --update
+
+    cd -
 fi

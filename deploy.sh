@@ -16,8 +16,6 @@ Qt5_version="5.14.1"
 #--------------------------------------------------------------------------------------------------
 # Android
 
-SDK_version="29"
-
 JDK_version="8u251"
 
 #--------------------------------------------------------------------------------------------------
@@ -39,19 +37,11 @@ fi
 # Configuration
 #--------------------------------------------------------------------------------------------------
 
-external="$PWD/$external/$2"
+external="$external/$2"
 
 if [ $2 = "win32" -o $2 = "win64" ]; then
 
     os="windows"
-
-elif [ $2 = "android" ]; then
-
-    os="default"
-
-    JDK="$external/JDK/$JDK_version"
-
-    androiddeployqt="$external/Qt/$Qt5_version/bin/androiddeployqt"
 else
     os="default"
 fi
@@ -389,11 +379,13 @@ elif [ $2 = "linux" ]; then
 
 elif [ $2 = "android" ]; then
 
+    androiddeployqt="$external/Qt/$Qt5_version/bin/androiddeployqt"
+
     "$androiddeployqt" --release \
                        --input build/android-HelloSky-deployment-settings.json \
                        --output build/apk \
                        --android-platform android-$SDK_version \
-                       --jdk $JDK \
+                       --jdk "$external/JDK/$JDK_version" \
                        --gradle
 
     mv build/apk/build/outputs/apk/release/apk-release-unsigned.apk deploy/HelloSky.apk
