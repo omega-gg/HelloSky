@@ -381,6 +381,8 @@ elif [ $2 = "linux" ]; then
 
 elif [ $2 = "android" ]; then
 
+    export JAVA_HOME="$external/JDK/$JDK_version"
+
     androiddeployqt="$external/Qt/$Qt5_version/bin/androiddeployqt"
 
     "$androiddeployqt" --release \
