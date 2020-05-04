@@ -21,7 +21,6 @@ JDK_version="8u251"
 TOOLS_version="30.0.0-rc3"
 
 SDK_version="29"
-NDK_version="21.1.6352462"
 
 #--------------------------------------------------------------------------------------------------
 # Syntax
@@ -126,7 +125,6 @@ if [ $2 = "android" ]; then
 
     ./sdkmanager --sdk_root="$path" "build-tools;$TOOLS_version" \
                                     "platforms;android-$SDK_version" \
-                                    "ndk;$NDK_version"
 
     ./sdkmanager --sdk_root="$path" --update
 
