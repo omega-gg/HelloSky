@@ -39,7 +39,7 @@ fi
 # Configuration
 #--------------------------------------------------------------------------------------------------
 
-external="$external/$2"
+external="$PWD/$external/$2"
 
 if [ $2 = "win32" -o $2 = "win64" ]; then
 
@@ -389,7 +389,7 @@ elif [ $2 = "android" ]; then
                        --input build/android-HelloSky-deployment-settings.json \
                        --output build/apk \
                        --android-platform android-$SDK_version \
-                       --jdk "$external/JDK/$JDK_version" \
+                       --jdk $JAVA_HOME \
                        --gradle
 
     mv build/apk/build/outputs/apk/release/apk-release-unsigned.apk deploy/HelloSky.apk
