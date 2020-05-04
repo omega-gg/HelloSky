@@ -116,7 +116,7 @@ if [ $2 = "android" ]; then
 
     echo "CONFIGURING SDK"
 
-    cd "$SDK/tools/bin"
+    cd "$external/SDK/$SDK_version/tools/bin"
 
     export JAVA_HOME="$external/JDK/$JDK_version"
 
