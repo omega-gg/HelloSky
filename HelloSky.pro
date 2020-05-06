@@ -94,3 +94,9 @@ OTHER_FILES += 3rdparty.sh \
                content/Main.qml \
                content/Button.qml \
                dist/HelloSky.rc \
+
+android {
+    ANDROID_PACKAGE_SOURCE_DIR = $$_PRO_FILE_PWD_/dist/android
+
+    DISTFILES += dist/android/AndroidManifest.xml
+}
