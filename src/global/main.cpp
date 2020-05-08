@@ -65,6 +65,10 @@ int main(int argc, char * argv[])
     qmlRegisterType<WDeclarativeImageScale>("Sky", 1,0, "ImageScale");
     qmlRegisterType<WDeclarativeImageSvg>  ("Sky", 1,0, "ImageSvg");
 
+#ifdef QT_4
+    qmlRegisterType<WDeclarativeImageSvgScale>("Sky", 1,0, "ImageSvgScale");
+#endif
+
     qmlRegisterUncreatableType<WDeclarativeKeyEvent>("Sky", 1,0, "DeclarativeKeyEvent",
                                                      "DeclarativeKeyEvent is not creatable");
 
