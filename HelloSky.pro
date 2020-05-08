@@ -52,8 +52,6 @@ include(src/thread/thread.pri)
 include(src/image/image.pri)
 include(src/graphicsview/graphicsview.pri)
 include(src/declarative/declarative.pri)
-include(src/models/models.pri)
-include(src/media/media.pri)
 
 include(src/3rdparty/qtsingleapplication/qtsingleapplication.pri)
 
