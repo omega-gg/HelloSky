@@ -374,5 +374,5 @@ elif [ $2 = "linux" ]; then
 
 elif [ $2 = "android" ]; then
 
-    cp build/apk deploy
+    cp -r build/apk deploy
 fi
