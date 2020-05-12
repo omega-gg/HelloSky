@@ -43,13 +43,13 @@ You can configure HelloSky with:
 
 You can build HelloSky with:
 
-    sh build.sh <qt4 | qt5 | clean> <win32 | win64 | macOS | linux> [deploy]
+    sh build.sh <qt4 | qt5 | clean> <win32 | win64 | macOS | linux | android> [deploy]
 
 ## Deploy
 
 You can deploy HelloSky with:
 
-    sh deploy.sh <qt4 | qt5 | clean> <win32 | win64 | macOS | linux>
+    sh deploy.sh <qt4 | qt5 | clean> <win32 | win64 | macOS | linux | android>
 
 ## License
 
