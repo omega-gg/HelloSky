@@ -53,22 +53,6 @@ jobs:
 
 #--------------------------------------------------------------------------------------------------
 
-- job: win32_msvc_qt4
-  pool:
-    vmImage: "windows-latest"
-  steps:
-  - bash: |
-      sh 3rdparty.sh win32-msvc
-      sh configure.sh qt4 win32-msvc sky
-      cd ../Sky
-      sh build.sh qt4 win32-msvc tools
-      cd ../s
-      sh build.sh qt4 win32-msvc deploy
-      cd deploy
-      7z a ../HelloSky.zip *
-  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
-    artifact: HelloSky-win32-msvc-qt4
-
 - job: win32_msvc_qt5
   pool:
     vmImage: "windows-latest"
