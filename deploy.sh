@@ -17,13 +17,13 @@ Qt5_version="5.14.2"
 # Syntax
 #--------------------------------------------------------------------------------------------------
 
-if [ $# != 2 ] || [ $1 != "qt4" -a $1 != "qt5" -a $1 != "clean" ] || [ $2 != "win32" -a \
-                                                                       $2 != "win64" -a \
-                                                                       $2 != "macOS" -a \
-                                                                       $2 != "linux" -a \
-                                                                       $2 != "android" ]; then
+if [ $# != 2 ] || [ $1 != "qt4" -a $1 != "qt5" -a $1 != "clean" ] \
+   || \
+   [ $2 != "win32" -a $2 != "win64" -a $2 != "win32-msvc" -a $2 != "win64-msvc" -a \
+     $2 != "macOS" -a $2 != "linux" -a $2 != "android" ]; then
 
-    echo "Usage: deploy <qt4 | qt5 | clean> <win32 | win64 | macOS | linux | android>"
+    echo "Usage: deploy <qt4 | qt5 | clean>"
+    echo "              <win32 | win64 | win32-msvc | win64-msvc | macOS | linux | android>"
 
     exit 1
 fi
@@ -34,11 +34,20 @@ fi
 
 external="$PWD/$external/$2"
 
-if [ $2 = "win32" -o $2 = "win64" ]; then
+if [ $2 = "win32" -o $2 = "win64" -o $2 = "win32-msvc" -o $2 = "win64-msvc" ]; then
 
     os="windows"
+
+    if [ $2 = "win32" -o $2 = "win64" ]; then
+
+        compiler="mingw"
+    else
+        compiler="default"
+    fi
 else
     os="default"
+
+    compiler="default"
 fi
 
 #--------------------------------------------------------------------------------------------------
@@ -79,9 +88,12 @@ path="$Sky/deploy"
 
 if [ $os = "windows" ]; then
 
-    cp "$path"/libgcc_s_*-1.dll    deploy
-    cp "$path"/libstdc++-6.dll     deploy
-    cp "$path"/libwinpthread-1.dll deploy
+    if [ $compiler = "mingw" ]; then
+
+        cp "$path"/libgcc_s_*-1.dll    deploy
+        cp "$path"/libstdc++-6.dll     deploy
+        cp "$path"/libwinpthread-1.dll deploy
+    fi
 
     if [ $1 = "qt4" ]; then
 

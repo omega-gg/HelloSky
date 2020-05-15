@@ -31,12 +31,13 @@ if [ $# != 2 -a $# != 3 ] \
    || \
    [ $1 != "qt4" -a $1 != "qt5" -a $1 != "clean" ] \
    || \
-   [ $2 != "win32" -a $2 != "win64" -a $2 != "macOS" -a $2 != "linux" -a $2 != "android" ] \
+   [ $2 != "win32" -a $2 != "win64" -a $2 != "win32-msvc" -a $2 != "win64-msvc" -a \
+     $2 != "macOS" -a $2 != "linux" -a $2 != "android" ] \
    || \
    [ $# = 3 -a "$3" != "sky" ]; then
 
     echo "Usage: configure <qt4 | qt5 | clean>"
-    echo "                 <win32 | win64 | macOS | linux | android>"
+    echo "                 <win32 | win64 | win32-msvc | win64-msvc | macOS | linux | android>"
     echo "                 [sky]"
 
     exit 1
@@ -50,11 +51,11 @@ external="$PWD/$external/$2"
 
 if [ $2 = "win32" -o $2 = "win64" ]; then
 
-    os="windows"
+    compiler="mingw"
 
     MinGW="$external/MinGW/$MinGW_version/bin"
 else
-    os="default"
+    compiler="default"
 fi
 
 #--------------------------------------------------------------------------------------------------
@@ -66,7 +67,9 @@ echo "CLEANING"
 rm -rf bin/*
 touch  bin/.gitignore
 
-rm -rf build/*
+# NOTE: We have to remove the folder to delete .qmake.stash.
+rm -rf build
+mkdir  build
 touch  build/.gitignore
 
 if [ $1 = "clean" ]; then
@@ -99,7 +102,7 @@ fi
 
 echo "CONFIGURING HelloSky"
 
-if [ $os = "windows" ]; then
+if [ $compiler = "mingw" ]; then
 
     cp "$MinGW"/libgcc_s_*-1.dll    bin
     cp "$MinGW"/libstdc++-6.dll     bin
