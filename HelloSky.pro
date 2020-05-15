@@ -40,7 +40,7 @@ deploy|android {
     RESOURCES = dist/HelloSky.qrc
 }
 
-!msvc:QMAKE_CXXFLAGS += -std=c++11
+!win32-msvc*:QMAKE_CXXFLAGS += -std=c++11
 
 unix:QMAKE_LFLAGS += "-Wl,-rpath,'\$$ORIGIN'"
 
@@ -73,7 +73,7 @@ unix:contains(QT_MAJOR_VERSION, 4) {
 }
 
 # Windows dependency for ShellExecuteA and PostMessage
-msvc:LIBS += shell32.lib User32.lib
+win32-msvc*:LIBS += shell32.lib User32.lib
 
 unix:!macx:!android:contains(QT_MAJOR_VERSION, 4) {
     LIBS += -lX11
