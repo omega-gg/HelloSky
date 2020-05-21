@@ -3,7 +3,7 @@
 [![azure](https://dev.azure.com/bunjee/HelloSky/_apis/build/status/omega-gg.HelloSky)](https://dev.azure.com/bunjee/HelloSky/_build)
 [![GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl.html)
 
-[HelloSky](http://omega.gg/HelloSky) is a "Hello World" application built with Sky kit.<br>
+HelloSky is a "Hello World" application built with Sky kit.<br>
 
 ## Technology
 
