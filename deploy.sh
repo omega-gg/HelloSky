@@ -14,6 +14,13 @@ external="../3rdparty"
 Qt5_version="5.14.2"
 
 #--------------------------------------------------------------------------------------------------
+# Android
+
+JDK_version="8u251"
+
+SDK_version="29"
+
+#--------------------------------------------------------------------------------------------------
 # Syntax
 #--------------------------------------------------------------------------------------------------
 
@@ -386,5 +393,17 @@ elif [ $2 = "linux" ]; then
 
 elif [ $2 = "android" ]; then
 
-    cp -r * deploy
+    export JAVA_HOME="$external/JDK/$JDK_version"
+
+    androiddeployqt="$external/Qt/$Qt5_version/bin/androiddeployqt"
+
+    "$androiddeployqt" --release \
+                       --aab \
+                       --input build/android-HelloSky-deployment-settings.json \
+                       --output build/apk \
+                       --android-platform android-$SDK_version \
+                       --jdk $JAVA_HOME \
+                       --gradle
+
+    mv build/apk/build/outputs/apk/release/apk-release-unsigned.apk deploy/HelloSky.apk
 fi
