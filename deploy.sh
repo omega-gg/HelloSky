@@ -386,5 +386,5 @@ elif [ $2 = "linux" ]; then
 
 elif [ $2 = "android" ]; then
 
-    cp -r build deploy
+    cp -r build/* deploy
 fi
