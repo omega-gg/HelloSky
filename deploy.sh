@@ -7,19 +7,6 @@ set -e
 
 Sky="../Sky"
 
-external="../3rdparty"
-
-#--------------------------------------------------------------------------------------------------
-
-Qt5_version="5.14.2"
-
-#--------------------------------------------------------------------------------------------------
-# Android
-
-JDK_version="8u251"
-
-SDK_version="29"
-
 #--------------------------------------------------------------------------------------------------
 # Syntax
 #--------------------------------------------------------------------------------------------------
@@ -38,8 +25,6 @@ fi
 #--------------------------------------------------------------------------------------------------
 # Configuration
 #--------------------------------------------------------------------------------------------------
-
-external="$PWD/$external/$2"
 
 if [ $2 = "win32" -o $2 = "win64" -o $2 = "win32-msvc" -o $2 = "win64-msvc" ]; then
 
@@ -393,17 +378,5 @@ elif [ $2 = "linux" ]; then
 
 elif [ $2 = "android" ]; then
 
-    export JAVA_HOME="$external/JDK/$JDK_version"
-
-    androiddeployqt="$external/Qt/$Qt5_version/bin/androiddeployqt"
-
-    "$androiddeployqt" --release \
-                       --aab \
-                       --input build/android-HelloSky-deployment-settings.json \
-                       --output build/apk \
-                       --android-platform android-$SDK_version \
-                       --jdk $JAVA_HOME \
-                       --gradle
-
-    mv build/apk/build/outputs/bundle/release/android-build-release.aab deploy/HelloSky.aab
+    cp build/android-build/build/outputs/bundle/release/android-build-release.aab deploy/HelloSky.aab
 fi

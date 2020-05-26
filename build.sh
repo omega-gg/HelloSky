@@ -295,13 +295,12 @@ if [ $compiler = "mingw" ]; then
 elif [ $compiler = "msvc" ]; then
 
     jom
+
+elif [ $2 = "android" ]; then
+
+    make $make_arguments aab
 else
     make $make_arguments
-fi
-
-if [ $2 = "android" ]; then
-
-    make install "INSTALL_ROOT=apk"
 fi
 
 cd ..
