@@ -46,7 +46,7 @@ else
     os="default"
 fi
 
-if [ "$3" = "deploy" ]; then
+if [ "$3" = "deploy" -o $2 = "android" ]; then
 
     path="qrc"
 else
@@ -84,7 +84,7 @@ cp $content/*.qml $path
 # Content
 #--------------------------------------------------------------------------------------------------
 
-if [ "$3" = "all" -o "$3" = "deploy" ]; then
+if [ "$3" = "all" -o "$3" = "deploy" -o $2 = "android"  ]; then
 
     echo "COPYING pictures"
 
