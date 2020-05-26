@@ -119,6 +119,8 @@ if [ $2 = "android" ]; then
 
     cd "$external/SDK/$SDK_version/tools/bin"
 
+    export JAVA_HOME="$external/JDK/$JDK_version"
+
     path="$PWD/../.."
 
     yes | ./sdkmanager --sdk_root="$path" --licenses
