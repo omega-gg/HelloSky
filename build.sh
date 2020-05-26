@@ -36,6 +36,8 @@ WindowsKit_version="10"
 #--------------------------------------------------------------------------------------------------
 # Android
 
+JDK_version="8u251"
+
 SDK_version="29"
 NDK_version="21"
 
@@ -255,6 +257,8 @@ elif [ $2 = "linux" ]; then
 elif [ $2 = "android" ]; then
 
     spec=android-clang
+
+    export JAVA_HOME="$external/JDK/$JDK_version"
 
     export ANDROID_SDK_ROOT="$external/SDK/$SDK_version"
     export ANDROID_NDK_ROOT="$external/NDK/$NDK_version"
