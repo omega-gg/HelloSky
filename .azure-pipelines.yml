@@ -3,193 +3,193 @@
 #--------------------------------------------------------------------------------------------------
 
 jobs:
-#- job: win32_qt4
-#  pool:
-#    vmImage: "windows-latest"
-#  steps:
-#  - bash: |
-#      sh 3rdparty.sh win32
-#      sh configure.sh qt4 win32 sky
-#      cd ../Sky
-#      sh build.sh qt4 win32 tools
-#      cd ../s
-#      sh build.sh qt4 win32 deploy
-#      cd deploy
-#      7z a ../HelloSky.zip *
-#  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
-#    artifact: HelloSky-win32-qt4
+- job: win32_qt4
+  pool:
+    vmImage: "windows-latest"
+  steps:
+  - bash: |
+      sh 3rdparty.sh win32
+      sh configure.sh qt4 win32 sky
+      cd ../Sky
+      sh build.sh qt4 win32 tools
+      cd ../s
+      sh build.sh qt4 win32 deploy
+      cd deploy
+      7z a ../HelloSky.zip *
+  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
+    artifact: HelloSky-win32-qt4
 
-#- job: win32_qt5
-#  pool:
-#    vmImage: "windows-latest"
-#  steps:
-#  - bash: |
-#      sh 3rdparty.sh win32
-#      sh configure.sh qt5 win32 sky
-#      cd ../Sky
-#      sh build.sh qt5 win32 tools
-#      cd ../s
-#      sh build.sh qt5 win32 deploy
-#      cd deploy
-#      7z a ../HelloSky.zip *
-#  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
-#    artifact: HelloSky-win32-qt5
+- job: win32_qt5
+  pool:
+    vmImage: "windows-latest"
+  steps:
+  - bash: |
+      sh 3rdparty.sh win32
+      sh configure.sh qt5 win32 sky
+      cd ../Sky
+      sh build.sh qt5 win32 tools
+      cd ../s
+      sh build.sh qt5 win32 deploy
+      cd deploy
+      7z a ../HelloSky.zip *
+  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
+    artifact: HelloSky-win32-qt5
 
-#- job: win64_qt5
-#  pool:
-#    vmImage: "windows-latest"
-#  steps:
-#  - bash: |
-#      sh 3rdparty.sh win64
-#      sh configure.sh qt5 win64 sky
-#      cd ../Sky
-#      sh build.sh qt5 win64 tools
-#      cd ../s
-#      sh build.sh qt5 win64 deploy
-#      cd deploy
-#      7z a ../HelloSky.zip *
-#  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
-#    artifact: HelloSky-win64-qt5
+- job: win64_qt5
+  pool:
+    vmImage: "windows-latest"
+  steps:
+  - bash: |
+      sh 3rdparty.sh win64
+      sh configure.sh qt5 win64 sky
+      cd ../Sky
+      sh build.sh qt5 win64 tools
+      cd ../s
+      sh build.sh qt5 win64 deploy
+      cd deploy
+      7z a ../HelloSky.zip *
+  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
+    artifact: HelloSky-win64-qt5
 
-##--------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------
 
-#- job: win32_msvc_qt5
-#  pool:
-#    vmImage: "windows-latest"
-#  steps:
-#  - bash: |
-#      sh 3rdparty.sh win32-msvc
-#      sh configure.sh qt5 win32-msvc sky
-#      cd ../Sky
-#      sh build.sh qt5 win32-msvc tools
-#      cd ../s
-#      sh build.sh qt5 win32-msvc deploy
-#      cd deploy
-#      7z a ../HelloSky.zip *
-#  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
-#    artifact: HelloSky-win32-msvc-qt5
+- job: win32_msvc_qt5
+  pool:
+    vmImage: "windows-latest"
+  steps:
+  - bash: |
+      sh 3rdparty.sh win32-msvc
+      sh configure.sh qt5 win32-msvc sky
+      cd ../Sky
+      sh build.sh qt5 win32-msvc tools
+      cd ../s
+      sh build.sh qt5 win32-msvc deploy
+      cd deploy
+      7z a ../HelloSky.zip *
+  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
+    artifact: HelloSky-win32-msvc-qt5
 
-#- job: win64_msvc_qt5
-#  pool:
-#    vmImage: "windows-latest"
-#  steps:
-#  - bash: |
-#      sh 3rdparty.sh win64-msvc
-#      sh configure.sh qt5 win64-msvc sky
-#      cd ../Sky
-#      sh build.sh qt5 win64-msvc tools
-#      cd ../s
-#      sh build.sh qt5 win64-msvc deploy
-#      cd deploy
-#      7z a ../HelloSky.zip *
-#  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
-#    artifact: HelloSky-win64-msvc-qt5
+- job: win64_msvc_qt5
+  pool:
+    vmImage: "windows-latest"
+  steps:
+  - bash: |
+      sh 3rdparty.sh win64-msvc
+      sh configure.sh qt5 win64-msvc sky
+      cd ../Sky
+      sh build.sh qt5 win64-msvc tools
+      cd ../s
+      sh build.sh qt5 win64-msvc deploy
+      cd deploy
+      7z a ../HelloSky.zip *
+  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
+    artifact: HelloSky-win64-msvc-qt5
 
-##--------------------------------------------------------------------------------------------------
-## macOS
-##--------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------
+# macOS
+#--------------------------------------------------------------------------------------------------
 
-#- job: macOS_qt5
-#  pool:
-#    vmImage: "macOS-latest"
-#  steps:
-#  - bash: |
-#      sh 3rdparty.sh macOS
-#      sh configure.sh qt5 macOS sky
-#      cd ../Sky
-#      sh build.sh qt5 macOS tools
-#      cd ../s
-#      sh build.sh qt5 macOS deploy
-#      cd deploy
-#      zip -rq ../HelloSky.zip *
-#  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
-#    artifact: HelloSky-macOS-qt5
+- job: macOS_qt5
+  pool:
+    vmImage: "macOS-latest"
+  steps:
+  - bash: |
+      sh 3rdparty.sh macOS
+      sh configure.sh qt5 macOS sky
+      cd ../Sky
+      sh build.sh qt5 macOS tools
+      cd ../s
+      sh build.sh qt5 macOS deploy
+      cd deploy
+      zip -rq ../HelloSky.zip *
+  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
+    artifact: HelloSky-macOS-qt5
 
-##--------------------------------------------------------------------------------------------------
-## Linux
-##--------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------
+# Linux
+#--------------------------------------------------------------------------------------------------
 
-#- job: linux32_qt4
-#  pool:
-#    vmImage: "ubuntu-latest"
-#  steps:
-#  - bash: |
-#      docker run -d --name ubuntu -v $PWD:/HelloSky i386/ubuntu:18.04 tail -f /dev/null
-#      docker exec -t ubuntu bash -c "cd /HelloSky;
-#                                     apt-get update;
-#                                     apt-get -y install sudo curl zip git;
-#                                     sh 3rdparty.sh linux;
-#                                     sh configure.sh qt4 linux sky;
-#                                     cd ../Sky;
-#                                     sh build.sh qt4 linux tools;
-#                                     cd ../HelloSky;
-#                                     sh build.sh qt4 linux deploy;
-#                                     cd deploy;
-#                                     zip -rq ../HelloSky.zip *"
-#  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
-#    artifact: HelloSky-linux32-qt4
+- job: linux32_qt4
+  pool:
+    vmImage: "ubuntu-latest"
+  steps:
+  - bash: |
+      docker run -d --name ubuntu -v $PWD:/HelloSky i386/ubuntu:18.04 tail -f /dev/null
+      docker exec -t ubuntu bash -c "cd /HelloSky;
+                                     apt-get update;
+                                     apt-get -y install sudo curl zip git;
+                                     sh 3rdparty.sh linux;
+                                     sh configure.sh qt4 linux sky;
+                                     cd ../Sky;
+                                     sh build.sh qt4 linux tools;
+                                     cd ../HelloSky;
+                                     sh build.sh qt4 linux deploy;
+                                     cd deploy;
+                                     zip -rq ../HelloSky.zip *"
+  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
+    artifact: HelloSky-linux32-qt4
 
-#- job: linux32_qt5
-#  pool:
-#    vmImage: "ubuntu-latest"
-#  steps:
-#  - bash: |
-#      docker run -d --name ubuntu -v $PWD:/HelloSky i386/ubuntu:18.04 tail -f /dev/null
-#      docker exec -t ubuntu bash -c "cd /HelloSky;
-#                                     apt-get update;
-#                                     apt-get -y install sudo curl zip git;
-#                                     sh 3rdparty.sh linux;
-#                                     sh configure.sh qt5 linux sky;
-#                                     cd ../Sky;
-#                                     sh build.sh qt5 linux tools;
-#                                     cd ../HelloSky;
-#                                     sh build.sh qt5 linux deploy;
-#                                     cd deploy;
-#                                     zip -rq ../HelloSky.zip *"
-#  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
-#    artifact: HelloSky-linux32-qt5
+- job: linux32_qt5
+  pool:
+    vmImage: "ubuntu-latest"
+  steps:
+  - bash: |
+      docker run -d --name ubuntu -v $PWD:/HelloSky i386/ubuntu:18.04 tail -f /dev/null
+      docker exec -t ubuntu bash -c "cd /HelloSky;
+                                     apt-get update;
+                                     apt-get -y install sudo curl zip git;
+                                     sh 3rdparty.sh linux;
+                                     sh configure.sh qt5 linux sky;
+                                     cd ../Sky;
+                                     sh build.sh qt5 linux tools;
+                                     cd ../HelloSky;
+                                     sh build.sh qt5 linux deploy;
+                                     cd deploy;
+                                     zip -rq ../HelloSky.zip *"
+  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
+    artifact: HelloSky-linux32-qt5
 
-##--------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------
 
-#- job: linux64_qt4
-#  pool:
-#    vmImage: "ubuntu-latest"
-#  steps:
-#  - bash: |
-#      docker run -d --name ubuntu -v $PWD:/HelloSky amd64/ubuntu:18.04 tail -f /dev/null
-#      docker exec -t ubuntu bash -c "cd /HelloSky;
-#                                     apt-get update;
-#                                     apt-get -y install sudo curl zip git;
-#                                     sh 3rdparty.sh linux;
-#                                     sh configure.sh qt4 linux sky;
-#                                     cd ../Sky;
-#                                     sh build.sh qt4 linux tools;
-#                                     cd ../HelloSky;
-#                                     sh build.sh qt4 linux deploy;
-#                                     cd deploy;
-#                                     zip -rq ../HelloSky.zip *"
-#  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
-#    artifact: HelloSky-linux64-qt4
+- job: linux64_qt4
+  pool:
+    vmImage: "ubuntu-latest"
+  steps:
+  - bash: |
+      docker run -d --name ubuntu -v $PWD:/HelloSky amd64/ubuntu:18.04 tail -f /dev/null
+      docker exec -t ubuntu bash -c "cd /HelloSky;
+                                     apt-get update;
+                                     apt-get -y install sudo curl zip git;
+                                     sh 3rdparty.sh linux;
+                                     sh configure.sh qt4 linux sky;
+                                     cd ../Sky;
+                                     sh build.sh qt4 linux tools;
+                                     cd ../HelloSky;
+                                     sh build.sh qt4 linux deploy;
+                                     cd deploy;
+                                     zip -rq ../HelloSky.zip *"
+  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
+    artifact: HelloSky-linux64-qt4
 
-#- job: linux64_qt5
-#  pool:
-#    vmImage: "ubuntu-latest"
-#  steps:
-#  - bash: |
-#      docker run -d --name ubuntu -v $PWD:/HelloSky amd64/ubuntu:18.04 tail -f /dev/null
-#      docker exec -t ubuntu bash -c "cd /HelloSky;
-#                                     apt-get update;
-#                                     apt-get -y install sudo curl zip git;
-#                                     sh 3rdparty.sh linux;
-#                                     sh configure.sh qt5 linux sky;
-#                                     cd ../Sky;
-#                                     sh build.sh qt5 linux tools;
-#                                     cd ../HelloSky;
-#                                     sh build.sh qt5 linux deploy;
-#                                     cd deploy;
-#                                     zip -rq ../HelloSky.zip *"
-#  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
-#    artifact: HelloSky-linux64-qt5
+- job: linux64_qt5
+  pool:
+    vmImage: "ubuntu-latest"
+  steps:
+  - bash: |
+      docker run -d --name ubuntu -v $PWD:/HelloSky amd64/ubuntu:18.04 tail -f /dev/null
+      docker exec -t ubuntu bash -c "cd /HelloSky;
+                                     apt-get update;
+                                     apt-get -y install sudo curl zip git;
+                                     sh 3rdparty.sh linux;
+                                     sh configure.sh qt5 linux sky;
+                                     cd ../Sky;
+                                     sh build.sh qt5 linux tools;
+                                     cd ../HelloSky;
+                                     sh build.sh qt5 linux deploy;
+                                     cd deploy;
+                                     zip -rq ../HelloSky.zip *"
+  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
+    artifact: HelloSky-linux64-qt5
 
 #--------------------------------------------------------------------------------------------------
 # Android
