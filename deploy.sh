@@ -405,5 +405,5 @@ elif [ $2 = "android" ]; then
                        --jdk $JAVA_HOME \
                        --gradle
 
-    mv build/apk/build/outputs/apk/release/apk-release-unsigned.apk deploy/HelloSky.apk
+    mv build/apk/build/outputs/bundle/release/android-build-release.aab deploy/HelloSky.aab
 fi
