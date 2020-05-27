@@ -48,6 +48,49 @@ Application
         window.compressShot(path);
 
         window.setDefaultGeometry();
+
+        //-----------------------------------------------------------------------------------------
+        // Android
+
+        window.borderSize = 0;
+
+//#DESKTOP
+        button.visible = false;
+//#END
+
+        st.ratio = 1.0;
+
+        window.width  = 1024;
+        window.height = 500;
+
+        sk.wait(1000);
+
+        path = "../dist/pictures/android";
+
+        saveShot(path + "/HelloSky.jpg", 90);
+
+        st.ratio = 3.497;
+
+        window.width  = 1440;
+        window.height = 2560;
+
+        sk.wait(1000);
+
+        saveShot(path + "/HelloSkyMobileA.jpg", -1);
+
+        window.width  = 2560;
+        window.height = 1440;
+
+        sk.wait(1000);
+
+        saveShot(path + "/HelloSkyMobileB.jpg", -1);
+
+        window.close();
+    }
+
+    function saveShot(path, quality)
+    {
+        window.saveShot(path, 0, 0, -1, -1, "jpg", quality);
     }
 
     //---------------------------------------------------------------------------------------------
@@ -136,6 +179,8 @@ Application
 //#DESKTOP
         Button
         {
+            id: button
+
             anchors.top  : parent.top
             anchors.right: parent.right
 
