@@ -99,5 +99,5 @@ OTHER_FILES += 3rdparty.sh \
 android {
     ANDROID_PACKAGE_SOURCE_DIR = $$_PRO_FILE_PWD_/dist/android
 
-    DISTFILES += dist/android/AndroidManifest.xml
+    DISTFILES += $$_PRO_FILE_PWD_/dist/android/AndroidManifest.xml
 }
