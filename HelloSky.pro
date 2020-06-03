@@ -1,7 +1,8 @@
 SK = $$_PRO_FILE_PWD_/../Sky
 
-SK_CORE = $$SK/src/SkCore/src
-SK_GUI  = $$SK/src/SkGui/src
+SK_CORE  = $$SK/src/SkCore/src
+SK_GUI   = $$SK/src/SkGui/src
+SK_MEDIA = $$SK/src/SkMedia/src
 
 TARGET = HelloSky
 
@@ -19,7 +20,7 @@ contains(QT_MAJOR_VERSION, 5) {
     unix:!macx:!android:QT += x11extras
 }
 
-DEFINES += SK_CORE_LIBRARY SK_GUI_LIBRARY
+DEFINES += SK_CORE_LIBRARY SK_GUI_LIBRARY SK_MEDIA_LIBRARY
 
 contains(QT_MAJOR_VERSION, 4) {
     DEFINES += QT_4
@@ -52,11 +53,15 @@ include(src/thread/thread.pri)
 include(src/image/image.pri)
 include(src/graphicsview/graphicsview.pri)
 include(src/declarative/declarative.pri)
+include(src/media/media.pri)
+include(src/vlc/vlc.pri)
 
 include(src/3rdparty/qtsingleapplication/qtsingleapplication.pri)
 
 INCLUDEPATH += $$SK/include/SkCore \
                $$SK/include/SkGui \
+               $$SK/include/SkMedia \
+               $$SK/include \
 
 contains(QT_MAJOR_VERSION, 5) {
     INCLUDEPATH += $$SK/include/Qt5 \
@@ -72,11 +77,34 @@ unix:contains(QT_MAJOR_VERSION, 4) {
                    $$SK/include/Qt4/QtDeclarative
 }
 
+win32:LIBS += -L$$SK/lib -llibvlc
+
 # Windows dependency for ShellExecuteA and PostMessage
 win32-msvc*:LIBS += shell32.lib User32.lib
 
+macx:LIBS += -L$$SK/lib -lvlc
+
+unix:!macx:!android:LIBS += -lvlc
+
+android:LIBS += -L$$SK/lib -lvlc_$$ANDROID_TARGET_ARCH
+
 unix:!macx:!android:contains(QT_MAJOR_VERSION, 4) {
     LIBS += -lX11
+}
+
+macx {
+    PATH=$${DESTDIR}/$${TARGET}.app/Contents/MacOS
+
+    QMAKE_POST_LINK = install_name_tool -change @rpath/libvlccore.dylib \
+                      @loader_path/libvlccore.dylib $${DESTDIR}/libvlc.dylib;
+
+    QMAKE_POST_LINK += install_name_tool -change @rpath/libvlc.dylib \
+                       @loader_path/libvlc.dylib $$PATH/$${TARGET};
+
+    QMAKE_POST_LINK += $${QMAKE_COPY} -r $${DESTDIR}/plugins $$PATH;
+
+    QMAKE_POST_LINK += $${QMAKE_COPY} $${DESTDIR}/libvlc.dylib     $$PATH;
+    QMAKE_POST_LINK += $${QMAKE_COPY} $${DESTDIR}/libvlccore.dylib $$PATH;
 }
 
 macx:ICON = dist/icon.icns

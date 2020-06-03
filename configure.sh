@@ -10,6 +10,10 @@ Sky="../Sky"
 external="../3rdparty"
 
 #--------------------------------------------------------------------------------------------------
+
+VLC_version="3.0.10"
+
+#--------------------------------------------------------------------------------------------------
 # Windows
 
 MinGW_version="7.3.0"
@@ -49,14 +53,23 @@ fi
 
 external="$PWD/$external/$2"
 
-if [ $2 = "win32" -o $2 = "win64" ]; then
+if [ $2 = "win32" -o $2 = "win64" -o $2 = "win32-msvc" -o $2 = "win64-msvc" ]; then
 
-    compiler="mingw"
+    os="windows"
 
-    MinGW="$external/MinGW/$MinGW_version/bin"
+    if [ $2 = "win32" -o $2 = "win64" ]; then
+
+        compiler="mingw"
+
+        MinGW="$external/MinGW/$MinGW_version/bin"
+    else
+        compiler="default"
+    fi
 else
     compiler="default"
 fi
+
+VLC="$external/VLC/$VLC_version"
 
 #--------------------------------------------------------------------------------------------------
 # Clean
@@ -101,6 +114,7 @@ fi
 #--------------------------------------------------------------------------------------------------
 
 echo "CONFIGURING HelloSky"
+echo "--------------------"
 
 if [ $compiler = "mingw" ]; then
 
@@ -132,3 +146,44 @@ if [ $2 = "android" ]; then
 
     cd -
 fi
+
+#--------------------------------------------------------------------------------------------------
+# VLC
+#--------------------------------------------------------------------------------------------------
+
+if [ $os = "windows" ]; then
+
+    echo "COPYING VLC"
+
+    rm -rf bin/plugins
+    mkdir  bin/plugins
+
+    cp -r "$VLC"/plugins/access        bin/plugins
+    cp -r "$VLC"/plugins/audio_filter  bin/plugins
+    cp -r "$VLC"/plugins/audio_mixer   bin/plugins
+    cp -r "$VLC"/plugins/audio_output  bin/plugins
+    cp -r "$VLC"/plugins/codec         bin/plugins
+    cp -r "$VLC"/plugins/control       bin/plugins
+    cp -r "$VLC"/plugins/demux         bin/plugins
+    cp -r "$VLC"/plugins/misc          bin/plugins
+    cp -r "$VLC"/plugins/packetizer    bin/plugins
+    cp -r "$VLC"/plugins/stream_filter bin/plugins
+    cp -r "$VLC"/plugins/stream_out    bin/plugins
+    cp -r "$VLC"/plugins/video_chroma  bin/plugins
+    cp -r "$VLC"/plugins/video_filter  bin/plugins
+    cp -r "$VLC"/plugins/video_output  bin/plugins
+
+    cp "$VLC"/libvlc*.dll bin
+
+elif [ $2 = "macOS" ]; then
+
+    rm -rf bin/plugins
+    mkdir  bin/plugins
+
+    cp -r "$VLC"/plugins/*.dylib bin/plugins
+
+    cp "$VLC"/lib/libvlc.5.dylib     bin/libvlc.dylib
+    cp "$VLC"/lib/libvlccore.9.dylib bin/libvlccore.dylib
+fi
+
+echo "--------------------"
