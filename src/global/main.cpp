@@ -17,15 +17,19 @@
 // Sk includes
 #include <WControllerFile>
 #include <WControllerDeclarative>
+#include <WControllerPlaylist>
+#include <WControllerMedia>
 #include <WApplication>
 #include <WView>
 #include <WViewResizer>
 #include <WViewDrag>
 #include <WWindow>
+#include <WBackendVlc>
 #include <WDeclarativeApplication>
 #include <WDeclarativeBorders>
 #include <WDeclarativeImage>
 #include <WDeclarativeImageSvg>
+#include <WDeclarativePlayer>
 #include <WImageColorFilter>
 
 //-------------------------------------------------------------------------------------------------
@@ -37,6 +41,12 @@ int main(int argc, char * argv[])
     QApplication * application = WApplication::create(argc, argv);
 
     if (application == NULL) return 0;
+
+    //---------------------------------------------------------------------------------------------
+    // Controllers
+
+    W_CREATE_CONTROLLER(WControllerPlaylist);
+    W_CREATE_CONTROLLER(WControllerMedia);
 
     //---------------------------------------------------------------------------------------------
     // Log
@@ -74,6 +84,13 @@ int main(int argc, char * argv[])
 #ifdef QT_4
     qmlRegisterType<WDeclarativeImageSvgScale>("Sky", 1,0, "ImageSvgScale");
 #endif
+
+    qmlRegisterType<WDeclarativePlayer>("Sky", 1,0, "Player");
+
+    qmlRegisterUncreatableType<WAbstractBackend>("Sky", 1,0, "AbstractBackend",
+                                                 "AbstractBackend is abstract");
+
+    qmlRegisterType<WBackendVlc>("Sky", 1,0, "BackendVlc");
 
     qmlRegisterUncreatableType<WDeclarativeKeyEvent>("Sky", 1,0, "DeclarativeKeyEvent",
                                                      "DeclarativeKeyEvent is not creatable");

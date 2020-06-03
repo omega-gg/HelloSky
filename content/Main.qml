@@ -161,6 +161,13 @@ Application
             source: sourceLogo
         }
 
+        Player
+        {
+            anchors.fill: parent
+
+            backend: BackendVlc {}
+        }
+
         Text
         {
             anchors.left  : parent.left
