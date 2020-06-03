@@ -140,6 +140,10 @@ if [ $os = "windows" ]; then
         cp "$path"/QtQuick.2/qmldir             deploy/QtQuick.2
     fi
 
+    cp -r "$path"/plugins deploy
+
+    cp "$path"/libvlc*.dll deploy
+
 elif [ $2 = "macOS" ]; then
 
     if [ $1 = "qt5" ]; then
@@ -179,6 +183,10 @@ elif [ $2 = "macOS" ]; then
         cp "$path"/QtQuick.2/libqtquick2plugin.dylib $deploy/QtQuick.2
         cp "$path"/QtQuick.2/qmldir                  $deploy/QtQuick.2
     fi
+
+    cp -r "$path"/plugins deploy
+
+    cp "$path"/libvlc*.dylib deploy
 
 elif [ $2 = "linux" ]; then
 

@@ -15,6 +15,7 @@
 //=================================================================================================
 
 // Sk includes
+#include <WControllerFile>
 #include <WControllerDeclarative>
 #include <WApplication>
 #include <WView>
@@ -36,6 +37,11 @@ int main(int argc, char * argv[])
     QApplication * application = WApplication::create(argc, argv);
 
     if (application == NULL) return 0;
+
+    //---------------------------------------------------------------------------------------------
+    // Log
+
+    wControllerFile->initMessageHandler();
 
     //---------------------------------------------------------------------------------------------
     // QML
