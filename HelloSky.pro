@@ -43,6 +43,8 @@ deploy|android {
 
 !win32-msvc*:QMAKE_CXXFLAGS += -std=c++11
 
+!win32-msvc*:!android:QMAKE_CXXFLAGS += -msse
+
 unix:QMAKE_LFLAGS += "-Wl,-rpath,'\$$ORIGIN'"
 
 include(src/global/global.pri)
