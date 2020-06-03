@@ -28,6 +28,8 @@ Application
     property url sourceBackground: "pictures/sky.png"
     property url sourceLogo      : "pictures/logoSky.svg"
 
+    property url sourceVideo: "videos/sky.mp4"
+
     //---------------------------------------------------------------------------------------------
     // Functions
     //---------------------------------------------------------------------------------------------
@@ -138,11 +140,28 @@ Application
         {
             anchors.fill: parent
 
+            visible: (player.visible == false)
+
             source: sourceBackground
 
             fillMode: Image.PreserveAspectCrop
 
             cache: false
+        }
+
+        Player
+        {
+            id: player
+
+            anchors.fill: parent
+
+            visible: (isLoading == false && isPlaying)
+
+            backend: BackendVlc {}
+
+            source: sourceVideo
+
+            fillMode: AbstractBackend.PreserveAspectCrop
         }
 
 //#QT_4
@@ -161,13 +180,6 @@ Application
             source: sourceLogo
         }
 
-        Player
-        {
-            anchors.fill: parent
-
-            backend: BackendVlc {}
-        }
-
         Text
         {
             anchors.left  : parent.left
@@ -183,13 +195,26 @@ Application
             font.pixelSize: st.dp16
         }
 
+        Button
+        {
+            anchors.left: parent.left
+            anchors.top : parent.top
+
+            anchors.margins: st.dp16
+
+            text: (player.visible) ? qsTr("Stop Video")
+                                   : qsTr("Start Video")
+
+            onClicked: player.togglePlay()
+        }
+
 //#DESKTOP
         Button
         {
             id: button
 
-            anchors.top  : parent.top
             anchors.right: parent.right
+            anchors.top  : parent.top
 
             anchors.margins: st.dp16
 

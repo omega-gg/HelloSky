@@ -65,6 +65,7 @@ if [ $1 = "clean" ]; then
 
     rm -f  $bin/*.qml
     rm -rf $bin/pictures
+    rm -rf $bin/videos
 
     rm -f  qrc/*.qml
     rm -rf qrc/pictures
@@ -84,11 +85,20 @@ cp $content/*.qml $path
 # Content
 #--------------------------------------------------------------------------------------------------
 
-if [ "$3" = "all" -o "$3" = "deploy" -o $2 = "android"  ]; then
+if [ "$3" = "all" -o "$3" = "deploy" -o $2 = "android" ]; then
 
     echo "COPYING pictures"
 
     cp -r $content/pictures $path
+
+    if [ "$3" = "all" ]; then
+
+        echo "COPYING videos"
+
+        cp -r $content/videos $path
+
+        rm $path/videos/.gitignore
+    fi
 fi
 
 #--------------------------------------------------------------------------------------------------
