@@ -208,7 +208,7 @@ jobs:
                                      sh 3rdparty.sh android;
                                      sh configure.sh qt5 android sky;
                                      cd ../Sky;
-                                     sh build.sh qt5 linux tools;
+                                     sh build.sh qt5 android tools;
                                      cd ../HelloSky;
                                      sh build.sh qt5 android deploy;
                                      cd deploy;
