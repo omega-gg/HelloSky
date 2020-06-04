@@ -66,6 +66,8 @@ if [ $2 = "win32" -o $2 = "win64" -o $2 = "win32-msvc" -o $2 = "win64-msvc" ]; t
         compiler="default"
     fi
 else
+    os="default"
+
     compiler="default"
 fi
 
