@@ -68,6 +68,8 @@ if [ $2 = "macOS" ]; then
     cp -r bin/HelloSky.app deploy
 
     deploy="deploy/HelloSky.app/Contents/MacOS"
+else
+    deploy="deploy"
 fi
 
 #--------------------------------------------------------------------------------------------------
@@ -89,67 +91,67 @@ if [ $os = "windows" ]; then
 
     if [ $compiler = "mingw" ]; then
 
-        cp "$path"/libgcc_s_*-1.dll    deploy
-        cp "$path"/libstdc++-6.dll     deploy
-        cp "$path"/libwinpthread-1.dll deploy
+        cp "$path"/libgcc_s_*-1.dll    $deploy
+        cp "$path"/libstdc++-6.dll     $deploy
+        cp "$path"/libwinpthread-1.dll $deploy
     fi
 
     if [ $1 = "qt4" ]; then
 
-        mkdir deploy/imageformats
+        mkdir $deploy/imageformats
 
-        cp "$path"/QtCore4.dll        deploy
-        cp "$path"/QtGui4.dll         deploy
-        cp "$path"/QtDeclarative4.dll deploy
-        cp "$path"/QtNetwork4.dll     deploy
-        cp "$path"/QtOpenGL4.dll      deploy
-        cp "$path"/QtScript4.dll      deploy
-        cp "$path"/QtSql4.dll         deploy
-        cp "$path"/QtSvg4.dll         deploy
-        cp "$path"/QtWebKit4.dll      deploy
-        cp "$path"/QtXml4.dll         deploy
-        cp "$path"/QtXmlPatterns4.dll deploy
+        cp "$path"/QtCore4.dll        $deploy
+        cp "$path"/QtGui4.dll         $deploy
+        cp "$path"/QtDeclarative4.dll $deploy
+        cp "$path"/QtNetwork4.dll     $deploy
+        cp "$path"/QtOpenGL4.dll      $deploy
+        cp "$path"/QtScript4.dll      $deploy
+        cp "$path"/QtSql4.dll         $deploy
+        cp "$path"/QtSvg4.dll         $deploy
+        cp "$path"/QtWebKit4.dll      $deploy
+        cp "$path"/QtXml4.dll         $deploy
+        cp "$path"/QtXmlPatterns4.dll $deploy
 
-        cp "$path"/imageformats/qsvg4.dll  deploy/imageformats
-        cp "$path"/imageformats/qjpeg4.dll deploy/imageformats
+        cp "$path"/imageformats/qsvg4.dll  $deploy/imageformats
+        cp "$path"/imageformats/qjpeg4.dll $deploy/imageformats
     else
-        mkdir deploy/platforms
-        mkdir deploy/imageformats
-        mkdir deploy/QtQuick.2
+        mkdir $deploy/platforms
+        mkdir $deploy/imageformats
+        mkdir $deploy/QtQuick.2
 
-        cp "$path"/libEGL.dll    deploy
-        cp "$path"/libGLESv2.dll deploy
+        cp "$path"/libEGL.dll    $deploy
+        cp "$path"/libGLESv2.dll $deploy
 
-        cp "$path"/Qt5Core.dll        deploy
-        cp "$path"/Qt5Gui.dll         deploy
-        cp "$path"/Qt5Network.dll     deploy
-        cp "$path"/Qt5OpenGL.dll      deploy
-        cp "$path"/Qt5Qml.dll         deploy
-        cp "$path"/Qt5Quick.dll       deploy
-        cp "$path"/Qt5Svg.dll         deploy
-        cp "$path"/Qt5Widgets.dll     deploy
-        cp "$path"/Qt5Xml.dll         deploy
-        cp "$path"/Qt5XmlPatterns.dll deploy
-        cp "$path"/Qt5WinExtras.dll   deploy
+        cp "$path"/Qt5Core.dll        $deploy
+        cp "$path"/Qt5Gui.dll         $deploy
+        cp "$path"/Qt5Network.dll     $deploy
+        cp "$path"/Qt5OpenGL.dll      $deploy
+        cp "$path"/Qt5Qml.dll         $deploy
+        cp "$path"/Qt5Quick.dll       $deploy
+        cp "$path"/Qt5Svg.dll         $deploy
+        cp "$path"/Qt5Widgets.dll     $deploy
+        cp "$path"/Qt5Xml.dll         $deploy
+        cp "$path"/Qt5XmlPatterns.dll $deploy
+        cp "$path"/Qt5WinExtras.dll   $deploy
 
         if [ -f "$path"/Qt5QmlModels.dll ]; then
 
-            cp "$path"/Qt5QmlModels.dll       deploy
-            cp "$path"/Qt5QmlWorkerScript.dll deploy
+            cp "$path"/Qt5QmlModels.dll       $deploy
+            cp "$path"/Qt5QmlWorkerScript.dll $deploy
         fi
 
-        cp "$path"/platforms/qwindows.dll deploy/platforms
+        cp "$path"/platforms/qwindows.dll $deploy/platforms
 
-        cp "$path"/imageformats/qsvg.dll  deploy/imageformats
-        cp "$path"/imageformats/qjpeg.dll deploy/imageformats
+        cp "$path"/imageformats/qsvg.dll  $deploy/imageformats
+        cp "$path"/imageformats/qjpeg.dll $deploy/imageformats
 
-        cp "$path"/QtQuick.2/qtquick2plugin.dll deploy/QtQuick.2
-        cp "$path"/QtQuick.2/qmldir             deploy/QtQuick.2
+        cp "$path"/QtQuick.2/qtquick2plugin.dll $deploy/QtQuick.2
+        cp "$path"/QtQuick.2/qmldir             $deploy/QtQuick.2
     fi
 
-    cp -r "$path"/plugins deploy
+    cp -r "$path"/plugins $deploy
 
-    cp "$path"/libvlc*.dll deploy
+    cp "$path"/libvlc*.dll $deploy
 
 elif [ $2 = "macOS" ]; then
 
@@ -191,78 +193,78 @@ elif [ $2 = "macOS" ]; then
         cp "$path"/QtQuick.2/qmldir                  $deploy/QtQuick.2
     fi
 
-    cp -r "$path"/plugins deploy
+    cp -r "$path"/plugins $deploy
 
-    cp "$path"/libvlc*.dylib deploy
+    cp "$path"/libvlc*.dylib $deploy
 
 elif [ $2 = "linux" ]; then
 
     if [ $1 = "qt4" ]; then
 
-        mkdir deploy/imageformats
+        mkdir $deploy/imageformats
 
-        cp "$path"/libpng16.so.16 deploy
+        cp "$path"/libpng16.so.16 $deploy
 
-        cp "$path"/libQtCore.so.4        deploy
-        cp "$path"/libQtGui.so.4         deploy
-        cp "$path"/libQtDeclarative.so.4 deploy
-        cp "$path"/libQtNetwork.so.4     deploy
-        cp "$path"/libQtOpenGL.so.4      deploy
-        cp "$path"/libQtScript.so.4      deploy
-        cp "$path"/libQtSql.so.4         deploy
-        cp "$path"/libQtSvg.so.4         deploy
-        cp "$path"/libQtWebKit.so.4      deploy
-        cp "$path"/libQtXml.so.4         deploy
-        cp "$path"/libQtXmlPatterns.so.4 deploy
+        cp "$path"/libQtCore.so.4        $deploy
+        cp "$path"/libQtGui.so.4         $deploy
+        cp "$path"/libQtDeclarative.so.4 $deploy
+        cp "$path"/libQtNetwork.so.4     $deploy
+        cp "$path"/libQtOpenGL.so.4      $deploy
+        cp "$path"/libQtScript.so.4      $deploy
+        cp "$path"/libQtSql.so.4         $deploy
+        cp "$path"/libQtSvg.so.4         $deploy
+        cp "$path"/libQtWebKit.so.4      $deploy
+        cp "$path"/libQtXml.so.4         $deploy
+        cp "$path"/libQtXmlPatterns.so.4 $deploy
 
-        cp "$path"/imageformats/libqsvg.so  deploy/imageformats
-        cp "$path"/imageformats/libqjpeg.so deploy/imageformats
+        cp "$path"/imageformats/libqsvg.so  $deploy/imageformats
+        cp "$path"/imageformats/libqjpeg.so $deploy/imageformats
     else
-        mkdir deploy/platforms
-        mkdir deploy/imageformats
-        mkdir deploy/QtQuick.2
-        mkdir deploy/xcbglintegrations
+        mkdir $deploy/platforms
+        mkdir $deploy/imageformats
+        mkdir $deploy/QtQuick.2
+        mkdir $deploy/xcbglintegrations
 
-        sudo cp "$path"/libz.so.1 deploy
+        sudo cp "$path"/libz.so.1 $deploy
 
-        sudo cp "$path"/libicudata.so.60 deploy
-        sudo cp "$path"/libicui18n.so.60 deploy
-        sudo cp "$path"/libicuuc.so.60   deploy
+        sudo cp "$path"/libicudata.so.60 $deploy
+        sudo cp "$path"/libicui18n.so.60 $deploy
+        sudo cp "$path"/libicuuc.so.60   $deploy
 
-        sudo cp "$path"/libdouble-conversion.so.1 deploy
-        sudo cp "$path"/libpng16.so.16            deploy
-        sudo cp "$path"/libharfbuzz.so.0          deploy
-        sudo cp "$path"/libxcb-xinerama.so.0      deploy
+        sudo cp "$path"/libdouble-conversion.so.1 $deploy
+        sudo cp "$path"/libpng16.so.16            $deploy
+        sudo cp "$path"/libharfbuzz.so.0          $deploy
+        sudo cp "$path"/libxcb-xinerama.so.0      $deploy
 
-        cp "$path"/libQt5Core.so.5        deploy
-        cp "$path"/libQt5Gui.so.5         deploy
-        cp "$path"/libQt5Network.so.5     deploy
-        cp "$path"/libQt5OpenGL.so.5      deploy
-        cp "$path"/libQt5Qml.so.5         deploy
-        cp "$path"/libQt5Quick.so.5       deploy
-        cp "$path"/libQt5Svg.so.5         deploy
-        cp "$path"/libQt5Widgets.so.5     deploy
-        cp "$path"/libQt5Xml.so.5         deploy
-        cp "$path"/libQt5XmlPatterns.so.5 deploy
-        cp "$path"/libQt5XcbQpa.so.5      deploy
-        cp "$path"/libQt5DBus.so.5        deploy
+        cp "$path"/libQt5Core.so.5        $deploy
+        cp "$path"/libQt5Gui.so.5         $deploy
+        cp "$path"/libQt5Network.so.5     $deploy
+        cp "$path"/libQt5OpenGL.so.5      $deploy
+        cp "$path"/libQt5Qml.so.5         $deploy
+        cp "$path"/libQt5Quick.so.5       $deploy
+        cp "$path"/libQt5Svg.so.5         $deploy
+        cp "$path"/libQt5Widgets.so.5     $deploy
+        cp "$path"/libQt5Xml.so.5         $deploy
+        cp "$path"/libQt5XmlPatterns.so.5 $deploy
+        cp "$path"/libQt5XcbQpa.so.5      $deploy
+        cp "$path"/libQt5DBus.so.5        $deploy
 
         if [ -f "$path"/libQt5QmlModels.so.5 ]; then
 
-            cp "$path"/libQt5QmlModels.so.5       deploy
-            cp "$path"/libQt5QmlWorkerScript.so.5 deploy
+            cp "$path"/libQt5QmlModels.so.5       $deploy
+            cp "$path"/libQt5QmlWorkerScript.so.5 $deploy
         fi
 
-        cp "$path"/platforms/libqxcb.so deploy/platforms
+        cp "$path"/platforms/libqxcb.so $deploy/platforms
 
-        cp "$path"/imageformats/libqsvg.so  deploy/imageformats
-        cp "$path"/imageformats/libqjpeg.so deploy/imageformats
+        cp "$path"/imageformats/libqsvg.so  $deploy/imageformats
+        cp "$path"/imageformats/libqjpeg.so $deploy/imageformats
 
-        cp "$path"/xcbglintegrations/libqxcb-egl-integration.so deploy/xcbglintegrations
-        cp "$path"/xcbglintegrations/libqxcb-glx-integration.so deploy/xcbglintegrations
+        cp "$path"/xcbglintegrations/libqxcb-egl-integration.so $deploy/xcbglintegrations
+        cp "$path"/xcbglintegrations/libqxcb-glx-integration.so $deploy/xcbglintegrations
 
-        cp "$path"/QtQuick.2/libqtquick2plugin.so deploy/QtQuick.2
-        cp "$path"/QtQuick.2/qmldir               deploy/QtQuick.2
+        cp "$path"/QtQuick.2/libqtquick2plugin.so $deploy/QtQuick.2
+        cp "$path"/QtQuick.2/qmldir               $deploy/QtQuick.2
     fi
 fi
 
@@ -277,7 +279,7 @@ echo "COPYING HelloSky"
 
 if [ $os = "windows" ]; then
 
-    cp bin/HelloSky.exe deploy
+    cp bin/HelloSky.exe $deploy
 
 elif [ $2 = "macOS" ]; then
 
@@ -398,9 +400,18 @@ elif [ $2 = "macOS" ]; then
 
 elif [ $2 = "linux" ]; then
 
-    cp bin/HelloSky deploy
+    cp bin/HelloSky $deploy
 
 elif [ $2 = "android" ]; then
 
-    cp build/android-build/build/outputs/bundle/release/android-build-release.aab deploy/HelloSky.aab
+    cp build/android-build/build/outputs/bundle/release/android-build-release.aab $deploy/HelloSky.aab
+fi
+
+if [ $2 != "android" ]; then
+
+    mkdir -p $path
+
+    cp -r content/videos $deploy
+
+    rm $deploy/videos/.gitignore
 fi

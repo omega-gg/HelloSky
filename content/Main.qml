@@ -28,7 +28,7 @@ Application
     property url sourceBackground: "pictures/sky.png"
     property url sourceLogo      : "pictures/logoSky.svg"
 
-    property url sourceVideo: "videos/sky.mp4"
+    property url sourceVideo: "file:///videos/sky.mp4"
 
     //---------------------------------------------------------------------------------------------
     // Functions

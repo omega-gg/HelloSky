@@ -67,8 +67,8 @@ if [ $1 = "clean" ]; then
     rm -rf $bin/pictures
     rm -rf $bin/videos
 
-    rm -f  qrc/*.qml
-    rm -rf qrc/pictures
+    rm -rf qrc
+    touch  qrc/.gitignore
 
     exit 0
 fi
