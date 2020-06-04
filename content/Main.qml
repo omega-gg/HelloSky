@@ -161,6 +161,8 @@ Application
 
             source: sourceVideo
 
+            volume: 0.0
+
             fillMode: AbstractBackend.PreserveAspectCrop
         }
 

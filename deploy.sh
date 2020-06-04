@@ -404,10 +404,9 @@ elif [ $2 = "linux" ]; then
 
 elif [ $2 = "android" ]; then
 
-    cp build/android-build/build/outputs/bundle/release/android-build-release.aab $deploy/HelloSky.aab
+    cp build/android-build/build/outputs/apk/debug/android-build-debug.apk $deploy/HelloSky.apk
 
-    ls -la build/android-build/build/outputs/apk
-    ls -la build/android-build/build/outputs/apk/debug
+    cp build/android-build/build/outputs/bundle/release/android-build-release.aab $deploy/HelloSky.aab
 fi
 
 if [ $2 != "android" ]; then
