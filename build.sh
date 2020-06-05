@@ -304,6 +304,9 @@ elif [ $2 = "android" ]; then
 
     make $make_arguments aab
 
+    #----------------------------------------------------------------------------------------------
+    # FIXME Qt android: We have to call androiddeployqt to generate a release apk.
+
     androiddeployqt="$external/Qt/$Qt5_version/bin/androiddeployqt"
 
     "$androiddeployqt" --release --apk --aab \
@@ -311,6 +314,8 @@ elif [ $2 = "android" ]; then
                        --output android-build \
                        --android-platform android-$SDK_version \
                        --jdk $JAVA_HOME
+
+    #----------------------------------------------------------------------------------------------
 else
     make $make_arguments
 fi
