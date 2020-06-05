@@ -303,6 +303,14 @@ elif [ $compiler = "msvc" ]; then
 elif [ $2 = "android" ]; then
 
     make $make_arguments aab
+
+    androiddeployqt="$external/Qt/$Qt5_version/bin/androiddeployqt"
+
+    "$androiddeployqt" --release --apk --aab \
+                       --input android-HelloSky-deployment-settings.json \
+                       --output android-build \
+                       --android-platform android-$SDK_version \
+                       --jdk $JAVA_HOME
 else
     make $make_arguments
 fi
