@@ -89,6 +89,16 @@ rm -rf build
 mkdir  build
 touch  build/.gitignore
 
+if [ $2 = "android" ]; then
+
+    dist="dist/android/libs"
+
+    rm -f $dist/armeabi-v7a/*.so
+    rm -f $dist/arm64-v8a/*.so
+    rm -f $dist/x86/*.so
+    rm -f $dist/x86_64/*.so
+fi
+
 if [ $1 = "clean" ]; then
 
     exit 0
@@ -195,8 +205,6 @@ elif [ $2 = "macOS" ]; then
     cp "$VLC"/lib/libvlccore.9.dylib bin/libvlccore.dylib
 
 elif [ $2 = "android" ]; then
-
-    dist="dist/android/libs"
 
     cp "$VLC"/libvlc_armeabi-v7a.so $dist/armeabi-v7a/libvlc.so
     cp "$VLC"/libvlc_arm64-v8a.so   $dist/arm64-v8a/libvlc.so
