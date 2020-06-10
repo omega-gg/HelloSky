@@ -193,6 +193,15 @@ elif [ $2 = "macOS" ]; then
 
     cp "$VLC"/lib/libvlc.5.dylib     bin/libvlc.dylib
     cp "$VLC"/lib/libvlccore.9.dylib bin/libvlccore.dylib
+
+elif [ $2 = "android" ]; then
+
+    dist="dist/android/libs"
+
+    cp "$VLC"/libvlc_armeabi-v7a.so $dist/armeabi-v7a/libvlc.so
+    cp "$VLC"/libvlc_arm64-v8a.so   $dist/arm64-v8a/libvlc.so
+    cp "$VLC"/libvlc_x86.so         $dist/x86/libvlc.so
+    cp "$VLC"/libvlc_x86_64.so      $dist/x86_64/libvlc.so
 fi
 
 echo "--------------------"

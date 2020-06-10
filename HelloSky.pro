@@ -90,7 +90,7 @@ macx:LIBS += -L$$SK/lib -lvlc
 
 unix:!macx:!android:LIBS += -lvlc
 
-android:LIBS += -L$$SK/lib -lvlc_$$ANDROID_TARGET_ARCH
+android:LIBS += -L$$_PRO_FILE_PWD_/dist/android/libs/$$ANDROID_TARGET_ARCH -lvlc
 
 unix:!macx:!android:contains(QT_MAJOR_VERSION, 4) {
     LIBS += -lX11
@@ -131,5 +131,5 @@ OTHER_FILES += 3rdparty.sh \
 android {
     ANDROID_PACKAGE_SOURCE_DIR = $$_PRO_FILE_PWD_/dist/android
 
-    DISTFILES += $$_PRO_FILE_PWD_/dist/android/AndroidManifest.xml
+    DISTFILES += $$ANDROID_PACKAGE_SOURCE_DIR/AndroidManifest.xml
 }
