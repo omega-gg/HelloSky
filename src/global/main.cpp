@@ -14,6 +14,16 @@
 */
 //=================================================================================================
 
+// Qt includes
+#include <QtGlobal>
+#ifdef Q_OS_ANDROID
+#ifdef QT_4
+#include <QDesktopServices>
+#else
+#include <QStandardPaths>
+#endif
+#endif
+
 // Sk includes
 #include <WControllerFile>
 #include <WControllerDeclarative>
@@ -44,12 +54,14 @@ int main(int argc, char * argv[])
 
     //---------------------------------------------------------------------------------------------
     // Controllers
+    //---------------------------------------------------------------------------------------------
 
     W_CREATE_CONTROLLER(WControllerPlaylist);
     W_CREATE_CONTROLLER(WControllerMedia);
 
     //---------------------------------------------------------------------------------------------
     // Log
+    //---------------------------------------------------------------------------------------------
 
     wControllerFile->initMessageHandler();
 
@@ -98,9 +110,30 @@ int main(int argc, char * argv[])
     //---------------------------------------------------------------------------------------------
     // Context
 
-    wControllerDeclarative->setContextProperty("sk", sk);
+    wControllerDeclarative->setContextProperty("sk",             sk);
+    wControllerDeclarative->setContextProperty("controllerFile", wControllerFile);
 
+#ifdef Q_OS_ANDROID
     //---------------------------------------------------------------------------------------------
+    // Assets
+    //---------------------------------------------------------------------------------------------
+    // FIXME Android: We copy the assets to a writable location to provide an URI to libVLC.
+
+#ifdef QT_4
+    QString path = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+#else
+    QString path = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+#endif
+
+    wControllerFile->setPathStorage(path);
+
+    QString fileName = path + "/sky.mp4";
+
+    if (QFile::exists(fileName) == false)
+    {
+        WControllerFile::copyFile("assets:/videos/sky.mp4", fileName);
+    }
+#endif
 
 #ifndef SK_DEPLOY
     sk->setQrc(false);
