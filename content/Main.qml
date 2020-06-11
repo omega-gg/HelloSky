@@ -29,9 +29,9 @@ Application
     property url sourceLogo      : "pictures/logoSky.svg"
 
 //#ANDROID
-    property string sourceVideo: "file:///android_asset/videos/sky.mp4"
+    property url sourceVideo: "file:///android_asset/videos/sky.mp4"
 //#ELSE
-    property string sourceVideo: "file:///videos/sky.mp4"
+    property url sourceVideo: "file:///videos/sky.mp4"
 //#END
 
     //---------------------------------------------------------------------------------------------
