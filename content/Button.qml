@@ -45,8 +45,12 @@ BaseButton
 
         radius: st.dp8
 
-        opacity: (isHovered && isPressed == false) ? 1.0
-                                                   : 0.6
+        opacity:
+        {
+            if      (isHovered) return 1.0;
+            else if (isPressed) return 0.8;
+            else                return 0.6;
+        }
 
         color: "#161616"
     }
