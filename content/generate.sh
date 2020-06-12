@@ -95,14 +95,15 @@ if [ "$3" = "all" -o "$3" = "deploy" -o $2 = "android" ]; then
 
         echo "COPYING videos"
 
-        if [ $2 = "android" ]; then
+        cp -r $content/videos $path
 
-            cp -r $content/videos/* ../dist/android/assets/videos
-        else
-            cp -r $content/videos $path
+        rm $path/videos/.gitignore
 
-            rm $path/videos/.gitignore
-        fi
+    elif [ $2 = "android" ]; then
+
+        echo "COPYING videos"
+
+        cp -r $content/videos/* ../dist/android/assets/videos
     fi
 fi
 

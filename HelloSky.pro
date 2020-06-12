@@ -131,8 +131,7 @@ OTHER_FILES += 3rdparty.sh \
 android {
     ANDROID_PACKAGE_SOURCE_DIR = $$_PRO_FILE_PWD_/dist/android
 
-    DISTFILES += $$ANDROID_PACKAGE_SOURCE_DIR/AndroidManifest.xml \
-                 $$ANDROID_PACKAGE_SOURCE_DIR/assets/videos/sky.mp4 \
+    DISTFILES += $$ANDROID_PACKAGE_SOURCE_DIR/AndroidManifest.xml
 
     assets.path = $$ANDROID_PACKAGE_SOURCE_DIR/assets/videos
 
