@@ -95,9 +95,14 @@ if [ "$3" = "all" -o "$3" = "deploy" -o $2 = "android" ]; then
 
         echo "COPYING videos"
 
-        cp -r $content/videos $path
+        if [ $2 = "android" ]; then
 
-        rm $path/videos/.gitignore
+            cp -r $content/videos/* ../dist/android/assets/videos
+        else
+            cp -r $content/videos $path
+
+            rm $path/videos/.gitignore
+        fi
     fi
 fi
 
