@@ -109,7 +109,9 @@ int main(int argc, char * argv[])
     //---------------------------------------------------------------------------------------------
     // FIXME Android: We copy the assets to a writable location to provide an URI to libVLC.
 
-    wControllerFile->setPathStorage(WControllerFile::pathWritable());
+    QString path = WControllerFile::pathWritable();
+
+    wControllerFile->setPathStorage(path);
 
     QString fileName = path + "/sky.mp4";
 
