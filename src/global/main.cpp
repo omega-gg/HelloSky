@@ -14,16 +14,6 @@
 */
 //=================================================================================================
 
-// Qt includes
-#include <QtGlobal>
-#ifdef Q_OS_ANDROID
-#ifdef QT_4
-#include <QDesktopServices>
-#else
-#include <QStandardPaths>
-#endif
-#endif
-
 // Sk includes
 #include <WControllerFile>
 #include <WControllerDeclarative>
@@ -119,11 +109,7 @@ int main(int argc, char * argv[])
     //---------------------------------------------------------------------------------------------
     // FIXME Android: We copy the assets to a writable location to provide an URI to libVLC.
 
-#ifdef QT_4
-    QString path = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-#else
-    QString path = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
-#endif
+    QString path = WControllerFile::pathWritable();
 
     wControllerFile->setPathStorage(path);
 
