@@ -109,6 +109,10 @@ Application
 
         st: Style { id: st }
 
+//#MOBILE
+        onDoubleClicked: window.fullScreen = !(window.fullScreen)
+//#END
+
         onKeyPressed:
         {
             if (event.key == Qt.Key_Escape)
@@ -136,7 +140,7 @@ Application
         {
             anchors.fill: parent
 
-            onDoubleClicked: window.maximized = !(window.maximized);
+            onDoubleClicked: window.maximized = !(window.maximized)
         }
 //#END
 
