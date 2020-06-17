@@ -107,7 +107,7 @@ Application
     {
         id: window
 
-        st: Style { id: st }
+        st: StyleTouch { id: st }
 
 //#MOBILE
         onDoubleClicked: window.fullScreen = !(window.fullScreen)
@@ -205,7 +205,7 @@ Application
             font.pixelSize: st.dp16
         }
 
-        Button
+        ButtonTouch
         {
             anchors.left: parent.left
             anchors.top : parent.top
@@ -219,7 +219,7 @@ Application
         }
 
 //#DESKTOP
-        Button
+        ButtonTouch
         {
             id: button
 

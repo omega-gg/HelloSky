@@ -9,6 +9,8 @@ Sky="../../Sky"
 
 SkyBase="$Sky/src/SkyBase"
 
+SkyTouch="$Sky/src/SkyTouch"
+
 #--------------------------------------------------------------------------------------------------
 
 content="../content"
@@ -169,3 +171,6 @@ fi
 "$SkyBase"/Window.qml \
 "$SkyBase"/RectangleBorders.qml \
 "$SkyBase"/BaseButton.qml \
+"$SkyTouch"/StyleTouch.qml \
+"$SkyTouch"/BaseButtonTouch.qml \
+"$SkyTouch"/ButtonTouch.qml \
