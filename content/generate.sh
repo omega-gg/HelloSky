@@ -141,7 +141,7 @@ echo ""
 
 if [ $1 = "qt5" ]; then
 
-    if [ $1 = "linux" ]; then
+    if [ $2 = "linux" ]; then
 
         version=2.7
     else
@@ -159,7 +159,7 @@ elif [ $2 = "macOS" ]; then
 
     defines="DESKTOP MAC"
 
-elif [ $1 = "linux" ]; then
+elif [ $2 = "linux" ]; then
 
     defines="DESKTOP LINUX"
 else
