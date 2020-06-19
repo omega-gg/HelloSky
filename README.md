@@ -14,7 +14,7 @@ HelloSky is built in C++ with [Sky kit](http://omega.gg/Sky/sources).<br>
 - Windows XP and later.
 - macOS 64 bit.
 - Linux 32 bit and 64 bit.
-- Android 32 bit and 64 bit (experimental).
+- Android 32 bit and 64 bit.
 
 ## Requirements
 
