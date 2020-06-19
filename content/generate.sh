@@ -170,6 +170,7 @@ fi
 "$SkyBase"/Style.qml \
 "$SkyBase"/Window.qml \
 "$SkyBase"/RectangleBorders.qml \
+"$SkyBase"/TextBase.qml \
 "$SkyBase"/BaseButton.qml \
 "$SkyTouch"/StyleTouch.qml \
 "$SkyTouch"/BaseButtonTouch.qml \

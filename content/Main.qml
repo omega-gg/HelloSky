@@ -190,7 +190,7 @@ Application
             source: sourceLogo
         }
 
-        Text
+        TextBase
         {
             anchors.left  : parent.left
             anchors.bottom: parent.bottom
@@ -199,10 +199,8 @@ Application
 
             text: "Sky " + sk.versionSky + "\nQt  " + sk.versionQt
 
-            color: "#fafafa"
-
             font.family   : "consolas"
-            font.pixelSize: st.dp16
+            font.pixelSize: st.dp18
         }
 
         ButtonTouch
