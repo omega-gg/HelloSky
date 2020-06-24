@@ -199,6 +199,8 @@ Application
 
             text: "Sky " + sk.versionSky + "\nQt  " + sk.versionQt
 
+            color: st.text2_color
+
             font.family   : "consolas"
             font.pixelSize: st.dp18
         }
