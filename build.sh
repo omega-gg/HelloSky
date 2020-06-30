@@ -47,9 +47,7 @@ NDK_version="21"
 
 getOs()
 {
-    os=`uname`
-
-    case $os in
+    case `uname` in
     MINGW*)  os="windows";;
     Darwin*) os="macOS";;
     Linux*)  os="linux";;
