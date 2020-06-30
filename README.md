@@ -31,30 +31,25 @@ Recommended:
 
 You can install third party libraries with:
 
-    sh 3rdparty.sh <win32 | win64 | win32-msvc | win64-msvc | macOS | linux | android>
+    sh 3rdparty.sh <win32 | win64 | macOS | linux | android> [all]
 
 ## Configure
 
 You can configure HelloSky with:
 
-    sh configure.sh <qt4 | qt5 | clean>
-                    <win32 | win64 | win32-msvc | win64-msvc | macOS | linux | android>
-                    [sky]
+    sh configure.sh <win32 | win64 | macOS | linux | android> [sky | clean]
 
 ## Build
 
 You can build HelloSky with:
 
-    sh build.sh <qt4 | qt5 | clean>
-                <win32 | win64 | win32-msvc | win64-msvc | macOS | linux | android>
-                [deploy]
+    sh build.sh <win32 | win64 | macOS | linux | android> [all | deploy | clean]
 
 ## Deploy
 
 You can deploy HelloSky with:
 
-    sh deploy.sh <qt4 | qt5 | clean>
-                 <win32 | win64 | win32-msvc | win64-msvc | macOS | linux | android>
+    sh deploy.sh <win32 | win64 | macOS | linux | android> [clean]
 
 ## License
 

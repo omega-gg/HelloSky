@@ -42,6 +42,13 @@ SDK_version="29"
 NDK_version="21"
 
 #--------------------------------------------------------------------------------------------------
+# environment
+
+compiler_win="mingw"
+
+qt="qt5"
+
+#--------------------------------------------------------------------------------------------------
 # Functions
 #--------------------------------------------------------------------------------------------------
 
@@ -82,20 +89,36 @@ getPath()
 # Syntax
 #--------------------------------------------------------------------------------------------------
 
-if [ $# != 2 -a $# != 3 ] \
+if [ $# != 1 -a $# != 2 ] \
    || \
-   [ $1 != "qt4" -a $1 != "qt5" -a $1 != "clean" ] \
+   [ $1 != "win32" -a $1 != "win64" -a $1 != "macOS" -a $1 != "linux" -a $1 != "android" ] \
    || \
-   [ $2 != "win32" -a $2 != "win64" -a $2 != "win32-msvc" -a $2 != "win64-msvc" -a \
-     $2 != "macOS" -a $2 != "linux" -a $2 != "android" ] \
-   || \
-   [ $# = 3 -a "$3" != "deploy" ]; then
+   [ $# = 2 -a "$2" != "all" -a "$2" != "deploy" -a "$2" != "clean" ]; then
 
-    echo "Usage: build <qt4 | qt5 | clean>"
-    echo "             <win32 | win64 | win32-msvc | win64-msvc | macOS | linux | android>"
-    echo "             [deploy]"
+    echo "Usage: build <win32 | win64 | macOS | linux | android> [all | deploy | clean]"
 
     exit 1
+fi
+
+#--------------------------------------------------------------------------------------------------
+# All
+#--------------------------------------------------------------------------------------------------
+
+if [ "$2" = "all" ]; then
+
+    sh 3rdparty.sh $1 all
+
+    sh configure.sh $1 sky
+
+    cd ../Sky
+
+    sh build.sh $1 tools
+
+    cd -
+
+    sh build.sh $1 deploy
+
+    exit 0
 fi
 
 #--------------------------------------------------------------------------------------------------
@@ -106,18 +129,16 @@ host=$(getOs)
 
 external="$external/$2"
 
-if [ $2 = "win32" -o $2 = "win64" -o $2 = "win32-msvc" -o $2 = "win64-msvc" ]; then
+if [ $2 = "win32" -o $2 = "win64" ]; then
 
     os="windows"
 
-    if [ $2 = "win32" -o $2 = "win64" ]; then
+    compiler="$compiler_win"
 
-        compiler="mingw"
+    if [ $compiler = "mingw" ]; then
 
         MinGW="$external/MinGW/$MinGW_version/bin"
     else
-        compiler="msvc"
-
         jom="$external/jom/$jom_version"
 
         MSVC_version=$(getPath "$BuildTools/VC/Tools/MSVC" $MSVC_version)
@@ -133,7 +154,7 @@ if [ $2 = "win32" -o $2 = "win64" -o $2 = "win32-msvc" -o $2 = "win64-msvc" ]; t
         echo "WindowsKit version $WindowsKit_version"
         echo ""
 
-        if [ $2 = "win32-msvc" ]; then
+        if [ $1 = "win32" ]; then
 
             target="x86"
         else
@@ -141,7 +162,7 @@ if [ $2 = "win32" -o $2 = "win64" -o $2 = "win32-msvc" -o $2 = "win64-msvc" ]; t
         fi
     fi
 
-elif [ $2 = "android" ]; then
+elif [ $1 = "android" ]; then
 
     if [ $host != "linux" ]; then
 
@@ -161,14 +182,14 @@ else
     compiler="default"
 fi
 
-if [ $1 = "qt4" ]; then
+if [ $qt = "qt4" ]; then
 
     Qt="$external/Qt/$Qt4_version"
 else
     Qt="$external/Qt/$Qt5_version"
 fi
 
-if [ $os = "windows" -o $2 = "macOS" -o $2 = "android" ]; then
+if [ $os = "windows" -o $1 = "macOS" -o $1 = "android" ]; then
 
     qmake="$Qt/bin/qmake"
 else
@@ -179,7 +200,7 @@ fi
 # Clean
 #--------------------------------------------------------------------------------------------------
 
-if [ $1 = "clean" ]; then
+if [ "$2" = "clean" ]; then
 
     echo "CLEANING"
 
@@ -198,7 +219,7 @@ fi
 echo "BUILDING HelloSky"
 echo "-----------------"
 
-if [ $1 = "qt4" ]; then
+if [ $qt = "qt4" ]; then
 
     export QT_SELECT=qt4
 
@@ -217,7 +238,7 @@ if [ $compiler = "mingw" ]; then
 
 elif [ $compiler = "msvc" ]; then
 
-    if [ $1 = "qt4" ]; then
+    if [ $qt = "qt4" ]; then
 
         spec=win32-msvc2015
     else
@@ -237,13 +258,13 @@ $WindowsKit/Include/$WindowsKit_version/shared"
 $WindowsKit/Lib/$WindowsKit_version/ucrt/$target:\
 $WindowsKit/Lib/$WindowsKit_version/um/$target"
 
-elif [ $2 = "macOS" ]; then
+elif [ $1 = "macOS" ]; then
 
     spec=macx-clang
 
     export PATH=$Qt/bin:$PATH
 
-elif [ $2 = "linux" ]; then
+elif [ $1 = "linux" ]; then
 
     if [ -d "/usr/lib/x86_64-linux-gnu" ]; then
 
@@ -252,7 +273,7 @@ elif [ $2 = "linux" ]; then
         spec=linux-g++-32
     fi
 
-elif [ $2 = "android" ]; then
+elif [ $1 = "android" ]; then
 
     spec=android-clang
 
@@ -267,23 +288,23 @@ echo ""
 
 cd content
 
-if [ "$3" = "deploy" ]; then
+if [ "$2" = "deploy" ]; then
 
-    sh generate.sh $QT_SELECT $2 deploy
+    sh generate.sh $1 deploy
 else
-    sh generate.sh $QT_SELECT $2
+    sh generate.sh $1
 fi
 
 echo ""
 
 cd ../build
 
-if [ "$3" = "deploy" ]; then
+if [ "$2" = "deploy" ]; then
 
     config="$config deploy"
 fi
 
-if [ $2 = "android" ]; then
+if [ $1 = "android" ]; then
 
     $qmake -r -spec $spec "$config" "ANDROID_ABIS=$abi" ..
 else
@@ -298,7 +319,7 @@ elif [ $compiler = "msvc" ]; then
 
     jom
 
-elif [ $2 = "android" ]; then
+elif [ $1 = "android" ]; then
 
     make $make_arguments aab
 
@@ -326,13 +347,13 @@ echo "-----------------"
 # Deploying HelloSky
 #--------------------------------------------------------------------------------------------------
 
-if [ "$3" = "deploy" ]; then
+if [ "$2" = "deploy" ]; then
 
     echo ""
     echo "DEPLOYING HelloSky"
     echo "------------------"
 
-    sh deploy.sh $1 $2
+    sh deploy.sh $1
 
     echo "------------------"
 fi
