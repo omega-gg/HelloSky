@@ -20,7 +20,6 @@ jobs:
     vmImage: "windows-latest"
   steps:
   - bash: |
-      sh environment.sh mingw qt5
       sh build.sh win32 all
       cd deploy
       7z a ../HelloSky.zip *
@@ -32,7 +31,6 @@ jobs:
     vmImage: "windows-latest"
   steps:
   - bash: |
-      sh environment.sh mingw qt5
       sh build.sh win64 all
       cd deploy
       7z a ../HelloSky.zip *
@@ -74,7 +72,6 @@ jobs:
     vmImage: "macOS-latest"
   steps:
   - bash: |
-      sh environment.sh mingw qt5
       sh build.sh macOS all
       cd deploy
       zip -rq ../HelloSky.zip *
@@ -110,7 +107,6 @@ jobs:
       docker exec -t ubuntu bash -c "cd /HelloSky;
                                      apt-get update;
                                      apt-get -y install sudo curl zip git;
-                                     sh environment.sh mingw qt5;
                                      sh build.sh linux all;
                                      cd deploy;
                                      zip -rq ../HelloSky.zip *"
@@ -144,7 +140,6 @@ jobs:
       docker exec -t ubuntu bash -c "cd /HelloSky;
                                      apt-get update;
                                      apt-get -y install sudo curl zip git;
-                                     sh environment.sh mingw qt5;
                                      sh build.sh linux all;
                                      cd deploy;
                                      zip -rq ../HelloSky.zip *"
@@ -165,7 +160,6 @@ jobs:
                                      apt-get update;
                                      apt-get -y install sudo curl zip unzip git;
                                      sh 3rdparty.sh linux;
-                                     sh environment.sh mingw qt5;
                                      sh build.sh android all;
                                      cd deploy;
                                      zip -rq ../HelloSky.zip *"
