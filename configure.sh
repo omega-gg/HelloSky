@@ -55,9 +55,9 @@ fi
 # Configuration
 #--------------------------------------------------------------------------------------------------
 
-external="$PWD/$external/$2"
+external="$PWD/$external/$1"
 
-if [ $2 = "win32" -o $2 = "win64" ]; then
+if [ $1 = "win32" -o $1 = "win64" ]; then
 
     os="windows"
 
