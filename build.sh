@@ -127,9 +127,9 @@ fi
 
 host=$(getOs)
 
-external="$external/$2"
+external="$external/$1"
 
-if [ $2 = "win32" -o $2 = "win64" ]; then
+if [ $1 = "win32" -o $1 = "win64" ]; then
 
     os="windows"
 
@@ -166,7 +166,7 @@ elif [ $1 = "android" ]; then
 
     if [ $host != "linux" ]; then
 
-        echo "You have to cross-compile $2 from Linux (preferably Ubuntu)."
+        echo "You have to cross-compile $1 from Linux (preferably Ubuntu)."
 
         exit 1
     fi
