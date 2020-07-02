@@ -115,6 +115,10 @@ Application
 
         st: StyleTouch { id: st }
 
+//#ANDROID
+        Component.onCompleted: hideSplash()
+//#END
+
 //#MOBILE
         onDoubleClicked: fullScreen = !(fullScreen)
 //#END
