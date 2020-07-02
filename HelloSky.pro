@@ -128,6 +128,8 @@ OTHER_FILES += 3rdparty.sh \
                content/Main.qml \
                content/Button.qml \
                dist/HelloSky.rc \
+               dist/android/res/values/colors.xml \
+               dist/android/res/drawable/splash.xml \
 
 android {
     ANDROID_PACKAGE_SOURCE_DIR = $$_PRO_FILE_PWD_/dist/android
