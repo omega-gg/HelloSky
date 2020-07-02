@@ -87,25 +87,25 @@ cp $content/*.qml $path
 # Content
 #--------------------------------------------------------------------------------------------------
 
-if [ "$2" = "all" -o "$2" = "deploy" -o $1 = "android" ]; then
+if [ $1 = "android" -o "$2" = "all" -o "$2" = "deploy" ]; then
 
     echo "COPYING pictures"
 
     cp -r $content/pictures $path
 
-    if [ "$2" = "all" ]; then
+    if [ $1 = "android" ]; then
+
+        echo "COPYING videos"
+
+        cp -r $content/videos/* ../dist/android/assets/videos
+
+    elif [ "$2" = "all" ]; then
 
         echo "COPYING videos"
 
         cp -r $content/videos $path
 
         rm $path/videos/.gitignore
-
-    elif [ $1 = "android" ]; then
-
-        echo "COPYING videos"
-
-        cp -r $content/videos/* ../dist/android/assets/videos
     fi
 fi
 

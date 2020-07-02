@@ -116,7 +116,7 @@ Application
         st: StyleTouch { id: st }
 
 //#MOBILE
-        onDoubleClicked: window.fullScreen = !(window.fullScreen)
+        onDoubleClicked: fullScreen = !(fullScreen)
 //#END
 
         onKeyPressed:

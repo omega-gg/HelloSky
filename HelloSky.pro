@@ -18,6 +18,8 @@ contains(QT_MAJOR_VERSION, 5) {
     win32:QT += winextras
 
     unix:!macx:!android:QT += x11extras
+
+    android:QT += androidextras
 }
 
 DEFINES += SK_CORE_LIBRARY SK_GUI_LIBRARY SK_MEDIA_LIBRARY
@@ -128,7 +130,7 @@ OTHER_FILES += 3rdparty.sh \
                content/Main.qml \
                content/Button.qml \
                dist/HelloSky.rc \
-               dist/android/res/values/colors.xml \
+               dist/android/res/values/theme.xml \
                dist/android/res/drawable/splash.xml \
 
 android {
