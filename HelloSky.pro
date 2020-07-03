@@ -128,7 +128,6 @@ OTHER_FILES += 3rdparty.sh \
                .azure-pipelines.yml \
                content/generate.sh \
                content/Main.qml \
-               content/Button.qml \
                dist/HelloSky.rc \
                dist/android/res/values/theme.xml \
                dist/android/res/drawable/splash.xml \
