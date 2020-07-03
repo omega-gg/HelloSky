@@ -32,7 +32,7 @@ Application
     //---------------------------------------------------------------------------------------------
 
     property url sourceBackground: "pictures/sky.png"
-    property url sourceLogo      : "pictures/logoSky.svg"
+    property url sourceLogo      : "pictures/logo.svg"
 
 //#ANDROID
     property url sourceVideo: "file://" + controllerFile.pathStorage + "/sky.mp4"
