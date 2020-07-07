@@ -196,6 +196,8 @@ if [ $os = "windows" ]; then
 
 elif [ $1 = "macOS" ]; then
 
+    echo "COPYING VLC"
+
     rm -rf bin/plugins
     mkdir  bin/plugins
 
@@ -205,6 +207,8 @@ elif [ $1 = "macOS" ]; then
     cp "$VLC"/lib/libvlccore.9.dylib bin/libvlccore.dylib
 
 elif [ $1 = "android" ]; then
+
+    echo "COPYING VLC"
 
     cp "$VLC"/libvlc_armeabi-v7a.so $dist/armeabi-v7a/libvlc.so
     cp "$VLC"/libvlc_arm64-v8a.so   $dist/arm64-v8a/libvlc.so
