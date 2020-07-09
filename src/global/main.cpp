@@ -31,12 +31,12 @@
 #include <WViewDrag>
 #include <WWindow>
 #include <WBackendVlc>
+#include <WImageColorFilter>
 #include <WDeclarativeApplication>
 #include <WDeclarativeBorders>
 #include <WDeclarativeImage>
 #include <WDeclarativeImageSvg>
 #include <WDeclarativePlayer>
-#include <WImageColorFilter>
 
 //-------------------------------------------------------------------------------------------------
 // Functions
@@ -64,10 +64,17 @@ int main(int argc, char * argv[])
     //---------------------------------------------------------------------------------------------
     // QML
     //---------------------------------------------------------------------------------------------
+    // Global
 
     qmlRegisterUncreatableType<WControllerDeclarative>("Sky", 1,0, "Sk", "Sk is not creatable");
 
+    //---------------------------------------------------------------------------------------------
+    // Application
+
     qmlRegisterType<WDeclarativeApplication>("Sky", 1,0, "Application");
+
+    //---------------------------------------------------------------------------------------------
+    // View
 
     qmlRegisterUncreatableType<WView>("Sky", 1,0, "View", "View is abstract");
 
@@ -76,7 +83,13 @@ int main(int argc, char * argv[])
 
     qmlRegisterType<WWindow>("Sky", 1,0, "BaseWindow");
 
+    //---------------------------------------------------------------------------------------------
+    // Image
+
     qmlRegisterType<WImageColorFilter>("Sky", 1,0, "ImageColorFilter");
+
+    //---------------------------------------------------------------------------------------------
+    // Declarative
 
     qmlRegisterType<WDeclarativeBorders>("Sky", 1,0, "Borders");
 
@@ -95,10 +108,16 @@ int main(int argc, char * argv[])
 
     qmlRegisterType<WDeclarativePlayer>("Sky", 1,0, "Player");
 
+    //---------------------------------------------------------------------------------------------
+    // Multimedia
+
     qmlRegisterUncreatableType<WAbstractBackend>("Sky", 1,0, "AbstractBackend",
                                                  "AbstractBackend is abstract");
 
     qmlRegisterType<WBackendVlc>("Sky", 1,0, "BackendVlc");
+
+    //---------------------------------------------------------------------------------------------
+    // Events
 
     qmlRegisterUncreatableType<WDeclarativeKeyEvent>("Sky", 1,0, "DeclarativeKeyEvent",
                                                      "DeclarativeKeyEvent is not creatable");
