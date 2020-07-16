@@ -44,6 +44,7 @@ Application
     // Functions
     //---------------------------------------------------------------------------------------------
 
+//#!DEPLOY
     function takeShot()
     {
         var width = 1024;
@@ -104,6 +105,7 @@ Application
     {
         window.saveShot(path, 0, 0, -1, -1, "jpg", quality);
     }
+//#END
 
     //---------------------------------------------------------------------------------------------
     // Childs
@@ -131,6 +133,7 @@ Application
 
                 close();
             }
+//#!DEPLOY
             else if (event.key == Qt.Key_F1)
             {
                 event.accepted = true;
@@ -143,6 +146,7 @@ Application
 
                 application.takeShot();
             }
+//#END
         }
 
 //#DESKTOP
