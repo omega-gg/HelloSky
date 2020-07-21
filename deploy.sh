@@ -89,6 +89,10 @@ cd -
 
 path="$Sky/deploy"
 
+#--------------------------------------------------------------------------------------------------
+# Qt
+#--------------------------------------------------------------------------------------------------
+
 if [ $os = "windows" ]; then
 
     if [ $compiler = "mingw" ]; then
@@ -151,10 +155,6 @@ if [ $os = "windows" ]; then
         cp "$path"/QtQuick.2/qmldir             $deploy/QtQuick.2
     fi
 
-    cp -r "$path"/plugins $deploy
-
-    cp "$path"/libvlc*.dll $deploy
-
 elif [ $1 = "macOS" ]; then
 
     if [ $qt = "qt5" ]; then
@@ -194,10 +194,6 @@ elif [ $1 = "macOS" ]; then
         cp "$path"/QtQuick.2/libqtquick2plugin.dylib $deploy/QtQuick.2
         cp "$path"/QtQuick.2/qmldir                  $deploy/QtQuick.2
     fi
-
-    cp -r "$path"/plugins $deploy
-
-    cp "$path"/libvlc*.dylib $deploy
 
 elif [ $1 = "linux" ]; then
 
@@ -268,6 +264,23 @@ elif [ $1 = "linux" ]; then
         cp "$path"/QtQuick.2/libqtquick2plugin.so $deploy/QtQuick.2
         cp "$path"/QtQuick.2/qmldir               $deploy/QtQuick.2
     fi
+fi
+
+#--------------------------------------------------------------------------------------------------
+# VLC
+#--------------------------------------------------------------------------------------------------
+
+if [ $os = "windows" ]; then
+
+    cp -r "$path"/plugins $deploy
+
+    cp "$path"/libvlc*.dll $deploy
+
+elif [ $1 = "macOS" ]; then
+
+    cp -r "$path"/plugins $deploy
+
+    cp "$path"/libvlc*.dylib $deploy
 fi
 
 echo "-------------"
