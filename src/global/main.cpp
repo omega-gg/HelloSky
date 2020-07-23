@@ -31,7 +31,7 @@
 #include <WViewDrag>
 #include <WWindow>
 #include <WBackendVlc>
-#include <WImageColorFilter>
+#include <WImageFilterColor>
 #include <WDeclarativeApplication>
 #include <WDeclarativeBorders>
 #include <WDeclarativeImage>
@@ -86,7 +86,7 @@ int main(int argc, char * argv[])
     //---------------------------------------------------------------------------------------------
     // Image
 
-    qmlRegisterType<WImageColorFilter>("Sky", 1,0, "ImageColorFilter");
+    qmlRegisterType<WImageFilterColor>("Sky", 1,0, "ImageFilterColor");
 
     //---------------------------------------------------------------------------------------------
     // Declarative
