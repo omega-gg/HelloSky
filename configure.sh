@@ -42,10 +42,10 @@ qt="qt5"
 
 copyAndroid()
 {
-    cp "$1"/armeabi-v7a $dist
-    cp "$1"/arm64-v8a   $dist
-    cp "$1"/x86         $dist
-    cp "$1"/x86_64      $dist
+    cp "$1"/armeabi-v7a "$2"
+    cp "$1"/arm64-v8a   "$2"
+    cp "$1"/x86         "$2"
+    cp "$1"/x86_64      "$2"
 }
 
 #--------------------------------------------------------------------------------------------------
@@ -222,7 +222,7 @@ elif [ $1 = "android" ]; then
 
     echo "COPYING VLC"
 
-    copyAndroid "$VLC"
+    copyAndroid "$VLC" $dist
 fi
 
 echo "--------------------"
