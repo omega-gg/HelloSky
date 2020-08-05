@@ -23,7 +23,7 @@ MinGW_version="7.3.0"
 #--------------------------------------------------------------------------------------------------
 # Android
 
-JDK_version="8u251"
+JDK_version="8u261"
 
 TOOLS_version="30.0.0"
 
@@ -35,6 +35,18 @@ SDK_version="29"
 compiler_win="mingw"
 
 qt="qt5"
+
+#--------------------------------------------------------------------------------------------------
+# Functions
+#--------------------------------------------------------------------------------------------------
+
+copyAndroid()
+{
+    cp "$1"/armeabi-v7a $dist
+    cp "$1"/arm64-v8a   $dist
+    cp "$1"/x86         $dist
+    cp "$1"/x86_64      $dist
+}
 
 #--------------------------------------------------------------------------------------------------
 # Syntax
@@ -210,10 +222,7 @@ elif [ $1 = "android" ]; then
 
     echo "COPYING VLC"
 
-    cp "$VLC"/libvlc_armeabi-v7a.so $dist/armeabi-v7a/libvlc.so
-    cp "$VLC"/libvlc_arm64-v8a.so   $dist/arm64-v8a/libvlc.so
-    cp "$VLC"/libvlc_x86.so         $dist/x86/libvlc.so
-    cp "$VLC"/libvlc_x86_64.so      $dist/x86_64/libvlc.so
+    copyAndroid "$VLC"
 fi
 
 echo "--------------------"
