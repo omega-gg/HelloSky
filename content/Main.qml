@@ -37,7 +37,7 @@ Application
 //#ANDROID
     property url sourceVideo: "file://" + controllerFile.pathStorage + "/sky.mp4"
 //#ELSE
-    property url sourceVideo: "file:///videos/sky.mp4"
+    property url sourceVideo: controllerFile.applicationFileUrl("videos/sky.mp4")
 //#END
 
     //---------------------------------------------------------------------------------------------

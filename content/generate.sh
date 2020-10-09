@@ -67,6 +67,7 @@ if [ "$2" = "clean" ]; then
 
     rm -f  $bin/*.qml
     rm -rf $bin/pictures
+    rm -rf $bin/icons
     rm -rf $bin/videos
 
     rm -rf qrc
@@ -92,6 +93,10 @@ if [ $1 = "android" -o "$2" = "all" -o "$2" = "deploy" ]; then
     echo "COPYING pictures"
 
     cp -r $content/pictures $path
+
+    echo "COPYING icons"
+
+    cp -r $content/icons $path
 
     if [ $1 = "android" ]; then
 
