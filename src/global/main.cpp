@@ -140,7 +140,7 @@ int main(int argc, char * argv[])
     //---------------------------------------------------------------------------------------------
     // Assets
     //---------------------------------------------------------------------------------------------
-    // FIXME Android: We copy the assets to a writable location to provide an URI to libVLC.
+    // FIXME android: We copy the assets to a writable location to provide an URI to libVLC.
 
     QString path = WControllerFile::pathWritable();
 
