@@ -28,8 +28,9 @@ Application
     id: application
 
     //---------------------------------------------------------------------------------------------
-    // Properties style
+    // Properties
     //---------------------------------------------------------------------------------------------
+    // Style
 
     property url sourceBackground: "pictures/sky.png"
     property url sourceLogo      : "pictures/logo.svg"
