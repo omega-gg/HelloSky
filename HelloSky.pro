@@ -51,7 +51,7 @@ deploy|android {
     RESOURCES = dist/HelloSky.qrc
 }
 
-!win32-msvc*:QMAKE_CXXFLAGS += -std=c++11
+!win32-msvc*:QMAKE_CXXFLAGS += -std=c++14
 
 !win32-msvc*:!android:QMAKE_CXXFLAGS += -msse
 
