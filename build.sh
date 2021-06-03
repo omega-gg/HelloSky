@@ -283,8 +283,6 @@ elif [ $1 = "android" ]; then
     export ANDROID_NDK_ROOT="$external/NDK/$NDK_version"
 
     export ANDROID_NDK_PLATFORM="android-$SDK_version"
-
-    export ANDROID_TARGET_SDK_VERSION="$SDK_version"
 fi
 
 $qmake --version
@@ -310,7 +308,8 @@ fi
 
 if [ $1 = "android" ]; then
 
-    $qmake -r -spec $spec "$config" "ANDROID_ABIS=$abi" ..
+    $qmake -r -spec $spec "$config"
+           "ANDROID_ABIS=$abi ANDROID_MIN_SDK_VERSION=21 ANDROID_TARGET_SDK_VERSION=29" ..
 else
     $qmake -r -spec $spec "$config" ..
 fi
