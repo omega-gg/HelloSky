@@ -41,6 +41,9 @@ contains(QT_MAJOR_VERSION, 4) {
 
 android {
     DEFINES += SK_MOBILE
+
+    ANDROID_MIN_SDK_VERSION    = 21
+    ANDROID_TARGET_SDK_VERSION = 29
 } else {
     DEFINES += SK_DESKTOP
 }

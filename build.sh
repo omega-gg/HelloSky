@@ -308,8 +308,7 @@ fi
 
 if [ $1 = "android" ]; then
 
-    $qmake -r -spec $spec "$config" \
-           "ANDROID_ABIS=$abi ANDROID_MIN_SDK_VERSION=21 ANDROID_TARGET_SDK_VERSION=29" ..
+    $qmake -r -spec $spec "$config" "ANDROID_ABIS=$abi" ..
 else
     $qmake -r -spec $spec "$config" ..
 fi
