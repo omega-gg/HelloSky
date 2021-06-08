@@ -171,12 +171,19 @@ else
     defines="MOBILE ANDROID"
 fi
 
-"$Sky"/deploy/deployer $path $version HelloSky.qrc "$defines" \
-"$SkyBase"/Style.qml \
-"$SkyBase"/Window.qml \
-"$SkyBase"/RectangleBorders.qml \
-"$SkyBase"/TextBase.qml \
-"$SkyBase"/BaseButton.qml \
-"$SkyTouch"/StyleTouch.qml \
-"$SkyTouch"/BaseButtonTouch.qml \
-"$SkyTouch"/ButtonTouch.qml \
+if [ "$2" = "deploy" ]; then
+
+    defines="$defines DEPLOY"
+fi
+
+files="\
+$SkyBase/Style.qml \
+$SkyBase/Window.qml \
+$SkyBase/RectangleBorders.qml \
+$SkyBase/TextBase.qml \
+$SkyBase/BaseButton.qml \
+$SkyTouch/StyleTouch.qml \
+$SkyTouch/BaseButtonTouch.qml \
+$SkyTouch/ButtonTouch.qml"
+
+"$Sky"/deploy/deployer $path $version HelloSky.qrc "$defines" $files
