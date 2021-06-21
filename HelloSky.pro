@@ -20,6 +20,13 @@ contains(QT_MAJOR_VERSION, 4) {
     android:QT += androidextras
 }
 
+# C++17
+contains(QT_MAJOR_VERSION, 4) {
+    QMAKE_CXXFLAGS += -std=c++1z
+} else {
+    CONFIG += c++1z
+}
+
 DEFINES += SK_CORE_LIBRARY SK_GUI_LIBRARY SK_MEDIA_LIBRARY
 
 !win32-msvc*:!android:DEFINES += CAN_COMPILE_SSE2
@@ -48,8 +55,6 @@ deploy|android {
 
     RESOURCES = dist/HelloSky.qrc
 }
-
-!win32-msvc*:QMAKE_CXXFLAGS += -std=c++14
 
 !win32-msvc*:!android:QMAKE_CXXFLAGS += -msse
 
