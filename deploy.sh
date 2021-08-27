@@ -5,6 +5,8 @@ set -e
 # Settings
 #--------------------------------------------------------------------------------------------------
 
+target="HelloSky"
+
 Sky="../Sky"
 
 #--------------------------------------------------------------------------------------------------
@@ -67,9 +69,9 @@ echo ""
 
 if [ $1 = "macOS" ]; then
 
-    cp -r bin/HelloSky.app deploy
+    cp -r bin/$target.app deploy
 
-    deploy="deploy/HelloSky.app/Contents/MacOS"
+    deploy="deploy/$target.app/Contents/MacOS"
 else
     deploy="deploy"
 fi
@@ -296,11 +298,11 @@ echo ""
 # HelloSky
 #--------------------------------------------------------------------------------------------------
 
-echo "COPYING HelloSky"
+echo "COPYING $target"
 
 if [ $os = "windows" ]; then
 
-    cp bin/HelloSky.exe $deploy
+    cp bin/$target.exe $deploy
 
 elif [ $1 = "macOS" ]; then
 
@@ -310,40 +312,40 @@ elif [ $1 = "macOS" ]; then
     # Qt
 
     install_name_tool -change @rpath/QtCore.framework/Versions/5/QtCore \
-                              @loader_path/QtCore.dylib HelloSky
+                              @loader_path/QtCore.dylib $target
 
     install_name_tool -change @rpath/QtGui.framework/Versions/5/QtGui \
-                              @loader_path/QtGui.dylib HelloSky
+                              @loader_path/QtGui.dylib $target
 
     install_name_tool -change @rpath/QtNetwork.framework/Versions/5/QtNetwork \
-                              @loader_path/QtNetwork.dylib HelloSky
+                              @loader_path/QtNetwork.dylib $target
 
     install_name_tool -change @rpath/QtOpenGL.framework/Versions/5/QtOpenGL \
-                              @loader_path/QtOpenGL.dylib HelloSky
+                              @loader_path/QtOpenGL.dylib $target
 
     install_name_tool -change @rpath/QtQml.framework/Versions/5/QtQml \
-                              @loader_path/QtQml.dylib HelloSky
+                              @loader_path/QtQml.dylib $target
 
     if [ -f QtQmlModels.dylib ]; then
 
         install_name_tool -change @rpath/QtQmlModels.framework/Versions/5/QtQmlModels \
-                                  @loader_path/QtQmlModels.dylib HelloSky
+                                  @loader_path/QtQmlModels.dylib $target
     fi
 
     install_name_tool -change @rpath/QtQuick.framework/Versions/5/QtQuick \
-                              @loader_path/QtQuick.dylib HelloSky
+                              @loader_path/QtQuick.dylib $target
 
     install_name_tool -change @rpath/QtSvg.framework/Versions/5/QtSvg \
-                              @loader_path/QtSvg.dylib HelloSky
+                              @loader_path/QtSvg.dylib $target
 
     install_name_tool -change @rpath/QtWidgets.framework/Versions/5/QtWidgets \
-                              @loader_path/QtWidgets.dylib HelloSky
+                              @loader_path/QtWidgets.dylib $target
 
     install_name_tool -change @rpath/QtXml.framework/Versions/5/QtXml \
-                              @loader_path/QtXml.dylib HelloSky
+                              @loader_path/QtXml.dylib $target
 
     install_name_tool -change @rpath/QtXmlPatterns.framework/Versions/5/QtXmlPatterns \
-                              @loader_path/QtXmlPatterns.dylib HelloSky
+                              @loader_path/QtXmlPatterns.dylib $target
 
     #----------------------------------------------------------------------------------------------
     # platforms
@@ -421,15 +423,15 @@ elif [ $1 = "macOS" ]; then
 
 elif [ $1 = "linux" ]; then
 
-    cp bin/HelloSky $deploy
+    cp bin/$target $deploy
 
 elif [ $1 = "android" ]; then
 
     path="build/android-build/build/outputs"
 
-    cp $path/apk/release/android-build-release-unsigned.apk $deploy/HelloSky.apk
+    cp $path/apk/release/android-build-release-unsigned.apk $deploy/$target.apk
 
-    cp $path/bundle/release/android-build-release.aab $deploy/HelloSky.aab
+    cp $path/bundle/release/android-build-release.aab $deploy/$target.aab
 fi
 
 if [ $1 != "android" ]; then
