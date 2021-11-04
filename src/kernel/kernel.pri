@@ -1,6 +1,7 @@
 # Kernel module
 
 HEADERS += $$SK_CORE/kernel/WListId.h \
+           $$SK_CORE/kernel/WRegExp.h \
            $$SK_GUI/kernel/WApplication.h \
            $$SK_GUI/kernel/WAbstractTabs.h \
            $$SK_GUI/kernel/WAbstractTabs_p.h \
@@ -8,6 +9,7 @@ HEADERS += $$SK_CORE/kernel/WListId.h \
            $$SK_GUI/kernel/WAbstractTab_p.h \
 
 SOURCES += $$SK_CORE/kernel/WListId.cpp \
+           $$SK_CORE/kernel/WRegExp.cpp \
            $$SK_GUI/kernel/WApplication.cpp \
            $$SK_GUI/kernel/WAbstractTabs.cpp \
            $$SK_GUI/kernel/WAbstractTab.cpp \
