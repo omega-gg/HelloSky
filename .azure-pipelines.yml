@@ -8,7 +8,7 @@ jobs:
     vmImage: "windows-latest"
   steps:
   - bash: |
-      sh environment.sh mingw qt4
+      sh environment.sh qt4
       sh build.sh win32 all
       cd deploy
       7z a ../HelloSky.zip *
@@ -44,7 +44,7 @@ jobs:
     vmImage: "windows-latest"
   steps:
   - bash: |
-      sh environment.sh msvc qt5
+      sh environment.sh msvc
       sh build.sh win32 all
       cd deploy
       7z a ../HelloSky.zip *
@@ -56,7 +56,7 @@ jobs:
     vmImage: "windows-latest"
   steps:
   - bash: |
-      sh environment.sh msvc qt5
+      sh environment.sh msvc
       sh build.sh win64 all
       cd deploy
       7z a ../HelloSky.zip *
@@ -91,7 +91,7 @@ jobs:
       docker exec -t ubuntu bash -c "cd /HelloSky;
                                      apt-get update;
                                      apt-get -y install sudo curl zip git;
-                                     sh environment.sh mingw qt4;
+                                     sh environment.sh qt4;
                                      sh build.sh linux all;
                                      cd deploy;
                                      zip -rq ../HelloSky.zip *"
@@ -124,7 +124,7 @@ jobs:
       docker exec -t ubuntu bash -c "cd /HelloSky;
                                      apt-get update;
                                      apt-get -y install sudo curl zip git;
-                                     sh environment.sh mingw qt4;
+                                     sh environment.sh qt4;
                                      sh build.sh linux all;
                                      cd deploy;
                                      zip -rq ../HelloSky.zip *"
