@@ -10,12 +10,22 @@ TARGET = HelloSky
 
 contains(QT_MAJOR_VERSION, 4) {
     QT += opengl declarative network xml xmlpatterns svg
-} else {
-    QT += opengl quick network xml xmlpatterns svg
 
+} else:contains(QT_MAJOR_VERSION, 5) {
+
+    QT += opengl quick network xml xmlpatterns svg
+} else {
+    QT += opengl quick network xml svg core5compat
+}
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+    unix:!macx:!android:QT += dbus
+}
+
+contains(QT_MAJOR_VERSION, 5) {
     win32:QT += winextras
 
-    unix:!macx:!android:QT += dbus x11extras
+    unix:!macx:!android:QT += x11extras
 
     android:QT += androidextras
 }
@@ -32,22 +42,12 @@ DEFINES += SK_CORE_LIBRARY SK_GUI_LIBRARY SK_MEDIA_LIBRARY
 !win32-msvc*:!android:DEFINES += CAN_COMPILE_SSE2
 
 contains(QT_MAJOR_VERSION, 4) {
-    DEFINES += QT_4
-
     CONFIG(release, debug|release) {
 
         win32:DEFINES += SK_WIN_NATIVE
     }
 } else {
-    DEFINES += QT_LATEST #SK_SOFTWARE
-
     win32:DEFINES += SK_WIN_NATIVE
-}
-
-android {
-    DEFINES += SK_MOBILE
-} else {
-    DEFINES += SK_DESKTOP
 }
 
 deploy|android {
@@ -60,6 +60,7 @@ deploy|android {
 
 unix:QMAKE_LFLAGS += "-Wl,-rpath,'\$$ORIGIN'"
 
+include($$SK/src/Sk.pri)
 include(src/global/global.pri)
 include(src/controllers/controllers.pri)
 include(src/kernel/kernel.pri)
@@ -78,22 +79,22 @@ INCLUDEPATH += $$SK/include/SkCore \
                $$SK/include/SkMedia \
                $$SK/include
 
-contains(QT_MAJOR_VERSION, 5) {
-    INCLUDEPATH += $$SK/include/Qt5 \
-                   $$SK/include/Qt5/QtCore \
-                   $$SK/include/Qt5/QtGui \
-                   $$SK/include/Qt5/QtQml \
-                   $$SK/include/Qt5/QtQuick
-}
-
-unix:!macx:!android:contains(QT_MAJOR_VERSION, 5) {
-    INCLUDEPATH += $$SK/include/Qt5/QtDBus
-}
-
 unix:contains(QT_MAJOR_VERSION, 4) {
     INCLUDEPATH += $$SK/include/Qt4/QtCore \
                    $$SK/include/Qt4/QtGui \
                    $$SK/include/Qt4/QtDeclarative
+}
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+    INCLUDEPATH += $$SK/include/$$QTX \
+                   $$SK/include/$$QTX/QtCore \
+                   $$SK/include/$$QTX/QtGui \
+                   $$SK/include/$$QTX/QtQml \
+                   $$SK/include/$$QTX/QtQuick
+}
+
+unix:!macx:!android:greaterThan(QT_MAJOR_VERSION, 4) {
+    INCLUDEPATH += $$SK/include/$$QTX/QtDBus
 }
 
 win32:LIBS += -L$$SK/lib -llibvlc

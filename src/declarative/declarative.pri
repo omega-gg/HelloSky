@@ -15,8 +15,8 @@ HEADERS += $$SK_GUI/declarative/WDeclarativeApplication.h \
            $$SK_GUI/declarative/WDeclarativePlayer.h \
            $$SK_GUI/declarative/WDeclarativePlayer_p.h \
 
-contains(QT_MAJOR_VERSION, 5): HEADERS += $$SK_GUI/declarative/WDeclarativeTexture.h \
-                                          $$SK_GUI/declarative/WDeclarativeTexture_p.h \
+greaterThan(QT_MAJOR_VERSION, 4): HEADERS += $$SK_GUI/declarative/WDeclarativeTexture.h \
+                                             $$SK_GUI/declarative/WDeclarativeTexture_p.h \
 
 SOURCES += $$SK_GUI/declarative/WDeclarativeApplication.cpp \
            $$SK_GUI/declarative/WDeclarativeItem.cpp \
@@ -27,4 +27,4 @@ SOURCES += $$SK_GUI/declarative/WDeclarativeApplication.cpp \
            $$SK_GUI/declarative/WDeclarativeImageSvg.cpp \
            $$SK_GUI/declarative/WDeclarativePlayer.cpp \
 
-contains(QT_MAJOR_VERSION, 5): SOURCES += $$SK_GUI/declarative/WDeclarativeTexture.cpp \
+greaterThan(QT_MAJOR_VERSION, 4): SOURCES += $$SK_GUI/declarative/WDeclarativeTexture.cpp \
