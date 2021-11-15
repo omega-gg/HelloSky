@@ -177,7 +177,7 @@ fi
 
 files="\
 $SkyBase/Style.qml \
-$SkyBase/Window.qml \
+$SkyBase/WindowSky.qml \
 $SkyBase/RectangleBorders.qml \
 $SkyBase/TextBase.qml \
 $SkyBase/BaseButton.qml \
