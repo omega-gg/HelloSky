@@ -144,16 +144,15 @@ echo ""
 # Deployer
 #--------------------------------------------------------------------------------------------------
 
-if [ $qt = "qt5" ]; then
+if [ $qt = "qt4" ]; then
 
-    if [ $1 = "linux" ]; then
-
-        version=2.7
-    else
-        version=2.14
-    fi
-else
     version=1.1
+
+elif [ $1 = "linux" ]; then
+
+    version=2.7
+else
+    version=2.14
 fi
 
 if [ $os = "windows" ]; then
