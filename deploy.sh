@@ -46,6 +46,20 @@ else
     compiler="default"
 fi
 
+if [ $qt = "qt5" ]; then
+
+    QtX="Qt5"
+
+    qx="5"
+
+elif [ $qt = "qt6" ]; then
+
+    QtX="Qt6"
+
+    qx="6"
+fi
+
+
 #--------------------------------------------------------------------------------------------------
 # Clean
 #--------------------------------------------------------------------------------------------------
@@ -95,6 +109,15 @@ path="$Sky/deploy"
 # Qt
 #--------------------------------------------------------------------------------------------------
 
+if [ $qt = "qt5" ]; then
+
+    QtQuick="QtQuick.2"
+
+elif [ $qt = "qt6" ]; then
+
+    QtQuick="QtQuick"
+fi
+
 if [ $os = "windows" ]; then
 
     if [ $compiler = "mingw" ]; then
@@ -125,27 +148,36 @@ if [ $os = "windows" ]; then
     else
         mkdir $deploy/platforms
         mkdir $deploy/imageformats
-        mkdir $deploy/QtQuick.2
+        mkdir $deploy/$QtQuick
 
-        cp "$path"/libEGL.dll    $deploy
-        cp "$path"/libGLESv2.dll $deploy
+        if [ $qt = "qt5" ]; then
 
-        cp "$path"/Qt5Core.dll        $deploy
-        cp "$path"/Qt5Gui.dll         $deploy
-        cp "$path"/Qt5Network.dll     $deploy
-        cp "$path"/Qt5OpenGL.dll      $deploy
-        cp "$path"/Qt5Qml.dll         $deploy
-        cp "$path"/Qt5Quick.dll       $deploy
-        cp "$path"/Qt5Svg.dll         $deploy
-        cp "$path"/Qt5Widgets.dll     $deploy
-        cp "$path"/Qt5Xml.dll         $deploy
-        cp "$path"/Qt5XmlPatterns.dll $deploy
-        cp "$path"/Qt5WinExtras.dll   $deploy
+            cp "$Qt"/bin/libEGL.dll    deploy
+            cp "$Qt"/bin/libGLESv2.dll deploy
+        fi
 
-        if [ -f "$path"/Qt5QmlModels.dll ]; then
+        cp "$path"/"$QtX"Core.dll    $deploy
+        cp "$path"/"$QtX"Gui.dll     $deploy
+        cp "$path"/"$QtX"Network.dll $deploy
+        cp "$path"/"$QtX"OpenGL.dll  $deploy
+        cp "$path"/"$QtX"Qml.dll     $deploy
+        cp "$path"/"$QtX"Quick.dll   $deploy
+        cp "$path"/"$QtX"Svg.dll     $deploy
+        cp "$path"/"$QtX"Widgets.dll $deploy
+        cp "$path"/"$QtX"Xml.dll     $deploy
 
-            cp "$path"/Qt5QmlModels.dll       $deploy
-            cp "$path"/Qt5QmlWorkerScript.dll $deploy
+        if [ $qt = "qt5" ]; then
+
+            cp "$path"/"$QtX"XmlPatterns.dll $deploy
+            cp "$path"/"$QtX"WinExtras.dll   $deploy
+        else
+            cp "$path"/"$QtX"Core5Compat.dll $deploy
+        fi
+
+        if [ -f "$path"/"$QtX"QmlModels.dll ]; then
+
+            cp "$path"/"$QtX"QmlModels.dll       $deploy
+            cp "$path"/"$QtX"QmlWorkerScript.dll $deploy
         fi
 
         cp "$path"/platforms/qwindows.dll $deploy/platforms
@@ -153,17 +185,17 @@ if [ $os = "windows" ]; then
         cp "$path"/imageformats/qsvg.dll  $deploy/imageformats
         cp "$path"/imageformats/qjpeg.dll $deploy/imageformats
 
-        cp "$path"/QtQuick.2/qtquick2plugin.dll $deploy/QtQuick.2
-        cp "$path"/QtQuick.2/qmldir             $deploy/QtQuick.2
+        cp "$path"/$QtQuick/qtquick2plugin.dll $deploy/$QtQuick
+        cp "$path"/$QtQuick/qmldir             $deploy/$QtQuick
     fi
 
 elif [ $1 = "macOS" ]; then
 
-    if [ $qt = "qt5" ]; then
+    if [ $qt != "qt4" ]; then
 
         mkdir $deploy/platforms
         mkdir $deploy/imageformats
-        mkdir $deploy/QtQuick.2
+        mkdir $deploy/$QtQuick
 
         # FIXME Qt 5.14 macOS: We have to copy qt.conf to avoid a segfault.
         cp "$path"/qt.conf $deploy
@@ -178,9 +210,15 @@ elif [ $1 = "macOS" ]; then
         cp "$path"/QtSvg.dylib          $deploy
         cp "$path"/QtWidgets.dylib      $deploy
         cp "$path"/QtXml.dylib          $deploy
-        cp "$path"/QtXmlPatterns.dylib  $deploy
         cp "$path"/QtDBus.dylib         $deploy
         cp "$path"/QtPrintSupport.dylib $deploy
+
+        if [ $qt = "qt5" ]; then
+
+            cp "$path"/QtXmlPatterns.dylib $deploy
+        else
+            cp "$path"/QtCore5Compat.dylib $deploy
+        fi
 
         if [ -f "$path"/QtQmlModels.dylib ]; then
 
@@ -193,8 +231,8 @@ elif [ $1 = "macOS" ]; then
         cp "$path"/imageformats/libqsvg.dylib  $deploy/imageformats
         cp "$path"/imageformats/libqjpeg.dylib $deploy/imageformats
 
-        cp "$path"/QtQuick.2/libqtquick2plugin.dylib $deploy/QtQuick.2
-        cp "$path"/QtQuick.2/qmldir                  $deploy/QtQuick.2
+        cp "$path"/$QtQuick/libqtquick2plugin.dylib $deploy/$QtQuick
+        cp "$path"/$QtQuick/qmldir                  $deploy/$QtQuick
     fi
 
 elif [ $1 = "linux" ]; then
@@ -222,7 +260,7 @@ elif [ $1 = "linux" ]; then
     else
         mkdir $deploy/platforms
         mkdir $deploy/imageformats
-        mkdir $deploy/QtQuick.2
+        mkdir $deploy/$QtQuick
         mkdir $deploy/xcbglintegrations
 
         cp "$path"/libz.so.* $deploy
@@ -242,23 +280,29 @@ elif [ $1 = "linux" ]; then
             cp "$path"/libpcre2-16.so.0 $deploy
         fi
 
-        cp "$path"/libQt5Core.so.5        $deploy
-        cp "$path"/libQt5Gui.so.5         $deploy
-        cp "$path"/libQt5Network.so.5     $deploy
-        cp "$path"/libQt5OpenGL.so.5      $deploy
-        cp "$path"/libQt5Qml.so.5         $deploy
-        cp "$path"/libQt5Quick.so.5       $deploy
-        cp "$path"/libQt5Svg.so.5         $deploy
-        cp "$path"/libQt5Widgets.so.5     $deploy
-        cp "$path"/libQt5Xml.so.5         $deploy
-        cp "$path"/libQt5XmlPatterns.so.5 $deploy
-        cp "$path"/libQt5XcbQpa.so.5      $deploy
-        cp "$path"/libQt5DBus.so.5        $deploy
+        cp "$path"/lib"$QtX"Core.so.$qx    $deploy
+        cp "$path"/lib"$QtX"Gui.so.$qx     $deploy
+        cp "$path"/lib"$QtX"Network.so.$qx $deploy
+        cp "$path"/lib"$QtX"OpenGL.so.$qx  $deploy
+        cp "$path"/lib"$QtX"Qml.so.$qx     $deploy
+        cp "$path"/lib"$QtX"Quick.so.$qx   $deploy
+        cp "$path"/lib"$QtX"Svg.so.$qx     $deploy
+        cp "$path"/lib"$QtX"Widgets.so.$qx $deploy
+        cp "$path"/lib"$QtX"Xml.so.$qx     $deploy
+        cp "$path"/lib"$QtX"XcbQpa.so.$qx  $deploy
+        cp "$path"/lib"$QtX"DBus.so.$qx    $deploy
 
-        if [ -f "$path"/libQt5QmlModels.so.5 ]; then
+        if [ $qt = "qt5" ]; then
 
-            cp "$path"/libQt5QmlModels.so.5       $deploy
-            cp "$path"/libQt5QmlWorkerScript.so.5 $deploy
+            cp "$path"/lib"$QtX"XmlPatterns.so.$qx $deploy
+        else
+            cp "$path"/lib"$QtX"Core5Compat.so.$qx $deploy
+        fi
+
+        if [ -f "$path"/lib"$QtX"QmlModels.so.$qx ]; then
+
+            cp "$path"/lib"$QtX"QmlModels.so.$qx       $deploy
+            cp "$path"/lib"$QtX"QmlWorkerScript.so.$qx $deploy
         fi
 
         cp "$path"/platforms/libqxcb.so $deploy/platforms
@@ -269,8 +313,8 @@ elif [ $1 = "linux" ]; then
         cp "$path"/xcbglintegrations/libqxcb-egl-integration.so $deploy/xcbglintegrations
         cp "$path"/xcbglintegrations/libqxcb-glx-integration.so $deploy/xcbglintegrations
 
-        cp "$path"/QtQuick.2/libqtquick2plugin.so $deploy/QtQuick.2
-        cp "$path"/QtQuick.2/qmldir               $deploy/QtQuick.2
+        cp "$path"/$QtQuick/libqtquick2plugin.so $deploy/$QtQuick
+        cp "$path"/$QtQuick/qmldir               $deploy/$QtQuick
     fi
 fi
 
@@ -311,104 +355,110 @@ elif [ $1 = "macOS" ]; then
     #----------------------------------------------------------------------------------------------
     # Qt
 
-    install_name_tool -change @rpath/QtCore.framework/Versions/5/QtCore \
+    install_name_tool -change @rpath/QtCore.framework/Versions/$qx/QtCore \
                               @loader_path/QtCore.dylib $target
 
-    install_name_tool -change @rpath/QtGui.framework/Versions/5/QtGui \
+    install_name_tool -change @rpath/QtGui.framework/Versions/$qx/QtGui \
                               @loader_path/QtGui.dylib $target
 
-    install_name_tool -change @rpath/QtNetwork.framework/Versions/5/QtNetwork \
+    install_name_tool -change @rpath/QtNetwork.framework/Versions/$qx/QtNetwork \
                               @loader_path/QtNetwork.dylib $target
 
-    install_name_tool -change @rpath/QtOpenGL.framework/Versions/5/QtOpenGL \
+    install_name_tool -change @rpath/QtOpenGL.framework/Versions/$qx/QtOpenGL \
                               @loader_path/QtOpenGL.dylib $target
 
-    install_name_tool -change @rpath/QtQml.framework/Versions/5/QtQml \
+    install_name_tool -change @rpath/QtQml.framework/Versions/$qx/QtQml \
                               @loader_path/QtQml.dylib $target
 
     if [ -f QtQmlModels.dylib ]; then
 
-        install_name_tool -change @rpath/QtQmlModels.framework/Versions/5/QtQmlModels \
+        install_name_tool -change @rpath/QtQmlModels.framework/Versions/$qx/QtQmlModels \
                                   @loader_path/QtQmlModels.dylib $target
     fi
 
-    install_name_tool -change @rpath/QtQuick.framework/Versions/5/QtQuick \
+    install_name_tool -change @rpath/QtQuick.framework/Versions/$qx/QtQuick \
                               @loader_path/QtQuick.dylib $target
 
-    install_name_tool -change @rpath/QtSvg.framework/Versions/5/QtSvg \
+    install_name_tool -change @rpath/QtSvg.framework/Versions/$qx/QtSvg \
                               @loader_path/QtSvg.dylib $target
 
-    install_name_tool -change @rpath/QtWidgets.framework/Versions/5/QtWidgets \
+    install_name_tool -change @rpath/QtWidgets.framework/Versions/$qx/QtWidgets \
                               @loader_path/QtWidgets.dylib $target
 
-    install_name_tool -change @rpath/QtXml.framework/Versions/5/QtXml \
+    install_name_tool -change @rpath/QtXml.framework/Versions/$qx/QtXml \
                               @loader_path/QtXml.dylib $target
 
-    install_name_tool -change @rpath/QtXmlPatterns.framework/Versions/5/QtXmlPatterns \
-                              @loader_path/QtXmlPatterns.dylib $target
+    if [ $qt = "qt5" ]; then
+
+        install_name_tool -change @rpath/QtCore5Compat.framework/Versions/$qx/QtCore5Compat \
+                                  @loader_path/QtCore5Compat.dylib $target
+    else
+        install_name_tool -change @rpath/QtCore5Compat.framework/Versions/$qx/QtCore5Compat \
+                                  @loader_path/QtCore5Compat.dylib $target
+    fi
 
     #----------------------------------------------------------------------------------------------
     # platforms
 
-    install_name_tool -change @rpath/QtCore.framework/Versions/5/QtCore \
+    install_name_tool -change @rpath/QtCore.framework/Versions/$qx/QtCore \
                               @loader_path/../QtCore.dylib platforms/libqcocoa.dylib
 
-    install_name_tool -change @rpath/QtGui.framework/Versions/5/QtGui \
+    install_name_tool -change @rpath/QtGui.framework/Versions/$qx/QtGui \
                               @loader_path/../QtGui.dylib platforms/libqcocoa.dylib
 
-    install_name_tool -change @rpath/QtWidgets.framework/Versions/5/QtWidgets \
+    install_name_tool -change @rpath/QtWidgets.framework/Versions/$qx/QtWidgets \
                               @loader_path/../QtWidgets.dylib platforms/libqcocoa.dylib
 
-    install_name_tool -change @rpath/QtDBus.framework/Versions/5/QtDBus \
+    install_name_tool -change @rpath/QtDBus.framework/Versions/$qx/QtDBus \
                               @loader_path/../QtDBus.dylib platforms/libqcocoa.dylib
 
-    install_name_tool -change @rpath/QtPrintSupport.framework/Versions/5/QtPrintSupport \
+    install_name_tool -change @rpath/QtPrintSupport.framework/Versions/$qx/QtPrintSupport \
                               @loader_path/../QtPrintSupport.dylib platforms/libqcocoa.dylib
 
     #----------------------------------------------------------------------------------------------
     # imageformats
 
-    install_name_tool -change @rpath/QtCore.framework/Versions/5/QtCore \
+    install_name_tool -change @rpath/QtCore.framework/Versions/$qx/QtCore \
                               @loader_path/../QtCore.dylib imageformats/libqjpeg.dylib
 
-    install_name_tool -change @rpath/QtGui.framework/Versions/5/QtGui \
+    install_name_tool -change @rpath/QtGui.framework/Versions/$qx/QtGui \
                               @loader_path/../QtGui.dylib imageformats/libqjpeg.dylib
 
     #----------------------------------------------------------------------------------------------
 
-    install_name_tool -change @rpath/QtCore.framework/Versions/5/QtCore \
+    install_name_tool -change @rpath/QtCore.framework/Versions/$qx/QtCore \
                               @loader_path/../QtCore.dylib imageformats/libqsvg.dylib
 
-    install_name_tool -change @rpath/QtGui.framework/Versions/5/QtGui \
+    install_name_tool -change @rpath/QtGui.framework/Versions/$qx/QtGui \
                               @loader_path/../QtGui.dylib imageformats/libqsvg.dylib
 
-    install_name_tool -change @rpath/QtWidgets.framework/Versions/5/QtWidgets \
+    install_name_tool -change @rpath/QtWidgets.framework/Versions/$qx/QtWidgets \
                               @loader_path/../QtWidgets.dylib imageformats/libqsvg.dylib
 
-    install_name_tool -change @rpath/QtSvg.framework/Versions/5/QtSvg \
+    install_name_tool -change @rpath/QtSvg.framework/Versions/$qx/QtSvg \
                               @loader_path/../QtSvg.dylib imageformats/libqsvg.dylib
 
     #----------------------------------------------------------------------------------------------
-    # QtQuick.2
+    # QtQuick
 
-    install_name_tool -change @rpath/QtGui.framework/Versions/5/QtGui \
-                              @loader_path/../QtGui.dylib QtQuick.2/libqtquick2plugin.dylib
+    install_name_tool -change @rpath/QtGui.framework/Versions/$qx/QtGui \
+                              @loader_path/../QtGui.dylib $QtQuick/libqtquick2plugin.dylib
 
-    install_name_tool -change @rpath/QtQml.framework/Versions/5/QtQml \
-                              @loader_path/../QtQml.dylib QtQuick.2/libqtquick2plugin.dylib
+    install_name_tool -change @rpath/QtQml.framework/Versions/$qx/QtQml \
+                              @loader_path/../QtQml.dylib $QtQuick/libqtquick2plugin.dylib
 
-    install_name_tool -change @rpath/QtQuick.framework/Versions/5/QtQuick \
-                              @loader_path/../QtQuick.dylib QtQuick.2/libqtquick2plugin.dylib
+    install_name_tool -change @rpath/QtQuick.framework/Versions/$qx/QtQuick \
+                              @loader_path/../QtQuick.dylib $QtQuick/libqtquick2plugin.dylib
 
     if [ -f QtQmlModels.dylib ]; then
 
-        install_name_tool -change @rpath/QtQmlModels.framework/Versions/5/QtQmlModels \
+        install_name_tool -change @rpath/QtQmlModels.framework/Versions/$qx/QtQmlModels \
                                   @loader_path/../QtQmlModels.dylib \
-                                  QtQuick.2/libqtquick2plugin.dylib
+                                  $QtQuick/libqtquick2plugin.dylib
 
-        install_name_tool -change @rpath/QtQmlWorkerScript.framework/Versions/5/QtQmlWorkerScript \
+        install_name_tool -change @rpath/QtQmlWorkerScript.framework/Versions/$qx/QtQmlWorkerScript \
                                   @loader_path/../QtQmlWorkerScript.dylib \
-                                  QtQuick.2/libqtquick2plugin.dylib
+                                  $QtQuick/libqtquick2plugin.dylib
     fi
 
     #----------------------------------------------------------------------------------------------

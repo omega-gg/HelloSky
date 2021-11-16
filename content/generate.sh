@@ -148,26 +148,36 @@ if [ $qt = "qt4" ]; then
 
     version=1.1
 
-elif [ $1 = "linux" ]; then
-
-    version=2.7
+    defines="QT_4"
 else
-    version=2.14
+    if [ $qt = "qt5" ]; then
+
+        defines="QT_5 QT_LATEST"
+    else
+        defines="QT_6 QT_LATEST"
+    fi
+
+    if [ $1 = "linux" ]; then
+
+        version=2.7
+    else
+        version=2.14
+    fi
 fi
 
 if [ $os = "windows" ]; then
 
-    defines="DESKTOP WINDOWS"
+    defines="$defines DESKTOP WINDOWS"
 
 elif [ $1 = "macOS" ]; then
 
-    defines="DESKTOP MAC"
+    defines="$defines DESKTOP MAC"
 
 elif [ $1 = "linux" ]; then
 
-    defines="DESKTOP LINUX"
+    defines="$defines DESKTOP LINUX"
 else
-    defines="MOBILE ANDROID"
+    defines="$defines MOBILE ANDROID"
 fi
 
 if [ "$2" = "deploy" ]; then

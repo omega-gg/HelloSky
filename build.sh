@@ -11,6 +11,7 @@ external="$PWD/../3rdparty"
 
 Qt4_version="4.8.7"
 Qt5_version="5.15.2"
+Qt6_version="6.2.1"
 
 #--------------------------------------------------------------------------------------------------
 
@@ -187,8 +188,12 @@ fi
 if [ $qt = "qt4" ]; then
 
     Qt="$external/Qt/$Qt4_version"
-else
+
+elif [ $qt = "qt5" ]; then
+
     Qt="$external/Qt/$Qt5_version"
+else
+    Qt="$external/Qt/$Qt6_version"
 fi
 
 if [ $os = "windows" -o $1 = "macOS" -o $1 = "android" ]; then
