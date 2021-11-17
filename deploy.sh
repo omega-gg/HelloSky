@@ -157,8 +157,8 @@ if [ $os = "windows" ]; then
 
         if [ $qt = "qt5" ]; then
 
-            cp "$Qt"/bin/libEGL.dll    deploy
-            cp "$Qt"/bin/libGLESv2.dll deploy
+            cp "$path"/libEGL.dll    deploy
+            cp "$path"/libGLESv2.dll deploy
         fi
 
         cp "$path"/"$QtX"Core.dll    $deploy
