@@ -150,6 +150,11 @@ if [ $os = "windows" ]; then
         mkdir $deploy/imageformats
         mkdir $deploy/$QtQuick
 
+        if [ $qt = "qt6" ]; then
+
+            mkdir -p $deploy/QtQml/WorkerScript
+        fi
+
         if [ $qt = "qt5" ]; then
 
             cp "$Qt"/bin/libEGL.dll    deploy
@@ -187,6 +192,12 @@ if [ $os = "windows" ]; then
 
         cp "$path"/$QtQuick/qtquick2plugin.dll $deploy/$QtQuick
         cp "$path"/$QtQuick/qmldir             $deploy/$QtQuick
+
+        if [ $qt = "qt6" ]; then
+
+            cp "$path"/QtQml/WorkerScript/workerscriptplugin.dll $deploy/QtQml/WorkerScript
+            cp "$path"/QtQml/WorkerScript/qmldir                 $deploy/QtQml/WorkerScript
+        fi
     fi
 
 elif [ $1 = "macOS" ]; then
@@ -196,6 +207,11 @@ elif [ $1 = "macOS" ]; then
         mkdir $deploy/platforms
         mkdir $deploy/imageformats
         mkdir $deploy/$QtQuick
+
+        if [ $qt = "qt6" ]; then
+
+            mkdir -p $deploy/QtQml/WorkerScript
+        fi
 
         # FIXME Qt 5.14 macOS: We have to copy qt.conf to avoid a segfault.
         cp "$path"/qt.conf $deploy
@@ -233,6 +249,12 @@ elif [ $1 = "macOS" ]; then
 
         cp "$path"/$QtQuick/libqtquick2plugin.dylib $deploy/$QtQuick
         cp "$path"/$QtQuick/qmldir                  $deploy/$QtQuick
+
+        if [ $qt = "qt6" ]; then
+
+            cp "$path"/QtQml/WorkerScript/libworkerscriptplugin.dylib $deploy/QtQml/WorkerScript
+            cp "$path"/QtQml/WorkerScript/qmldir                      $deploy/QtQml/WorkerScript
+        fi
     fi
 
 elif [ $1 = "linux" ]; then
@@ -262,6 +284,11 @@ elif [ $1 = "linux" ]; then
         mkdir $deploy/imageformats
         mkdir $deploy/$QtQuick
         mkdir $deploy/xcbglintegrations
+
+        if [ $qt = "qt6" ]; then
+
+            mkdir -p $deploy/QtQml/WorkerScript
+        fi
 
         cp "$path"/libz.so.* $deploy
 
@@ -315,6 +342,12 @@ elif [ $1 = "linux" ]; then
 
         cp "$path"/$QtQuick/libqtquick2plugin.so $deploy/$QtQuick
         cp "$path"/$QtQuick/qmldir               $deploy/$QtQuick
+
+        if [ $qt = "qt6" ]; then
+
+            cp "$path"/QtQml/WorkerScript/libworkerscriptplugin.so $deploy/QtQml/WorkerScript
+            cp "$path"/QtQml/WorkerScript/qmldir                   $deploy/QtQml/WorkerScript
+        fi
     fi
 fi
 
