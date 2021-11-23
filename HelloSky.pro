@@ -143,6 +143,7 @@ OTHER_FILES += 3rdparty.sh \
                content/generate.sh \
                content/Main.qml \
                dist/HelloSky.rc \
+               dist/script/start.sh \
                dist/android/res/values/theme.xml \
                dist/android/res/drawable/splash.xml \
 
