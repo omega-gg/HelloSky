@@ -42,7 +42,7 @@ JDK_version="8u311"
 SDK_version="30"
 SDK_version_minimum="21"
 
-NDK_version="21"
+NDK_version="23"
 
 #--------------------------------------------------------------------------------------------------
 # environment
