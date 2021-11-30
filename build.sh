@@ -335,6 +335,8 @@ elif [ $1 = "android" ]; then
 
     androiddeployqt="$external/Qt/$Qt5_version/bin/androiddeployqt"
 
+    cat android-HelloSky-deployment-settings.json
+
     "$androiddeployqt" --release --apk --aab \
                        --input android-HelloSky-deployment-settings.json \
                        --output android-build \
