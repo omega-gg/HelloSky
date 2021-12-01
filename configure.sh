@@ -25,7 +25,7 @@ MinGW_version="8.1.0"
 
 JDK_version="8u311"
 
-TOOLS_version="30.0.2"
+TOOLS_version="30.0.3"
 
 SDK_version="30"
 
