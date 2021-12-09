@@ -15,7 +15,7 @@ contains(QT_MAJOR_VERSION, 4) {
 
     QT += opengl quick network xml xmlpatterns svg
 } else {
-    QT += opengl quick network xml svg core5compat
+    QT += quick network xml svg core5compat
 }
 
 greaterThan(QT_MAJOR_VERSION, 4) {
