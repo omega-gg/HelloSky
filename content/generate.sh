@@ -195,4 +195,4 @@ $SkyTouch/StyleTouch.qml \
 $SkyTouch/BaseButtonTouch.qml \
 $SkyTouch/ButtonTouch.qml"
 
-"$Sky"/deploy/deployer $path $version HelloSky.qrc "$defines" $files
+"$Sky"/deploy/deployer $path $version qrc/HelloSky.qrc "$defines" $files
