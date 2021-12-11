@@ -220,6 +220,21 @@ Application
             font.pixelSize: st.dp18
         }
 
+        TextBase
+        {
+            anchors.right : parent.right
+            anchors.bottom: parent.bottom
+
+            anchors.margins: st.dp24
+
+            text: window.graphicsApiName()
+
+            color: st.text2_color
+
+            font.family   : "consolas"
+            font.pixelSize: st.dp18
+        }
+
         ButtonTouch
         {
             anchors.left: parent.left
