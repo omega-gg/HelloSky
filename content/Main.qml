@@ -222,6 +222,7 @@ Application
             font.pixelSize: st.dp18
         }
 
+//#QT_6
         TextBase
         {
             anchors.right : parent.right
@@ -235,6 +236,7 @@ Application
 
             font: itemText.font
         }
+//#END
 
         ButtonTouch
         {
