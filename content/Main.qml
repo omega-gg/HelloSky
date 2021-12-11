@@ -207,6 +207,8 @@ Application
 
         TextBase
         {
+            id: itemText
+
             anchors.left  : parent.left
             anchors.bottom: parent.bottom
 
@@ -225,14 +227,13 @@ Application
             anchors.right : parent.right
             anchors.bottom: parent.bottom
 
-            anchors.margins: st.dp24
+            anchors.margins: itemText.anchors.margins
 
             text: window.graphicsApiName()
 
-            color: st.text2_color
+            color: itemText.color
 
-            font.family   : "consolas"
-            font.pixelSize: st.dp18
+            font: itemText.font
         }
 
         ButtonTouch
