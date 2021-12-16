@@ -126,7 +126,7 @@ Application
         onDoubleClicked: fullScreen = !(fullScreen)
 //#END
 
-        onKeyPressed:
+        QML_EVENT onKeyPressed: function(event)
         {
             if (event.key == Qt.Key_Escape)
             {
