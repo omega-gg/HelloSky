@@ -29,7 +29,7 @@ replace()
     apply $expression build.sh
     apply $expression deploy.sh
 
-    sed -i $expression content/generate.sh
+    apply $expression content/generate.sh
 }
 
 apply()
