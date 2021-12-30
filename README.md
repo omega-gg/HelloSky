@@ -1,6 +1,7 @@
 <a href="http://omega.gg/Sky"><img src="dist/pictures/HelloSky.png" alt="HelloSky" width="512px"></a>
 ---
 [![azure](https://dev.azure.com/bunjee/HelloSky/_apis/build/status/omega-gg.HelloSky)](https://dev.azure.com/bunjee/HelloSky/_build)
+[![appveyor](https://ci.appveyor.com/api/projects/status/yto6yi6aepvvl805?svg=true)](https://ci.appveyor.com/project/3unjee/HelloSky)
 [![GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl.html)
 
 HelloSky is a "Hello World" application built with Sky kit.<br>
