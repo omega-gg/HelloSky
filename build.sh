@@ -73,7 +73,15 @@ makeAndroid()
 
     if [ $# = 2 ]; then
 
-        rm .qmake.stash
+        cd ..
+
+        # NOTE Android: We copy the build to its own folder.
+        mv build build-$1
+
+        mkdir build
+        touch build/.gitignore
+
+        cd build
     fi
 }
 
@@ -341,10 +349,10 @@ if [ $1 = "android" ]; then
 
         makeAndroid "$abi"
     else
-        makeAndroid "armeabi-v7a" "$Qt"/android_armv7/bin/target_qt.conf
-        makeAndroid "arm64-v8a"   "$Qt"/android_arm64_v8a/bin/target_qt.conf
-        makeAndroid "x86"         "$Qt"/android_x86/bin/target_qt.conf
-        makeAndroid "x86_64"      "$Qt"/android_x86_64/bin/target_qt.conf
+        makeAndroid "$abi" "$Qt"/android_armv7/bin/target_qt.conf
+        makeAndroid "$abi" "$Qt"/android_arm64_v8a/bin/target_qt.conf
+        makeAndroid "$abi" "$Qt"/android_x86/bin/target_qt.conf
+        makeAndroid "$abi" "$Qt"/android_x86_64/bin/target_qt.conf
     fi
 else
     $qmake -r -spec $spec "$config" ..
