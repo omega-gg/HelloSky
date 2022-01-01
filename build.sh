@@ -65,7 +65,7 @@ makeAndroid()
     fi
 
     $qmake -r -spec $spec $qtconf "$config" \
-        "ANDROID_ABIS=$1" \
+        "ANDROID_ABIS=$abi" \
         "ANDROID_MIN_SDK_VERSION=$SDK_version_minimum" \
         "ANDROID_TARGET_SDK_VERSION=$SDK_version" ..
 
@@ -353,6 +353,8 @@ if [ $1 = "android" ]; then
         makeAndroid "arm64-v8a"   "$Qt"/android_arm64_v8a/bin/target_qt.conf
         makeAndroid "x86"         "$Qt"/android_x86/bin/target_qt.conf
         makeAndroid "x86_64"      "$Qt"/android_x86_64/bin/target_qt.conf
+
+        mv ../build-* .
     fi
 else
     $qmake -r -spec $spec "$config" ..
@@ -367,8 +369,6 @@ elif [ $compiler = "msvc" ]; then
     jom
 
 elif [ $1 = "android" ]; then
-
-    make $make_arguments aab
 
     #----------------------------------------------------------------------------------------------
     # FIXME Qt android: We have to call androiddeployqt to generate a release apk.
