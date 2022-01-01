@@ -55,6 +55,30 @@ qt="qt5"
 # Functions
 #--------------------------------------------------------------------------------------------------
 
+makeAndroid()
+{
+    if [ $# = 2 ]; then
+
+        qtconf="-qtconf $2"
+    else
+        qtconf=""
+    fi
+
+    $qmake -r -spec $spec $qtconf "$config" \
+        "ANDROID_ABIS=$1" \
+        "ANDROID_MIN_SDK_VERSION=$SDK_version_minimum" \
+        "ANDROID_TARGET_SDK_VERSION=$SDK_version" ..
+
+    make $make_arguments
+
+    if [ $# = 2 ]; then
+
+        rm .qmake.stash
+    fi
+}
+
+#--------------------------------------------------------------------------------------------------
+
 getOs()
 {
     case `uname` in
@@ -196,7 +220,12 @@ else
     Qt="$external/Qt/$Qt6_version"
 fi
 
-qmake="$Qt/bin/qmake"
+if [ $1 = "android" -a $qt = "qt6" ]; then
+
+    qmake="$Qt/gcc_64/bin/qmake"
+else
+    qmake="$Qt/bin/qmake"
+fi
 
 #--------------------------------------------------------------------------------------------------
 # Clean
@@ -308,10 +337,15 @@ fi
 
 if [ $1 = "android" ]; then
 
-    $qmake -r -spec $spec "$config" \
-        "ANDROID_ABIS=$abi" \
-        "ANDROID_MIN_SDK_VERSION=$SDK_version_minimum" \
-        "ANDROID_TARGET_SDK_VERSION=$SDK_version" ..
+    if [ $qt = "qt5" ]; then
+
+        makeAndroid "$abi"
+    else
+        makeAndroid "armeabi-v7a" "$Qt"/android_armv7/bin/target_qt.conf
+        makeAndroid "arm64-v8a"   "$Qt"/android_arm64_v8a/bin/target_qt.conf
+        makeAndroid "x86"         "$Qt"/android_x86/bin/target_qt.conf
+        makeAndroid "x86_64"      "$Qt"/android_x86_64/bin/target_qt.conf
+    fi
 else
     $qmake -r -spec $spec "$config" ..
 fi
