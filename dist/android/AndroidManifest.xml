@@ -24,7 +24,7 @@
 
         <!-- FIXME Qt5: We need singleInstance and an empty taskAffinity for sharing to work properly. -->
         <activity android:name="org.qtproject.qt5.android.bindings.QtActivity"
-		          android:label="-- %%INSERT_APP_NAME%% --"
+                  android:label="-- %%INSERT_APP_NAME%% --"
                   android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density"
                   android:screenOrientation="unspecified"
                   android:launchMode="singleInstance"
