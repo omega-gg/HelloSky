@@ -5,6 +5,8 @@ set -e
 # Settings
 #--------------------------------------------------------------------------------------------------
 
+target="HelloSky"
+
 external="$PWD/../3rdparty"
 
 #--------------------------------------------------------------------------------------------------
@@ -65,11 +67,13 @@ makeAndroid()
     fi
 
     $qmake -r -spec $spec $qtconf "$config" \
-        "ANDROID_ABIS=$abi" \
+        "ANDROID_ABIS=$1" \
         "ANDROID_MIN_SDK_VERSION=$SDK_version_minimum" \
         "ANDROID_TARGET_SDK_VERSION=$SDK_version" ..
 
     make $make_arguments
+
+    make INSTALL_ROOT=android-build install
 
     if [ $# = 2 ]; then
 
@@ -255,7 +259,7 @@ fi
 # Build HelloSky
 #--------------------------------------------------------------------------------------------------
 
-echo "BUILDING HelloSky"
+echo "BUILDING $target"
 echo "-----------------"
 
 export QT_SELECT="$qt"
@@ -373,12 +377,12 @@ elif [ $1 = "android" ]; then
     #----------------------------------------------------------------------------------------------
     # FIXME Qt android: We have to call androiddeployqt to generate a release apk.
 
-    androiddeployqt="$external/Qt/$Qt5_version/bin/androiddeployqt"
+    androiddeployqt="$Qt/bin/androiddeployqt"
 
-    cat android-HelloSky-deployment-settings.json
+    cat android-$target-deployment-settings.json
 
-    "$androiddeployqt" --release --apk --aab \
-                       --input android-HelloSky-deployment-settings.json \
+    "$androiddeployqt" --release --aab --apk $target.apk \
+                       --input android-$target-deployment-settings.json \
                        --output android-build \
                        --android-platform android-$SDK_version \
                        --jdk $JAVA_HOME
@@ -399,7 +403,7 @@ echo "-----------------"
 if [ "$2" = "deploy" ]; then
 
     echo ""
-    echo "DEPLOYING HelloSky"
+    echo "DEPLOYING $target"
     echo "------------------"
 
     sh deploy.sh $1
