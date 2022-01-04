@@ -87,7 +87,7 @@ makeAndroid()
 
 deployAndroid()
 {
-    cd build/$1
+    cd $1
 
     cat android-$target-deployment-settings.json
 
