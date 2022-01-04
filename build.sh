@@ -59,6 +59,13 @@ qt="qt5"
 
 makeAndroid()
 {
+    if [ ! -d "${1}" ]; then
+
+        mkdir $1
+    fi
+
+    cd $1
+
     if [ $qt = "qt5" ]; then
 
         qtconf=""
@@ -69,21 +76,13 @@ makeAndroid()
     $qmake -r -spec $spec $qtconf "$config" \
         "ANDROID_ABIS=$1" \
         "ANDROID_MIN_SDK_VERSION=$SDK_version_minimum" \
-        "ANDROID_TARGET_SDK_VERSION=$SDK_version" ..
+        "ANDROID_TARGET_SDK_VERSION=$SDK_version" ../..
 
     make $make_arguments
 
     make INSTALL_ROOT=android-build install
 
     cd ..
-
-    # NOTE Android: We copy the build to its own folder.
-    mv build build-$1
-
-    mkdir build
-    touch build/.gitignore
-
-    cd build
 }
 
 deployAndroid()
