@@ -17,6 +17,19 @@ compiler_win="mingw"
 qt="qt5"
 
 #--------------------------------------------------------------------------------------------------
+# Functions
+#--------------------------------------------------------------------------------------------------
+
+copyAndroid()
+{
+    path="build-$1/android-build/build/outputs"
+
+    cp $path/apk/release/android-build-release-unsigned.apk $deploy/$target-$1.apk
+
+    cp $path/bundle/release/android-build-release.aab $deploy/$target-$1.aab
+}
+
+#--------------------------------------------------------------------------------------------------
 # Syntax
 #--------------------------------------------------------------------------------------------------
 
@@ -514,11 +527,10 @@ elif [ $1 = "linux" ]; then
 
 elif [ $1 = "android" ]; then
 
-    path="build/android-build/build/outputs"
-
-    cp $path/apk/release/android-build-release-unsigned.apk $deploy/$target.apk
-
-    cp $path/bundle/release/android-build-release.aab $deploy/$target.aab
+    copyAndroid "armeabi-v7a"
+    copyAndroid "arm64-v8a"
+    copyAndroid "x86"
+    copyAndroid "x86_64"
 fi
 
 if [ $1 != "android" ]; then

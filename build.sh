@@ -59,11 +59,11 @@ qt="qt5"
 
 makeAndroid()
 {
-    if [ $# = 2 ]; then
+    if [ $qt = "qt5" ]; then
 
-        qtconf="-qtconf $2"
-    else
         qtconf=""
+    else
+        qtconf="-qtconf $2"
     fi
 
     $qmake -r -spec $spec $qtconf "$config" \
@@ -75,18 +75,28 @@ makeAndroid()
 
     make INSTALL_ROOT=android-build install
 
-    if [ $# = 2 ]; then
+    cd ..
 
-        cd ..
+    # NOTE Android: We copy the build to its own folder.
+    mv build build-$1
 
-        # NOTE Android: We copy the build to its own folder.
-        mv build build-$1
+    mkdir build
+    touch build/.gitignore
 
-        mkdir build
-        touch build/.gitignore
+    cd build
+}
 
-        cd build
-    fi
+deployAndroid()
+{
+    cd build-$1
+
+    "$androiddeployqt" --release --aab \
+                       --input android-$target-deployment-settings.json \
+                       --output android-build \
+                       --android-platform android-$SDK_version \
+                       --jdk $JAVA_HOME
+
+    cd ..
 }
 
 #--------------------------------------------------------------------------------------------------
@@ -349,17 +359,12 @@ fi
 
 if [ $1 = "android" ]; then
 
-    if [ $qt = "qt5" ]; then
+    makeAndroid "armeabi-v7a" "$Qt"/android_armv7/bin/target_qt.conf
+    makeAndroid "arm64-v8a"   "$Qt"/android_arm64_v8a/bin/target_qt.conf
+    makeAndroid "x86"         "$Qt"/android_x86/bin/target_qt.conf
+    makeAndroid "x86_64"      "$Qt"/android_x86_64/bin/target_qt.conf
 
-        makeAndroid "$abi"
-    else
-        makeAndroid "armeabi-v7a" "$Qt"/android_armv7/bin/target_qt.conf
-        makeAndroid "arm64-v8a"   "$Qt"/android_arm64_v8a/bin/target_qt.conf
-        makeAndroid "x86"         "$Qt"/android_x86/bin/target_qt.conf
-        makeAndroid "x86_64"      "$Qt"/android_x86_64/bin/target_qt.conf
-
-        mv ../build-* .
-    fi
+    mv ../build-* .
 else
     $qmake -r -spec $spec "$config" ..
 fi
@@ -381,11 +386,10 @@ elif [ $1 = "android" ]; then
 
     cat android-$target-deployment-settings.json
 
-    "$androiddeployqt" --release --aab --apk $target.apk \
-                       --input android-$target-deployment-settings.json \
-                       --output android-build \
-                       --android-platform android-$SDK_version \
-                       --jdk $JAVA_HOME
+    deployAndroid "armeabi-v7a"
+    deployAndroid "arm64-v8a"
+    deployAndroid "x86"
+    deployAndroid "x86_64"
 
     #----------------------------------------------------------------------------------------------
 else
