@@ -90,6 +90,8 @@ deployAndroid()
 {
     cd build-$1
 
+    cat android-$target-deployment-settings.json
+
     "$androiddeployqt" --release --aab \
                        --input android-$target-deployment-settings.json \
                        --output android-build \
@@ -382,9 +384,12 @@ elif [ $1 = "android" ]; then
     #----------------------------------------------------------------------------------------------
     # FIXME Qt android: We have to call androiddeployqt to generate a release apk.
 
-    androiddeployqt="$Qt/bin/androiddeployqt"
+    if [ $qt = "qt5" ]; then
 
-    cat android-$target-deployment-settings.json
+        androiddeployqt="$Qt/bin/androiddeployqt"
+    else
+        androiddeployqt="$Qt/gcc_64/bin/androiddeployqt"
+    fi
 
     deployAndroid "armeabi-v7a"
     deployAndroid "arm64-v8a"
