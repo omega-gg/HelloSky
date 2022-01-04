@@ -87,7 +87,7 @@ makeAndroid()
 
 deployAndroid()
 {
-    cd build-$1
+    cd build/$1
 
     cat android-$target-deployment-settings.json
 
@@ -97,7 +97,7 @@ deployAndroid()
                        --android-platform android-$SDK_version \
                        --jdk $JAVA_HOME
 
-    cd ..
+    cd -
 }
 
 #--------------------------------------------------------------------------------------------------

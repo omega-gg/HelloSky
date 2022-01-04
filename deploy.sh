@@ -22,7 +22,7 @@ qt="qt5"
 
 copyAndroid()
 {
-    path="build-$1/android-build/build/outputs"
+    path="build/$1/android-build/build/outputs"
 
     cp $path/apk/release/android-build-release-unsigned.apk $deploy/$target-$1.apk
 
