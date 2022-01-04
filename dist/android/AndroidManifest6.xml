@@ -28,7 +28,8 @@
                   android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density"
                   android:screenOrientation="unspecified"
                   android:launchMode="singleInstance"
-                  android:taskAffinity="">
+                  android:taskAffinity=""
+                  android:theme="@style/theme">
 
             <intent-filter>
                 <action   android:name="android.intent.action.MAIN"/>

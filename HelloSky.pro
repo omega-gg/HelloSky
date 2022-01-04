@@ -151,7 +151,12 @@ OTHER_FILES += 3rdparty.sh \
 android {
     ANDROID_PACKAGE_SOURCE_DIR = $$_PRO_FILE_PWD_/dist/android
 
-    DISTFILES += $$ANDROID_PACKAGE_SOURCE_DIR/AndroidManifest.xml
+contains(QT_MAJOR_VERSION, 5) {
+
+    DISTFILES += $$ANDROID_PACKAGE_SOURCE_DIR/AndroidManifest5.xml
+} else {
+    DISTFILES += $$ANDROID_PACKAGE_SOURCE_DIR/AndroidManifest6.xml
+}
 
     assets.path = $$ANDROID_PACKAGE_SOURCE_DIR/assets/videos
 

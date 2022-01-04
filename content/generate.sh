@@ -71,6 +71,7 @@ if [ "$2" = "clean" ]; then
     rm -rf $bin/videos
 
     rm -rf qrc
+    mkdir  qrc
     touch  qrc/.gitignore
 
     exit 0
