@@ -40,6 +40,18 @@ jobs:
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-macOS-qt5
 
+- job: macOS_qt6
+  pool:
+    vmImage: "macOS-10.15"
+  steps:
+  - bash: |
+      sh environment.sh qt6
+      sh build.sh macOS all
+      cd deploy
+      zip -rq ../HelloSky.zip *
+  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
+    artifact: HelloSky-macOS-qt6
+
 #--------------------------------------------------------------------------------------------------
 # Linux
 #--------------------------------------------------------------------------------------------------
@@ -60,23 +72,6 @@ jobs:
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-linux32-qt4
 
-- job: linux32_qt5
-  pool:
-    vmImage: "ubuntu-latest"
-  steps:
-  - bash: |
-      docker run -d --name ubuntu -v $PWD:/HelloSky i386/ubuntu:18.04 tail -f /dev/null
-      docker exec -t ubuntu bash -c "cd /HelloSky;
-                                     apt-get update;
-                                     apt-get -y install sudo curl zip git;
-                                     sh build.sh linux all;
-                                     cd deploy;
-                                     zip -rq ../HelloSky.zip *"
-  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
-    artifact: HelloSky-linux32-qt5
-
-#--------------------------------------------------------------------------------------------------
-
 - job: linux64_qt4
   pool:
     vmImage: "ubuntu-latest"
@@ -93,6 +88,23 @@ jobs:
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-linux64-qt4
 
+#--------------------------------------------------------------------------------------------------
+
+- job: linux32_qt5
+  pool:
+    vmImage: "ubuntu-latest"
+  steps:
+  - bash: |
+      docker run -d --name ubuntu -v $PWD:/HelloSky i386/ubuntu:18.04 tail -f /dev/null
+      docker exec -t ubuntu bash -c "cd /HelloSky;
+                                     apt-get update;
+                                     apt-get -y install sudo curl zip git;
+                                     sh build.sh linux all;
+                                     cd deploy;
+                                     zip -rq ../HelloSky.zip *"
+  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
+    artifact: HelloSky-linux32-qt5
+
 - job: linux64_qt5
   pool:
     vmImage: "ubuntu-latest"
@@ -107,6 +119,24 @@ jobs:
                                      zip -rq ../HelloSky.zip *"
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-linux64-qt5
+
+#--------------------------------------------------------------------------------------------------
+
+- job: linux64_qt6
+  pool:
+    vmImage: "ubuntu-latest"
+  steps:
+  - bash: |
+      docker run -d --name ubuntu -v $PWD:/HelloSky amd64/ubuntu:20.04 tail -f /dev/null
+      docker exec -t ubuntu bash -c "cd /HelloSky;
+                                     apt-get update;
+                                     apt-get -y install sudo curl zip git;
+                                     sh environment.sh qt6;
+                                     sh build.sh linux all;
+                                     cd deploy;
+                                     zip -rq ../HelloSky.zip *"
+  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
+    artifact: HelloSky-linux64-qt6
 
 #--------------------------------------------------------------------------------------------------
 # Android
@@ -127,3 +157,20 @@ jobs:
                                      zip -rq ../HelloSky.zip *"
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-android-qt5
+
+- job: android_qt6
+  pool:
+    vmImage: "ubuntu-latest"
+  steps:
+  - bash: |
+      docker run -d --name ubuntu -v $PWD:/HelloSky amd64/ubuntu:20.04 tail -f /dev/null
+      docker exec -t ubuntu bash -c "cd /HelloSky;
+                                     apt-get update;
+                                     apt-get -y install sudo curl zip unzip git;
+                                     sh environment.sh qt6;
+                                     sh 3rdparty.sh linux all;
+                                     sh build.sh android all;
+                                     cd deploy;
+                                     zip -rq ../HelloSky.zip *"
+  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
+    artifact: HelloSky-android-qt6
