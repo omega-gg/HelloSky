@@ -145,6 +145,8 @@ OTHER_FILES += 3rdparty.sh \
                content/Main.qml \
                dist/HelloSky.rc \
                dist/script/start.sh \
+               dist/android/qt5/AndroidManifest.xml \
+               dist/android/qt6/AndroidManifest.xml \
                dist/android/res/values/theme.xml \
                dist/android/res/drawable/splash.xml \
 
