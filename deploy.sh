@@ -173,28 +173,28 @@ if [ $os = "windows" ]; then
             cp "$path"/libGLESv2.dll deploy
         fi
 
-        cp "$path"/"$QtX"Core.dll    $deploy
-        cp "$path"/"$QtX"Gui.dll     $deploy
-        cp "$path"/"$QtX"Network.dll $deploy
-        cp "$path"/"$QtX"OpenGL.dll  $deploy
-        cp "$path"/"$QtX"Qml.dll     $deploy
-        cp "$path"/"$QtX"Quick.dll   $deploy
-        cp "$path"/"$QtX"Svg.dll     $deploy
-        cp "$path"/"$QtX"Widgets.dll $deploy
-        cp "$path"/"$QtX"Xml.dll     $deploy
+        cp "$path/$QtX"Core.dll    $deploy
+        cp "$path/$QtX"Gui.dll     $deploy
+        cp "$path/$QtX"Network.dll $deploy
+        cp "$path/$QtX"OpenGL.dll  $deploy
+        cp "$path/$QtX"Qml.dll     $deploy
+        cp "$path/$QtX"Quick.dll   $deploy
+        cp "$path/$QtX"Svg.dll     $deploy
+        cp "$path/$QtX"Widgets.dll $deploy
+        cp "$path/$QtX"Xml.dll     $deploy
 
         if [ $qt = "qt5" ]; then
 
-            cp "$path"/"$QtX"XmlPatterns.dll $deploy
-            cp "$path"/"$QtX"WinExtras.dll   $deploy
+            cp "$path/$QtX"XmlPatterns.dll $deploy
+            cp "$path/$QtX"WinExtras.dll   $deploy
         else
-            cp "$path"/"$QtX"Core5Compat.dll $deploy
+            cp "$path/$QtX"Core5Compat.dll $deploy
         fi
 
-        if [ -f "$path"/"$QtX"QmlModels.dll ]; then
+        if [ -f "$path/$QtX"QmlModels.dll ]; then
 
-            cp "$path"/"$QtX"QmlModels.dll       $deploy
-            cp "$path"/"$QtX"QmlWorkerScript.dll $deploy
+            cp "$path/$QtX"QmlModels.dll       $deploy
+            cp "$path/$QtX"QmlWorkerScript.dll $deploy
         fi
 
         cp "$path"/platforms/qwindows.dll $deploy/platforms
@@ -319,29 +319,29 @@ elif [ $1 = "linux" ]; then
             cp "$path"/libpcre2-16.so.0 $deploy
         fi
 
-        cp "$path"/lib"$QtX"Core.so.$qx    $deploy
-        cp "$path"/lib"$QtX"Gui.so.$qx     $deploy
-        cp "$path"/lib"$QtX"Network.so.$qx $deploy
-        cp "$path"/lib"$QtX"OpenGL.so.$qx  $deploy
-        cp "$path"/lib"$QtX"Qml.so.$qx     $deploy
-        cp "$path"/lib"$QtX"Quick.so.$qx   $deploy
-        cp "$path"/lib"$QtX"Svg.so.$qx     $deploy
-        cp "$path"/lib"$QtX"Widgets.so.$qx $deploy
-        cp "$path"/lib"$QtX"Xml.so.$qx     $deploy
-        cp "$path"/lib"$QtX"XcbQpa.so.$qx  $deploy
-        cp "$path"/lib"$QtX"DBus.so.$qx    $deploy
+        cp "$path/lib$QtX"Core.so.$qx    $deploy
+        cp "$path/lib$QtX"Gui.so.$qx     $deploy
+        cp "$path/lib$QtX"Network.so.$qx $deploy
+        cp "$path/lib$QtX"OpenGL.so.$qx  $deploy
+        cp "$path/lib$QtX"Qml.so.$qx     $deploy
+        cp "$path/lib$QtX"Quick.so.$qx   $deploy
+        cp "$path/lib$QtX"Svg.so.$qx     $deploy
+        cp "$path/lib$QtX"Widgets.so.$qx $deploy
+        cp "$path/lib$QtX"Xml.so.$qx     $deploy
+        cp "$path/lib$QtX"XcbQpa.so.$qx  $deploy
+        cp "$path/lib$QtX"DBus.so.$qx    $deploy
 
         if [ $qt = "qt5" ]; then
 
-            cp "$path"/lib"$QtX"XmlPatterns.so.$qx $deploy
+            cp "$path/lib$QtX"XmlPatterns.so.$qx $deploy
         else
-            cp "$path"/lib"$QtX"Core5Compat.so.$qx $deploy
+            cp "$path/lib$QtX"Core5Compat.so.$qx $deploy
         fi
 
-        if [ -f "$path"/lib"$QtX"QmlModels.so.$qx ]; then
+        if [ -f "$path/lib$QtX"QmlModels.so.$qx ]; then
 
-            cp "$path"/lib"$QtX"QmlModels.so.$qx       $deploy
-            cp "$path"/lib"$QtX"QmlWorkerScript.so.$qx $deploy
+            cp "$path/lib$QtX"QmlModels.so.$qx       $deploy
+            cp "$path/lib$QtX"QmlWorkerScript.so.$qx $deploy
         fi
 
         cp "$path"/platforms/libqxcb.so $deploy/platforms
