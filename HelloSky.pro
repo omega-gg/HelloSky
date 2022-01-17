@@ -41,6 +41,8 @@ DEFINES += SK_CORE_LIBRARY SK_GUI_LIBRARY SK_MEDIA_LIBRARY
 
 !win32-msvc*:!android:DEFINES += CAN_COMPILE_SSE2
 
+#DEFINES += SK_SOFTWARE
+
 contains(QT_MAJOR_VERSION, 4) {
     CONFIG(release, debug|release) {
 
