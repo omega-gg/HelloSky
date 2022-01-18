@@ -450,6 +450,14 @@ elif [ $1 = "macOS" ]; then
     otool -L $target
 
     #----------------------------------------------------------------------------------------------
+
+    if [ $qt = "qt6" ]; then
+
+        install_name_tool -change @rpath/QtDBus.framework/Versions/$qx/QtDBus \
+                                  @loader_path/QtDBus.dylib QtGui.dylib
+    fi
+
+    #----------------------------------------------------------------------------------------------
     # platforms
 
     install_name_tool -change @rpath/QtCore.framework/Versions/$qx/QtCore \
