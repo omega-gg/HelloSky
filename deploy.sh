@@ -518,7 +518,7 @@ elif [ $1 = "macOS" ]; then
     #install_name_tool -change @rpath/QtQuick.framework/Versions/$qx/QtQuick \
     #                          @loader_path/../QtQuick.dylib $QtQuick/libqtquick2plugin.dylib
 
-    if [ -f QtQmlModels.dylib ]; then
+    #if [ -f QtQmlModels.dylib ]; then
 
         #install_name_tool -change @rpath/QtQmlModels.framework/Versions/$qx/QtQmlModels \
         #                          @loader_path/../QtQmlModels.dylib \
@@ -527,7 +527,7 @@ elif [ $1 = "macOS" ]; then
         #install_name_tool -change @rpath/QtQmlWorkerScript.framework/Versions/$qx/QtQmlWorkerScript \
         #                          @loader_path/../QtQmlWorkerScript.dylib \
         #                          $QtQuick/libqtquick2plugin.dylib
-    fi
+    #fi
 
     otool -L $QtQuick/libqtquick2plugin.dylib
 
