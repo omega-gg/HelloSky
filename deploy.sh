@@ -474,8 +474,8 @@ elif [ $1 = "macOS" ]; then
     install_name_tool -change @rpath/QtDBus.framework/Versions/$qx/QtDBus \
                               @loader_path/../QtDBus.dylib platforms/libqcocoa.dylib
 
-    #install_name_tool -change @rpath/QtPrintSupport.framework/Versions/$qx/QtPrintSupport \
-    #                          @loader_path/../QtPrintSupport.dylib platforms/libqcocoa.dylib
+    install_name_tool -change @rpath/QtPrintSupport.framework/Versions/$qx/QtPrintSupport \
+                              @loader_path/../QtPrintSupport.dylib platforms/libqcocoa.dylib
 
     otool -L platforms/libqcocoa.dylib
 
