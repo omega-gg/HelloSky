@@ -447,6 +447,8 @@ elif [ $1 = "macOS" ]; then
                                   @loader_path/QtCore5Compat.dylib $target
     fi
 
+    otool -L $target
+
     #----------------------------------------------------------------------------------------------
     # platforms
 
@@ -465,6 +467,8 @@ elif [ $1 = "macOS" ]; then
     install_name_tool -change @rpath/QtPrintSupport.framework/Versions/$qx/QtPrintSupport \
                               @loader_path/../QtPrintSupport.dylib platforms/libqcocoa.dylib
 
+    otool -L platforms/libqcocoa.dylib
+
     #----------------------------------------------------------------------------------------------
     # imageformats
 
@@ -473,6 +477,8 @@ elif [ $1 = "macOS" ]; then
 
     install_name_tool -change @rpath/QtGui.framework/Versions/$qx/QtGui \
                               @loader_path/../QtGui.dylib imageformats/libqjpeg.dylib
+
+    otool -L imageformats/libqjpeg.dylib
 
     #----------------------------------------------------------------------------------------------
 
@@ -487,6 +493,8 @@ elif [ $1 = "macOS" ]; then
 
     install_name_tool -change @rpath/QtSvg.framework/Versions/$qx/QtSvg \
                               @loader_path/../QtSvg.dylib imageformats/libqsvg.dylib
+
+    otool -L imageformats/libqsvg.dylib
 
     #----------------------------------------------------------------------------------------------
     # QtQuick
@@ -511,30 +519,39 @@ elif [ $1 = "macOS" ]; then
                                   $QtQuick/libqtquick2plugin.dylib
     fi
 
+    otool -L $QtQuick/libqtquick2plugin.dylib
+
     #----------------------------------------------------------------------------------------------
     # WorkerScript
 
-    install_name_tool -change @rpath/QtCore.framework/Versions/$qx/QtCore \
-                              @loader_path/../../QtCore.dylib \
-                              QtQml/WorkerScript/libworkerscriptplugin.dylib
+    if [ $qt = "qt6" ]; then
 
-    install_name_tool -change @rpath/QtNetwork.framework/Versions/$qx/QtNetwork \
-                              @loader_path/../../QtNetwork.dylib \
-                              QtQml/WorkerScript/libworkerscriptplugin.dylib
+        install_name_tool -change @rpath/QtCore.framework/Versions/$qx/QtCore \
+                                  @loader_path/../../QtCore.dylib \
+                                  QtQml/WorkerScript/libworkerscriptplugin.dylib
 
-    install_name_tool -change @rpath/QtQml.framework/Versions/$qx/QtQml \
-                              @loader_path/../../QtQml.dylib \
-                              QtQml/WorkerScript/libworkerscriptplugin.dylib
+        install_name_tool -change @rpath/QtNetwork.framework/Versions/$qx/QtNetwork \
+                                  @loader_path/../../QtNetwork.dylib \
+                                  QtQml/WorkerScript/libworkerscriptplugin.dylib
 
-    install_name_tool -change @rpath/QtQmlWorkerScript.framework/Versions/$qx/QtQmlWorkerScript \
-                              @loader_path/../../QtQmlWorkerScript.dylib \
-                              QtQml/WorkerScript/libworkerscriptplugin.dylib
+        install_name_tool -change @rpath/QtQml.framework/Versions/$qx/QtQml \
+                                  @loader_path/../../QtQml.dylib \
+                                  QtQml/WorkerScript/libworkerscriptplugin.dylib
+
+        install_name_tool -change @rpath/QtQmlWorkerScript.framework/Versions/$qx/QtQmlWorkerScript \
+                                  @loader_path/../../QtQmlWorkerScript.dylib \
+                                  QtQml/WorkerScript/libworkerscriptplugin.dylib
+
+        otool -L QtQml/WorkerScript/libworkerscriptplugin.dylib
+    fi
 
     #----------------------------------------------------------------------------------------------
     # VLC
 
     install_name_tool -change @rpath/libvlccore.dylib \
                               @loader_path/libvlccore.dylib libvlc.dylib
+
+    otool -L libvlc.dylib
 
     #----------------------------------------------------------------------------------------------
 
