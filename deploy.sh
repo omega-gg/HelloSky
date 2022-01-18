@@ -69,7 +69,12 @@ elif [ $qt = "qt6" ]; then
 
     QtX="Qt6"
 
-    qx="6"
+    if [ $1 = "macOS" ]; then
+
+        qx="A"
+    else
+        qx="6"
+    fi
 fi
 
 #--------------------------------------------------------------------------------------------------
@@ -508,6 +513,22 @@ elif [ $1 = "macOS" ]; then
 
     #----------------------------------------------------------------------------------------------
     # WorkerScript
+
+    install_name_tool -change @rpath/QtCore.framework/Versions/$qx/QtCore \
+                              @loader_path/../../QtCore.dylib \
+                              QtQml/WorkerScript/libworkerscriptplugin.dylib
+
+    install_name_tool -change @rpath/QtNetwork.framework/Versions/$qx/QtNetwork \
+                              @loader_path/../../QtNetwork.dylib \
+                              QtQml/WorkerScript/libworkerscriptplugin.dylib
+
+    install_name_tool -change @rpath/QtQml.framework/Versions/$qx/QtQml \
+                              @loader_path/../../QtQml.dylib \
+                              QtQml/WorkerScript/libworkerscriptplugin.dylib
+
+    install_name_tool -change @rpath/QtQmlWorkerScript.framework/Versions/$qx/QtQmlWorkerScript \
+                              @loader_path/../../QtQmlWorkerScript.dylib \
+                              QtQml/WorkerScript/libworkerscriptplugin.dylib
 
     #----------------------------------------------------------------------------------------------
     # VLC
