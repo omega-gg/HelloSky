@@ -471,11 +471,11 @@ elif [ $1 = "macOS" ]; then
     #install_name_tool -change @rpath/QtWidgets.framework/Versions/$qx/QtWidgets \
     #                          @loader_path/../QtWidgets.dylib platforms/libqcocoa.dylib
 
-    #install_name_tool -change @rpath/QtDBus.framework/Versions/$qx/QtDBus \
-    #                          @loader_path/../QtDBus.dylib platforms/libqcocoa.dylib
+    install_name_tool -change @rpath/QtDBus.framework/Versions/$qx/QtDBus \
+                              @loader_path/../QtDBus.dylib platforms/libqcocoa.dylib
 
-    #install_name_tool -change @rpath/QtPrintSupport.framework/Versions/$qx/QtPrintSupport \
-    #                          @loader_path/../QtPrintSupport.dylib platforms/libqcocoa.dylib
+    install_name_tool -change @rpath/QtPrintSupport.framework/Versions/$qx/QtPrintSupport \
+                              @loader_path/../QtPrintSupport.dylib platforms/libqcocoa.dylib
 
     otool -L platforms/libqcocoa.dylib
 
@@ -501,8 +501,8 @@ elif [ $1 = "macOS" ]; then
     #install_name_tool -change @rpath/QtWidgets.framework/Versions/$qx/QtWidgets \
     #                          @loader_path/../QtWidgets.dylib imageformats/libqsvg.dylib
 
-    #install_name_tool -change @rpath/QtSvg.framework/Versions/$qx/QtSvg \
-    #                          @loader_path/../QtSvg.dylib imageformats/libqsvg.dylib
+    install_name_tool -change @rpath/QtSvg.framework/Versions/$qx/QtSvg \
+                              @loader_path/../QtSvg.dylib imageformats/libqsvg.dylib
 
     otool -L imageformats/libqsvg.dylib
 
