@@ -403,7 +403,7 @@ elif [ $1 = "macOS" ]; then
     cd $deploy
 
     #----------------------------------------------------------------------------------------------
-    # Qt
+    # target
 
     install_name_tool -change @rpath/QtCore.framework/Versions/$qx/QtCore \
                               @loader_path/QtCore.dylib $target
@@ -450,6 +450,7 @@ elif [ $1 = "macOS" ]; then
     otool -L $target
 
     #----------------------------------------------------------------------------------------------
+    # QtGui
 
     if [ $qt = "qt6" ]; then
 
@@ -462,17 +463,11 @@ elif [ $1 = "macOS" ]; then
     #----------------------------------------------------------------------------------------------
     # platforms
 
-    #install_name_tool -change @rpath/QtCore.framework/Versions/$qx/QtCore \
-    #                          @loader_path/../QtCore.dylib platforms/libqcocoa.dylib
+    if [ $qt = "qt5" ]; then
 
-    #install_name_tool -change @rpath/QtGui.framework/Versions/$qx/QtGui \
-    #                          @loader_path/../QtGui.dylib platforms/libqcocoa.dylib
-
-    #install_name_tool -change @rpath/QtWidgets.framework/Versions/$qx/QtWidgets \
-    #                          @loader_path/../QtWidgets.dylib platforms/libqcocoa.dylib
-
-    install_name_tool -change @rpath/QtDBus.framework/Versions/$qx/QtDBus \
-                              @loader_path/../QtDBus.dylib platforms/libqcocoa.dylib
+        install_name_tool -change @rpath/QtDBus.framework/Versions/$qx/QtDBus \
+                                  @loader_path/../QtDBus.dylib platforms/libqcocoa.dylib
+    fi
 
     install_name_tool -change @rpath/QtPrintSupport.framework/Versions/$qx/QtPrintSupport \
                               @loader_path/../QtPrintSupport.dylib platforms/libqcocoa.dylib
@@ -480,80 +475,16 @@ elif [ $1 = "macOS" ]; then
     otool -L platforms/libqcocoa.dylib
 
     #----------------------------------------------------------------------------------------------
-    # imageformats
-
-    #install_name_tool -change @rpath/QtCore.framework/Versions/$qx/QtCore \
-    #                          @loader_path/../QtCore.dylib imageformats/libqjpeg.dylib
-
-    #install_name_tool -change @rpath/QtGui.framework/Versions/$qx/QtGui \
-    #                          @loader_path/../QtGui.dylib imageformats/libqjpeg.dylib
-
-    otool -L imageformats/libqjpeg.dylib
-
-    #----------------------------------------------------------------------------------------------
-
-    #install_name_tool -change @rpath/QtCore.framework/Versions/$qx/QtCore \
-    #                          @loader_path/../QtCore.dylib imageformats/libqsvg.dylib
-
-    #install_name_tool -change @rpath/QtGui.framework/Versions/$qx/QtGui \
-    #                          @loader_path/../QtGui.dylib imageformats/libqsvg.dylib
-
-    #install_name_tool -change @rpath/QtWidgets.framework/Versions/$qx/QtWidgets \
-    #                          @loader_path/../QtWidgets.dylib imageformats/libqsvg.dylib
-
-    #install_name_tool -change @rpath/QtSvg.framework/Versions/$qx/QtSvg \
-    #                          @loader_path/../QtSvg.dylib imageformats/libqsvg.dylib
-
-    otool -L imageformats/libqsvg.dylib
-
-    #----------------------------------------------------------------------------------------------
     # QtQuick
 
-    #install_name_tool -change @rpath/QtGui.framework/Versions/$qx/QtGui \
-    #                          @loader_path/../QtGui.dylib $QtQuick/libqtquick2plugin.dylib
-
-    #install_name_tool -change @rpath/QtQml.framework/Versions/$qx/QtQml \
-    #                          @loader_path/../QtQml.dylib $QtQuick/libqtquick2plugin.dylib
-
-    #install_name_tool -change @rpath/QtQuick.framework/Versions/$qx/QtQuick \
-    #                          @loader_path/../QtQuick.dylib $QtQuick/libqtquick2plugin.dylib
-
     if [ -f QtQmlModels.dylib ]; then
-
-        #install_name_tool -change @rpath/QtQmlModels.framework/Versions/$qx/QtQmlModels \
-        #                          @loader_path/../QtQmlModels.dylib \
-        #                          $QtQuick/libqtquick2plugin.dylib
 
         install_name_tool -change @rpath/QtQmlWorkerScript.framework/Versions/$qx/QtQmlWorkerScript \
                                   @loader_path/../QtQmlWorkerScript.dylib \
                                   $QtQuick/libqtquick2plugin.dylib
+
+        otool -L $QtQuick/libqtquick2plugin.dylib
     fi
-
-    otool -L $QtQuick/libqtquick2plugin.dylib
-
-    #----------------------------------------------------------------------------------------------
-    # WorkerScript
-
-    #if [ $qt = "qt6" ]; then
-
-        #install_name_tool -change @rpath/QtCore.framework/Versions/$qx/QtCore \
-        #                          @loader_path/../../QtCore.dylib \
-        #                          QtQml/WorkerScript/libworkerscriptplugin.dylib
-
-        #install_name_tool -change @rpath/QtNetwork.framework/Versions/$qx/QtNetwork \
-        #                          @loader_path/../../QtNetwork.dylib \
-        #                          QtQml/WorkerScript/libworkerscriptplugin.dylib
-
-        #install_name_tool -change @rpath/QtQml.framework/Versions/$qx/QtQml \
-        #                          @loader_path/../../QtQml.dylib \
-        #                          QtQml/WorkerScript/libworkerscriptplugin.dylib
-
-        #install_name_tool -change @rpath/QtQmlWorkerScript.framework/Versions/$qx/QtQmlWorkerScript \
-        #                          @loader_path/../../QtQmlWorkerScript.dylib \
-        #                          QtQml/WorkerScript/libworkerscriptplugin.dylib
-
-        #otool -L QtQml/WorkerScript/libworkerscriptplugin.dylib
-    #fi
 
     #----------------------------------------------------------------------------------------------
     # VLC
