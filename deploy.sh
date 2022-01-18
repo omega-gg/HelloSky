@@ -467,23 +467,27 @@ elif [ $1 = "macOS" ]; then
 
         install_name_tool -change @rpath/QtDBus.framework/Versions/$qx/QtDBus \
                                   @loader_path/../QtDBus.dylib platforms/libqcocoa.dylib
+
+        install_name_tool -change @rpath/QtPrintSupport.framework/Versions/$qx/QtPrintSupport \
+                                  @loader_path/../QtPrintSupport.dylib platforms/libqcocoa.dylib
+
+        otool -L platforms/libqcocoa.dylib
     fi
-
-    install_name_tool -change @rpath/QtPrintSupport.framework/Versions/$qx/QtPrintSupport \
-                              @loader_path/../QtPrintSupport.dylib platforms/libqcocoa.dylib
-
-    otool -L platforms/libqcocoa.dylib
 
     #----------------------------------------------------------------------------------------------
     # QtQuick
 
-    if [ -f QtQmlModels.dylib ]; then
+    if [ $qt = "qt5" ]; then
 
-        install_name_tool -change @rpath/QtQmlWorkerScript.framework/Versions/$qx/QtQmlWorkerScript \
-                                  @loader_path/../QtQmlWorkerScript.dylib \
-                                  $QtQuick/libqtquick2plugin.dylib
+        if [ -f QtQmlModels.dylib ]; then
 
-        otool -L $QtQuick/libqtquick2plugin.dylib
+            install_name_tool -change \
+                              @rpath/QtQmlWorkerScript.framework/Versions/$qx/QtQmlWorkerScript \
+                              @loader_path/../QtQmlWorkerScript.dylib \
+                              $QtQuick/libqtquick2plugin.dylib
+
+            otool -L $QtQuick/libqtquick2plugin.dylib
+        fi
     fi
 
     #----------------------------------------------------------------------------------------------
