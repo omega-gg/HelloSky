@@ -456,9 +456,9 @@ elif [ $1 = "macOS" ]; then
 
         install_name_tool -change @rpath/QtDBus.framework/Versions/$qx/QtDBus \
                                   @loader_path/QtDBus.dylib QtGui.dylib
-
-        otool -L QtGui.dylib
     fi
+
+    otool -L QtGui.dylib
 
     #----------------------------------------------------------------------------------------------
     # platforms
@@ -470,9 +470,9 @@ elif [ $1 = "macOS" ]; then
 
         install_name_tool -change @rpath/QtPrintSupport.framework/Versions/$qx/QtPrintSupport \
                                   @loader_path/../QtPrintSupport.dylib platforms/libqcocoa.dylib
-
-        otool -L platforms/libqcocoa.dylib
     fi
+
+    otool -L platforms/libqcocoa.dylib
 
     #----------------------------------------------------------------------------------------------
     # QtQuick
@@ -485,10 +485,10 @@ elif [ $1 = "macOS" ]; then
                               @rpath/QtQmlWorkerScript.framework/Versions/$qx/QtQmlWorkerScript \
                               @loader_path/../QtQmlWorkerScript.dylib \
                               $QtQuick/libqtquick2plugin.dylib
-
-            otool -L $QtQuick/libqtquick2plugin.dylib
         fi
     fi
+
+    otool -L $QtQuick/libqtquick2plugin.dylib
 
     #----------------------------------------------------------------------------------------------
     # VLC
