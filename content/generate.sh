@@ -76,6 +76,11 @@ if [ "$2" = "clean" ]; then
     mkdir  qrc
     touch  qrc/.gitignore
 
+    if [ $1 = "android" ]; then
+
+        rm $android/*.xml
+    fi
+
     exit 0
 fi
 
