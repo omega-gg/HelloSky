@@ -121,9 +121,9 @@ if [ $1 = "android" -o "$2" = "all" -o "$2" = "deploy" ]; then
 
         if [ $qt = "qt5" ]; then
 
-            cp -r $dist/android/qt5/AndroidManifest.xml $android
+            cp -r $dist/qt5/android/AndroidManifest.xml $android
         else
-            cp -r $dist/android/qt6/AndroidManifest.xml $android
+            cp -r $dist/qt6/android/AndroidManifest.xml $android
         fi
 
         echo "COPYING videos"
