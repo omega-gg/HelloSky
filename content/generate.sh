@@ -17,7 +17,9 @@ content="../content"
 
 bin="../bin"
 
-android="../dist/android"
+dist="../dist"
+
+android="$dist/android"
 
 #--------------------------------------------------------------------------------------------------
 # environment
@@ -119,9 +121,9 @@ if [ $1 = "android" -o "$2" = "all" -o "$2" = "deploy" ]; then
 
         if [ $qt = "qt5" ]; then
 
-            cp -r $android/qt5/AndroidManifest.xml $android
+            cp -r $dist/android/qt5/AndroidManifest.xml $android
         else
-            cp -r $android/qt6/AndroidManifest.xml $android
+            cp -r $dist/android/qt6/AndroidManifest.xml $android
         fi
 
         echo "COPYING videos"

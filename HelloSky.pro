@@ -108,7 +108,7 @@ macx:LIBS += -L$$SK/lib -lvlc
 
 unix:!macx:!android:LIBS += -lvlc
 
-android:LIBS += -L$$_PRO_FILE_PWD_/dist/android/libs/$$ANDROID_TARGET_ARCH -lvlc
+android:LIBS += -L$$_PRO_FILE_PWD_/lib/$$ANDROID_TARGET_ARCH -lvlc
 
 unix:!macx:!android:contains(QT_MAJOR_VERSION, 4) {
     LIBS += -lX11
@@ -147,12 +147,14 @@ OTHER_FILES += 3rdparty.sh \
                content/Main.qml \
                dist/HelloSky.rc \
                dist/script/start.sh \
-               dist/android/qt5/AndroidManifest.xml \
-               dist/android/qt6/AndroidManifest.xml \
                dist/android/res/values/theme.xml \
                dist/android/res/drawable/splash.xml \
+               dist/qt5/android/AndroidManifest.xml \
+               dist/qt6/android/AndroidManifest.xml \
 
 android {
+    for (abi, ANDROID_ABIS): ANDROID_EXTRA_LIBS += $$PWD/lib/$${abi}/libvlc.so
+
     ANDROID_PACKAGE_SOURCE_DIR = $$_PRO_FILE_PWD_/dist/android
 
     DISTFILES += $$ANDROID_PACKAGE_SOURCE_DIR/AndroidManifest.xml

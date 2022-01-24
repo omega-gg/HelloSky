@@ -103,12 +103,8 @@ touch  build/.gitignore
 
 if [ $1 = "android" ]; then
 
-    dist="dist/android/libs"
-
-    rm -f $dist/armeabi-v7a/*.so
-    rm -f $dist/arm64-v8a/*.so
-    rm -f $dist/x86/*.so
-    rm -f $dist/x86_64/*.so
+    rm -rf lib/*
+    touch  lib/.gitignore
 fi
 
 if [ "$2" = "clean" ]; then
@@ -223,7 +219,7 @@ elif [ $1 = "android" ]; then
 
     echo "COPYING VLC"
 
-    copyAndroid "$VLC" $dist
+    copyAndroid "$VLC" lib
 fi
 
 echo "--------------------"
