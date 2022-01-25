@@ -149,13 +149,11 @@ OTHER_FILES += 3rdparty.sh \
                dist/script/start.sh \
                dist/android/res/values/theme.xml \
                dist/android/res/drawable/splash.xml \
-               dist/qt5/android/AndroidManifest.xml \
-               dist/qt6/android/AndroidManifest.xml \
+               dist/android/qt5/android/AndroidManifest.xml \
+               dist/android/qt6/android/AndroidManifest.xml \
 
 android {
-    for (abi, ANDROID_ABIS) {
-        ANDROID_PACKAGE_SOURCE_DIR = $$_PRO_FILE_PWD_/dist/android/data/$$abi
-    }
+    ANDROID_PACKAGE_SOURCE_DIR = $$_PRO_FILE_PWD_/dist/android/data/$$ABI
 
     DISTFILES += $$ANDROID_PACKAGE_SOURCE_DIR/AndroidManifest.xml
 

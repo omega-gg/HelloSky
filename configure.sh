@@ -163,25 +163,25 @@ fi
 # SDK
 #--------------------------------------------------------------------------------------------------
 
-#if [ $1 = "android" ]; then
+if [ $1 = "android" ]; then
 
-#    echo "CONFIGURING SDK"
+    echo "CONFIGURING SDK"
 
-#    cd "$external/SDK/$SDK_version/tools/bin"
+    cd "$external/SDK/$SDK_version/tools/bin"
 
-#    export JAVA_HOME="$external/JDK/$JDK_version"
+    export JAVA_HOME="$external/JDK/$JDK_version"
 
-#    path="$PWD/../.."
+    path="$PWD/../.."
 
-#    yes | ./sdkmanager --sdk_root="$path" --licenses
+    yes | ./sdkmanager --sdk_root="$path" --licenses
 
-#    ./sdkmanager --sdk_root="$path" "build-tools;$TOOLS_version" \
-#                                    "platforms;android-$SDK_version" \
+    ./sdkmanager --sdk_root="$path" "build-tools;$TOOLS_version" \
+                                    "platforms;android-$SDK_version" \
 
-#    ./sdkmanager --sdk_root="$path" --update
+    ./sdkmanager --sdk_root="$path" --update
 
-#    cd -
-#fi
+    cd -
+fi
 
 #--------------------------------------------------------------------------------------------------
 # VLC
