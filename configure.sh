@@ -42,10 +42,15 @@ qt="qt5"
 
 copyAndroid()
 {
-    cp -r "$1"/armeabi-v7a "$2"
-    cp -r "$1"/arm64-v8a   "$2"
-    cp -r "$1"/x86         "$2"
-    cp -r "$1"/x86_64      "$2"
+    cp -r "$1"/armeabi-v7a $data/armeabi-v7a/libs
+    cp -r "$1"/arm64-v8a   $data/arm64-v8a/libs
+    cp -r "$1"/x86         $data/x86/libs
+    cp -r "$1"/x86_64      $data/x86_64/libs
+}
+
+cleanAndroid()
+{
+    rm -f $data/$1/libs/$1/*.so
 }
 
 #--------------------------------------------------------------------------------------------------
@@ -103,8 +108,12 @@ touch  build/.gitignore
 
 if [ $1 = "android" ]; then
 
-    rm -rf lib/*
-    touch  lib/.gitignore
+    data="dist/android/data"
+
+    cleanAndroid armeabi-v7a
+    cleanAndroid arm64-v8a
+    cleanAndroid x86
+    cleanAndroid x86_64
 fi
 
 if [ "$2" = "clean" ]; then
@@ -154,25 +163,25 @@ fi
 # SDK
 #--------------------------------------------------------------------------------------------------
 
-if [ $1 = "android" ]; then
+#if [ $1 = "android" ]; then
 
-    echo "CONFIGURING SDK"
+#    echo "CONFIGURING SDK"
 
-    cd "$external/SDK/$SDK_version/tools/bin"
+#    cd "$external/SDK/$SDK_version/tools/bin"
 
-    export JAVA_HOME="$external/JDK/$JDK_version"
+#    export JAVA_HOME="$external/JDK/$JDK_version"
 
-    path="$PWD/../.."
+#    path="$PWD/../.."
 
-    yes | ./sdkmanager --sdk_root="$path" --licenses
+#    yes | ./sdkmanager --sdk_root="$path" --licenses
 
-    ./sdkmanager --sdk_root="$path" "build-tools;$TOOLS_version" \
-                                    "platforms;android-$SDK_version" \
+#    ./sdkmanager --sdk_root="$path" "build-tools;$TOOLS_version" \
+#                                    "platforms;android-$SDK_version" \
 
-    ./sdkmanager --sdk_root="$path" --update
+#    ./sdkmanager --sdk_root="$path" --update
 
-    cd -
-fi
+#    cd -
+#fi
 
 #--------------------------------------------------------------------------------------------------
 # VLC
@@ -219,7 +228,7 @@ elif [ $1 = "android" ]; then
 
     echo "COPYING VLC"
 
-    copyAndroid "$VLC" lib
+    copyAndroid "$VLC"
 fi
 
 echo "--------------------"

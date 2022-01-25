@@ -108,7 +108,7 @@ macx:LIBS += -L$$SK/lib -lvlc
 
 unix:!macx:!android:LIBS += -lvlc
 
-android:LIBS += -L$$_PRO_FILE_PWD_/lib/$$ANDROID_TARGET_ARCH -lvlc
+android:LIBS += -L$$ANDROID_LIB -lvlc \
 
 unix:!macx:!android:contains(QT_MAJOR_VERSION, 4) {
     LIBS += -lX11
@@ -153,9 +153,9 @@ OTHER_FILES += 3rdparty.sh \
                dist/qt6/android/AndroidManifest.xml \
 
 android {
-    for (abi, ANDROID_ABIS): ANDROID_EXTRA_LIBS += $$PWD/lib/$${abi}/libvlc.so
-
-    ANDROID_PACKAGE_SOURCE_DIR = $$_PRO_FILE_PWD_/dist/android
+    for (abi, ANDROID_ABIS) {
+        ANDROID_PACKAGE_SOURCE_DIR = $$_PRO_FILE_PWD_/dist/android/data/$$abi
+    }
 
     DISTFILES += $$ANDROID_PACKAGE_SOURCE_DIR/AndroidManifest.xml
 

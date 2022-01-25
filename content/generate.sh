@@ -17,14 +17,37 @@ content="../content"
 
 bin="../bin"
 
-dist="../dist"
+android="../dist/android"
 
-android="$dist/android"
+data="$android/data"
+
+videos="$android/assets/videos"
 
 #--------------------------------------------------------------------------------------------------
 # environment
 
 qt="qt5"
+
+#--------------------------------------------------------------------------------------------------
+# Functions
+#--------------------------------------------------------------------------------------------------
+
+copyAndroid()
+{
+    cp -r $1 $data/armeabi-v7a
+    cp -r $1 $data/arm64-v8a
+    cp -r $1 $data/x86
+    cp -r $1 $data/x86_64
+}
+
+cleanAndroid()
+{
+    mv $data/$1/libs $data
+
+    rm -rf $data/$1/*
+
+    mv $data/libs $data/$1
+}
 
 #--------------------------------------------------------------------------------------------------
 # Syntax
@@ -80,7 +103,13 @@ if [ "$2" = "clean" ]; then
 
     if [ $1 = "android" ]; then
 
-        rm $android/*.xml
+        rm -rf $videos/*
+        touch  $videos/.gitignore
+
+        cleanAndroid armeabi-v7a
+        cleanAndroid arm64-v8a
+        cleanAndroid x86
+        cleanAndroid x86_64
     fi
 
     exit 0
@@ -119,16 +148,20 @@ if [ $1 = "android" -o "$2" = "all" -o "$2" = "deploy" ]; then
 
         echo "COPYING android"
 
+        copyAndroid $android/res
+
         if [ $qt = "qt5" ]; then
 
-            cp -r $dist/qt5/android/* $android
+            copyAndroid $android/qt5/*
         else
-            cp -r $dist/qt6/android/* $android
+            copyAndroid $android/qt6/*
         fi
 
         echo "COPYING videos"
 
-        cp -r $content/videos/* ../dist/android/assets/videos
+        cp -r $content/videos/* $videos
+
+        copyAndroid $android/assets
 
     elif [ "$2" = "all" ]; then
 
