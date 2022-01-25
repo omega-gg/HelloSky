@@ -149,8 +149,8 @@ OTHER_FILES += 3rdparty.sh \
                dist/script/start.sh \
                dist/android/res/values/theme.xml \
                dist/android/res/drawable/splash.xml \
-               dist/android/qt5/android/AndroidManifest.xml \
-               dist/android/qt6/android/AndroidManifest.xml \
+               dist/android/qt5/AndroidManifest.xml \
+               dist/android/qt6/AndroidManifest.xml \
 
 android {
     ANDROID_PACKAGE_SOURCE_DIR = $$ANDROID_PACKAGE

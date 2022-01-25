@@ -103,13 +103,13 @@ if [ "$2" = "clean" ]; then
 
     if [ $1 = "android" ]; then
 
-        rm -rf $videos/*
-        touch  $videos/.gitignore
-
         cleanAndroid armeabi-v7a
         cleanAndroid arm64-v8a
         cleanAndroid x86
         cleanAndroid x86_64
+
+        rm -rf $videos/*
+        touch  $videos/.gitignore
     fi
 
     exit 0
