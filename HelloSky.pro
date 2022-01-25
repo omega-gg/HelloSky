@@ -153,11 +153,11 @@ OTHER_FILES += 3rdparty.sh \
                dist/android/qt6/android/AndroidManifest.xml \
 
 android {
-    ANDROID_PACKAGE_SOURCE_DIR = $$_PRO_FILE_PWD_/dist/android/data/$$ABI
+    ANDROID_PACKAGE_SOURCE_DIR = $$ANDROID_PACKAGE
 
-    DISTFILES += $$ANDROID_PACKAGE_SOURCE_DIR/AndroidManifest.xml
+    DISTFILES += $$ANDROID_PACKAGE/AndroidManifest.xml
 
-    assets.path = $$ANDROID_PACKAGE_SOURCE_DIR/assets/videos
+    assets.path = $$ANDROID_PACKAGE/assets/videos
 
     assets.files = videos/sky.mp4
 
