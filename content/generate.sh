@@ -152,10 +152,12 @@ if [ $1 = "android" -o "$2" = "all" -o "$2" = "deploy" ]; then
 
         if [ $qt = "qt5" ]; then
 
-            copyAndroid $android/qt5/*
+            qtX="$android/qt5"
         else
-            copyAndroid $android/qt6/*
+            qtX="$android/qt6"
         fi
+
+        copyAndroid $qtX/*.xml
 
         echo "COPYING videos"
 

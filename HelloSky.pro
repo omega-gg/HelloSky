@@ -156,10 +156,4 @@ android {
     ANDROID_PACKAGE_SOURCE_DIR = $$ANDROID_PACKAGE
 
     DISTFILES += $$ANDROID_PACKAGE/AndroidManifest.xml
-
-    assets.path = $$ANDROID_PACKAGE/assets/videos
-
-    assets.files = videos/sky.mp4
-
-    INSTALLS += assets
 }
