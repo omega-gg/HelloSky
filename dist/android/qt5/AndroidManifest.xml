@@ -3,7 +3,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="gg.omega.hellosky"
           android:versionName="1.8.0-0"
-          android:versionCode="17"
+          android:versionCode="18"
           android:installLocation="auto">
 
     <!-- The following comment will be replaced upon deployment with default permissions based on the dependencies of the application.
