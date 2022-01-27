@@ -49,6 +49,30 @@ cleanAndroid()
     mv $data/libs $data/$1
 }
 
+applyManifest()
+{
+    expression='s/android:versionCode=\"/android:versionCode=\"'"$2"'/'
+
+    manifest="$data/$1/AndroidManifest.xml"
+
+    if [ $host = "macOS" ]; then
+
+        sed -i "" $expression $manifest
+    else
+        sed -i $expression $manifest
+    fi
+}
+
+#--------------------------------------------------------------------------------------------------
+
+getOs()
+{
+    case `uname` in
+    Darwin*) echo "macOS";;
+    *)       echo "other";;
+    esac
+}
+
 #--------------------------------------------------------------------------------------------------
 # Syntax
 #--------------------------------------------------------------------------------------------------
@@ -67,6 +91,8 @@ fi
 #--------------------------------------------------------------------------------------------------
 # Configuration
 #--------------------------------------------------------------------------------------------------
+
+host=$(getOs)
 
 if [ $1 = "win32" -o $1 = "win64" ]; then
 
@@ -158,6 +184,11 @@ if [ $1 = "android" -o "$2" = "all" -o "$2" = "deploy" ]; then
         fi
 
         copyAndroid $qtX/*.xml
+
+        applyManifest armeabi-v7a 032
+        applyManifest arm64-v8a   064
+        applyManifest x86         132
+        applyManifest x86_64      164
 
         echo "COPYING videos"
 

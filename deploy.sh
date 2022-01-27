@@ -513,10 +513,10 @@ elif [ $1 = "linux" ]; then
 
 elif [ $1 = "android" ]; then
 
-    copyAndroid "armeabi-v7a"
-    copyAndroid "arm64-v8a"
-    copyAndroid "x86"
-    copyAndroid "x86_64"
+    copyAndroid armeabi-v7a
+    copyAndroid arm64-v8a
+    copyAndroid x86
+    copyAndroid x86_64
 fi
 
 if [ $1 != "android" ]; then
