@@ -63,7 +63,7 @@ applyManifest()
 
     apply $expression $manifest
 
-    expression='s/android:versionCode=\"/android:versionCode=\"'"$2$code"'/'
+    expression='s/android:versionCode=\"/android:versionCode=\"'"$2$version_code"'/'
 
     apply $expression $manifest
 }
