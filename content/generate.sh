@@ -5,6 +5,12 @@ set -e
 # Settings
 #--------------------------------------------------------------------------------------------------
 
+version="1.8.0-0"
+
+version_code="18"
+
+#--------------------------------------------------------------------------------------------------
+
 Sky="../../Sky"
 
 SkyBase="$Sky/src/SkyBase"
@@ -51,15 +57,24 @@ cleanAndroid()
 
 applyManifest()
 {
-    expression='s/android:versionCode=\"/android:versionCode=\"'"$2"'/'
-
     manifest="$data/$1/AndroidManifest.xml"
 
+    expression='s/android:versionName=\"/android:versionName=\"'"$version"'/'
+
+    apply $expression $manifest
+
+    expression='s/android:versionCode=\"/android:versionCode=\"'"$2$code"'/'
+
+    apply $expression $manifest
+}
+
+apply()
+{
     if [ $host = "macOS" ]; then
 
-        sed -i "" $expression $manifest
+        sed -i "" $1 $2
     else
-        sed -i $expression $manifest
+        sed -i $1 $2
     fi
 }
 
