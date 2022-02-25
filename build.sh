@@ -243,7 +243,7 @@ fi
 
 if [ $1 = "android" -a $qt = "qt6" ]; then
 
-    QtBase="$external/../linux/Qt/$Qt6_version/gcc_64"
+    QtBase="$external/../linux/Qt/$Qt6_version"
 else
     QtBase="$Qt"
 fi
