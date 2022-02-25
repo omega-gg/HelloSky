@@ -243,10 +243,12 @@ fi
 
 if [ $1 = "android" -a $qt = "qt6" ]; then
 
-    qmake="$Qt/gcc_64/bin/qmake"
+    QtBase="$external/../linux/Qt/$Qt6_version/gcc_64"
 else
-    qmake="$Qt/bin/qmake"
+    QtBase="$Qt"
 fi
+
+qmake="$QtBase/bin/qmake"
 
 #--------------------------------------------------------------------------------------------------
 # Clean
@@ -379,12 +381,7 @@ elif [ $1 = "android" ]; then
     #----------------------------------------------------------------------------------------------
     # FIXME Qt android: We have to call androiddeployqt to generate a release apk.
 
-    if [ $qt = "qt5" ]; then
-
-        androiddeployqt="$Qt/bin/androiddeployqt"
-    else
-        androiddeployqt="$Qt/gcc_64/bin/androiddeployqt"
-    fi
+    androiddeployqt="$QtBase/bin/androiddeployqt"
 
     deployAndroid armeabi-v7a
     deployAndroid arm64-v8a
