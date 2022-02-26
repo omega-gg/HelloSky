@@ -151,7 +151,6 @@ jobs:
       docker exec -t ubuntu bash -c "cd /HelloSky;
                                      apt-get update;
                                      apt-get -y install sudo curl zip unzip git;
-                                     sh 3rdparty.sh linux;
                                      sh build.sh android all;
                                      cd deploy;
                                      zip -rq ../HelloSky.zip *"
@@ -168,7 +167,6 @@ jobs:
                                      apt-get update;
                                      apt-get -y install sudo curl zip unzip git;
                                      sh environment.sh qt6;
-                                     sh 3rdparty.sh linux all;
                                      sh build.sh android all;
                                      cd deploy;
                                      zip -rq ../HelloSky.zip *"
