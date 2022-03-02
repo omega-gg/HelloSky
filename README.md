@@ -14,6 +14,7 @@ HelloSky is built in C++ with [Sky kit](http://omega.gg/Sky/sources).<br>
 
 - Windows XP and later.
 - macOS 64 bit.
+- iOS 64 bit.
 - Linux 32 bit and 64 bit.
 - Android 32 bit and 64 bit.
 
@@ -32,25 +33,25 @@ Recommended:
 
 You can install third party libraries with:
 
-    sh 3rdparty.sh <win32 | win64 | macOS | linux | android> [all]
+    sh 3rdparty.sh <win32 | win64 | macOS | iOS | linux | android> [all]
 
 ## Configure
 
 You can configure HelloSky with:
 
-    sh configure.sh <win32 | win64 | macOS | linux | android> [sky | clean]
+    sh configure.sh <win32 | win64 | macOS | iOS | linux | android> [sky | clean]
 
 ## Build
 
 You can build HelloSky with:
 
-    sh build.sh <win32 | win64 | macOS | linux | android> [all | deploy | clean]
+    sh build.sh <win32 | win64 | macOS | iOS | linux | android> [all | deploy | clean]
 
 ## Deploy
 
 You can deploy HelloSky with:
 
-    sh deploy.sh <win32 | win64 | macOS | linux | android> [clean]
+    sh deploy.sh <win32 | win64 | macOS | iOS | linux | android> [clean]
 
 ## License
 

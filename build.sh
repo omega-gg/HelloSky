@@ -141,11 +141,12 @@ getPath()
 
 if [ $# != 1 -a $# != 2 ] \
    || \
-   [ $1 != "win32" -a $1 != "win64" -a $1 != "macOS" -a $1 != "linux" -a $1 != "android" ] \
+   [ $1 != "win32" -a $1 != "win64" -a $1 != "macOS" -a $1 != "iOS" -a $1 != "linux" -a \
+     $1 != "android" ] \
    || \
    [ $# = 2 -a "$2" != "all" -a "$2" != "deploy" -a "$2" != "clean" ]; then
 
-    echo "Usage: build <win32 | win64 | macOS | linux | android> [all | deploy | clean]"
+    echo "Usage: build <win32 | win64 | macOS | iOS | linux | android> [all | deploy | clean]"
 
     exit 1
 fi
