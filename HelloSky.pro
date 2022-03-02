@@ -19,13 +19,13 @@ contains(QT_MAJOR_VERSION, 4) {
 }
 
 greaterThan(QT_MAJOR_VERSION, 4) {
-    unix:!macx:!android:QT += dbus
+    unix:!macx:!ios:!android:QT += dbus
 }
 
 contains(QT_MAJOR_VERSION, 5) {
     win32:QT += winextras
 
-    unix:!macx:!android:QT += x11extras
+    unix:!macx:!ios:!android:QT += x11extras
 
     android:QT += androidextras
 }
@@ -52,13 +52,16 @@ contains(QT_MAJOR_VERSION, 4) {
     win32:DEFINES += SK_WIN_NATIVE
 }
 
-deploy|android {
+deploy|ios|android {
     DEFINES += SK_DEPLOY
 
     RESOURCES = dist/qrc/HelloSky.qrc
 }
 
 !win32-msvc*:!android:QMAKE_CXXFLAGS += -msse
+
+# NOTE: This is required to load frameworks in the lib folder.
+ios:QMAKE_LFLAGS += -F$$SK/lib
 
 unix:QMAKE_LFLAGS += "-Wl,-rpath,'\$$ORIGIN'"
 
@@ -106,7 +109,9 @@ win32-msvc*:LIBS += shell32.lib User32.lib
 
 macx:LIBS += -L$$SK/lib -lvlc
 
-unix:!macx:!android:LIBS += -lvlc
+unix:!macx:!ios:!android:LIBS += -lvlc
+
+ios:LIBS += -framework MobileVLCKit
 
 android:LIBS += -L$$ANDROID_LIB -lvlc \
 
@@ -152,7 +157,14 @@ OTHER_FILES += 3rdparty.sh \
                dist/android/qt5/AndroidManifest.xml \
                dist/android/qt6/AndroidManifest.xml \
 
-android {
+ios {
+    framework.files = $$SK/lib/MobileVLCKit.framework
+    framework.path  = Frameworks
+
+    videos.files = $$_PRO_FILE_PWD_/content/videos
+
+    QMAKE_BUNDLE_DATA += framework videos
+} android {
     ANDROID_PACKAGE_SOURCE_DIR = $$ANDROID_PACKAGE
 
     DISTFILES += $$ANDROID_PACKAGE/AndroidManifest.xml
