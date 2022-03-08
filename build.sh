@@ -236,9 +236,18 @@ else
     Qt="$external/Qt/$Qt6_version"
 fi
 
-if [ $1 = "android" -a $qt = "qt6" ]; then
+if [ $qt = "qt6" ]; then
 
-    QtBin="$Qt/gcc_64/bin"
+    if [ $1 = "iOS" ]; then
+
+        QtBin="$Qt/macos/bin"
+
+    elif [ $1 = "android" ]; then
+
+        QtBin="$Qt/gcc_64/bin"
+    else
+        QtBin="$Qt/bin"
+    fi
 else
     QtBin="$Qt/bin"
 fi
@@ -311,6 +320,10 @@ elif [ $1 = "macOS" ]; then
 
     export PATH=$Qt/bin:$PATH
 
+elif [ $1 = "iOS" ]; then
+
+    spec=macx-ios-clang
+
 elif [ $1 = "linux" ]; then
 
     if [ -d "/usr/lib/x86_64-linux-gnu" ]; then
@@ -353,7 +366,18 @@ if [ "$2" = "deploy" ]; then
     config="$config deploy"
 fi
 
-if [ $1 = "android" ]; then
+if [ $1 = "iOS" ]; then
+
+    if [ $qt = "qt5" ]; then
+
+        qtconf=""
+    else
+        qtconf="-qtconf $Qt/ios/bin/target_qt.conf"
+    fi
+
+    $qmake -r -spec $spec "$config" $qtconf ..
+
+elif [ $1 = "android" ]; then
 
     makeAndroid armeabi-v7a "$Qt"/android_armv7/bin/target_qt.conf
     makeAndroid arm64-v8a   "$Qt"/android_arm64_v8a/bin/target_qt.conf
