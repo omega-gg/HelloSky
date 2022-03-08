@@ -39,7 +39,7 @@ contains(QT_MAJOR_VERSION, 4) {
 
 DEFINES += SK_CORE_LIBRARY SK_GUI_LIBRARY SK_MEDIA_LIBRARY
 
-!win32-msvc*:!android:DEFINES += CAN_COMPILE_SSE2
+!win32-msvc*:!ios:!android:DEFINES += CAN_COMPILE_SSE2
 
 #DEFINES += SK_SOFTWARE
 
@@ -58,7 +58,7 @@ deploy|ios|android {
     RESOURCES = dist/qrc/HelloSky.qrc
 }
 
-!win32-msvc*:!android:QMAKE_CXXFLAGS += -msse
+!win32-msvc*:!ios:!android:QMAKE_CXXFLAGS += -msse
 
 # NOTE: This is required to load frameworks in the lib folder.
 ios:QMAKE_LFLAGS += -F$$SK/lib
@@ -158,6 +158,12 @@ OTHER_FILES += 3rdparty.sh \
                dist/android/qt6/AndroidManifest.xml \
 
 ios {
+    # NOTE: This is required for MobileVLCKit.
+    Q_ENABLE_BITCODE.name = ENABLE_BITCODE
+    Q_ENABLE_BITCODE.value = NO
+
+    QMAKE_MAC_XCODE_SETTINGS += Q_ENABLE_BITCODE
+
     framework.files = $$SK/lib/MobileVLCKit.framework
     framework.path  = Frameworks
 
