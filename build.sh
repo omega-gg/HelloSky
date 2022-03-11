@@ -372,7 +372,7 @@ if [ $1 = "iOS" ]; then
 
         # NOTE iOS: Replacing WorkspaceSettings with a proper one. Otherwise the legacy build
         #           system makes the compilation crash.
-        cp $external/Sky/dist/iOS/WorkspaceSettings.xcsettings \
+        cp ../../Sky/dist/iOS/WorkspaceSettings.xcsettings \
            $target.xcodeproj/project.xcworkspace/xcshareddata
 
         qtconf=""
