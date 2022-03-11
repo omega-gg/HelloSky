@@ -370,6 +370,11 @@ if [ $1 = "iOS" ]; then
 
     if [ $qt = "qt5" ]; then
 
+        # NOTE iOS: Replacing WorkspaceSettings with a proper one. Otherwise the legacy build
+        #           system makes the compilation crash.
+        cp $external/Sky/dist/iOS/WorkspaceSettings.xcsettings \
+           $target.xcodeproj/project.xcworkspace/xcshareddata
+
         qtconf=""
     else
         qtconf="-qtconf $Qt/ios/bin/target_qt.conf"
