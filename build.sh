@@ -370,17 +370,20 @@ if [ $1 = "iOS" ]; then
 
     if [ $qt = "qt5" ]; then
 
-        # NOTE iOS: Replacing WorkspaceSettings with a proper one. Otherwise the legacy build
-        #           system stops the compilation.
-        cp ../../Sky/dist/iOS/WorkspaceSettings.xcsettings \
-           $target.xcodeproj/project.xcworkspace/xcshareddata
-
         qtconf=""
     else
         qtconf="-qtconf $Qt/ios/bin/target_qt.conf"
     fi
 
     $qmake -r -spec $spec "$config" $qtconf ..
+
+    if [ $qt = "qt5" ]; then
+
+        # NOTE iOS: Replacing WorkspaceSettings with a proper one. Otherwise the legacy build
+        #           system stops the compilation.
+        cp ../../Sky/dist/iOS/WorkspaceSettings.xcsettings \
+           $target.xcodeproj/project.xcworkspace/xcshareddata
+    fi
 
 elif [ $1 = "android" ]; then
 
