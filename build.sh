@@ -324,6 +324,8 @@ elif [ $1 = "iOS" ]; then
 
     spec=macx-ios-clang
 
+    config="$config iphoneos"
+
 elif [ $1 = "linux" ]; then
 
     if [ -d "/usr/lib/x86_64-linux-gnu" ]; then
