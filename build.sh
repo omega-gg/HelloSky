@@ -324,7 +324,7 @@ elif [ $1 = "iOS" ]; then
 
     spec=macx-ios-clang
 
-    config="$config iphoneos"
+    config="$config iphoneos device"
 
 elif [ $1 = "linux" ]; then
 
