@@ -377,10 +377,7 @@ if [ $1 = "iOS" ]; then
         qtconf="-qtconf $Qt/ios/bin/target_qt.conf"
     fi
 
-    # NOTE: DEVELOPMENT_TEAM must be exported before running qmake.
-    $qmake -r -spec $spec "$config" $qtconf \
-           qteam.name=DEVELOPMENT_TEAM qteam.value=$DEVELOPMENT_TEAM \
-           QMAKE_MAC_XCODE_SETTINGS+=qteam ..
+    $qmake -r -spec $spec "$config" $qtconf ..
 
     if [ $qt = "qt5" ]; then
 

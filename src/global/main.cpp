@@ -20,6 +20,9 @@
 */
 //=================================================================================================
 
+// Qt includes
+#include <QDir>
+
 // Sk includes
 #include <WControllerFile>
 #include <WControllerDeclarative>
@@ -54,6 +57,14 @@ int main(int argc, char * argv[])
 
 #ifdef Q_OS_LINUX
     sk->setIcon(":/icons/icon.svg");
+#endif
+
+    QString path;
+
+#ifdef SK_DEPLOY
+    path = QDir::fromNativeSeparators(WControllerFile::pathWritable());
+#else
+    path = QDir::currentPath();
 #endif
 
     //---------------------------------------------------------------------------------------------
@@ -141,10 +152,6 @@ int main(int argc, char * argv[])
     // Assets
     //---------------------------------------------------------------------------------------------
     // FIXME android: We copy the assets to a writable location to provide an URI to libVLC.
-
-    QString path = WControllerFile::pathWritable();
-
-    wControllerFile->setPathStorage(path);
 
     QString fileName = path + "/sky.mp4";
 
