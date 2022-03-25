@@ -61,6 +61,9 @@ jobs:
     vmImage: "macOS-10.15"
   steps:
   - bash: |
+      echo $DEVELOPMENT_TEAM
+      export DEVELOPMENT_TEAM=$(DEVELOPMENT_TEAM)
+      echo $DEVELOPMENT_TEAM
       sh build.sh iOS all
       cd deploy
       zip -rq ../HelloSky.zip *

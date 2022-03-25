@@ -74,9 +74,9 @@ makeAndroid()
     fi
 
     $qmake -r -spec $spec $qtconf "$config" \
-        "ANDROID_ABIS=$1" \
-        "ANDROID_MIN_SDK_VERSION=$SDK_version_minimum" \
-        "ANDROID_TARGET_SDK_VERSION=$SDK_version" ../..
+           "ANDROID_ABIS=$1" \
+           "ANDROID_MIN_SDK_VERSION=$SDK_version_minimum" \
+           "ANDROID_TARGET_SDK_VERSION=$SDK_version" ../..
 
     make $make_arguments
 
@@ -377,7 +377,10 @@ if [ $1 = "iOS" ]; then
         qtconf="-qtconf $Qt/ios/bin/target_qt.conf"
     fi
 
-    $qmake -r -spec $spec "$config" $qtconf ..
+    # NOTE: DEVELOPMENT_TEAM must be exported before running qmake.
+    $qmake -r -spec $spec "$config" $qtconf \
+           qteam.name=DEVELOPMENT_TEAM qteam.value=$DEVELOPMENT_TEAM \
+           QMAKE_MAC_XCODE_SETTINGS+=qteam ..
 
     if [ $qt = "qt5" ]; then
 
