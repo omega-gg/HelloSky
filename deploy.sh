@@ -55,7 +55,12 @@ if [ $1 = "win32" -o $1 = "win64" ]; then
 
     compiler="$compiler_win"
 else
-    os="default"
+    if [ $1 = "iOS" -o $1 = "android" ]; then
+
+        os="mobile"
+    else
+        os="default"
+    fi
 
     compiler="default"
 fi
@@ -503,6 +508,10 @@ elif [ $1 = "macOS" ]; then
 
     cd -
 
+elif [ $1 = "iOS" ]; then
+
+    cp bin/$target.app $deploy
+
 elif [ $1 = "linux" ]; then
 
     cp bin/$target $deploy
@@ -520,7 +529,7 @@ elif [ $1 = "android" ]; then
     copyAndroid x86_64
 fi
 
-if [ $1 != "android" ]; then
+if [ $os = "mobile" ]; then
 
     mkdir -p $path
 
