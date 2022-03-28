@@ -68,6 +68,19 @@ jobs:
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-iOS-qt5
 
+- job: iOS_qt6
+  pool:
+    # NOTE: macOS Big sur is required for iOS.
+    vmImage: "macOS-11"
+  steps:
+  - bash: |
+      sh environment.sh qt6
+      sh build.sh iOS all
+      cd deploy
+      zip -rq ../HelloSky.zip *
+  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
+    artifact: HelloSky-iOS-qt6
+
 #--------------------------------------------------------------------------------------------------
 # Linux
 #--------------------------------------------------------------------------------------------------
