@@ -58,7 +58,8 @@ jobs:
 
 - job: iOS_qt5
   pool:
-    vmImage: "macOS-10.15"
+    # NOTE: macOS Big sur is required for iOS.
+    vmImage: "macOS-11"
   steps:
   - bash: |
       sh build.sh iOS all
