@@ -510,7 +510,7 @@ elif [ $1 = "macOS" ]; then
 
 elif [ $1 = "iOS" ]; then
 
-    cp bin/$target.app $deploy
+    cp -r bin/$target.app $deploy
 
 elif [ $1 = "linux" ]; then
 
