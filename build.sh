@@ -53,6 +53,8 @@ compiler_win="mingw"
 
 qt="qt5"
 
+mobile="simulator"
+
 #--------------------------------------------------------------------------------------------------
 # Functions
 #--------------------------------------------------------------------------------------------------
@@ -324,7 +326,10 @@ elif [ $1 = "iOS" ]; then
 
     spec=macx-ios-clang
 
-    config="$config iphoneos device"
+    if [ $mobile = "device" ]; then
+
+        config="$config iphoneos device"
+    fi
 
 elif [ $1 = "linux" ]; then
 
