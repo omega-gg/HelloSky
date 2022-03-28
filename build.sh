@@ -410,6 +410,15 @@ elif [ $compiler = "msvc" ]; then
 
     jom
 
+elif [ $1 = "iOS" ]; then
+
+    set +e
+
+    make $make_arguments
+    make $make_arguments
+
+    set -e
+
 elif [ $1 = "android" ]; then
 
     #----------------------------------------------------------------------------------------------
