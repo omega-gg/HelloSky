@@ -58,7 +58,7 @@ jobs:
 
 - job: iOS_qt5
   pool:
-    vmImage: "macOS-10.15"
+    vmImage: "macOS-11"
   steps:
   - bash: |
       sh build.sh iOS all
