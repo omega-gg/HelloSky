@@ -529,7 +529,7 @@ elif [ $1 = "android" ]; then
     copyAndroid x86_64
 fi
 
-if [ $os = "mobile" ]; then
+if [ $os != "mobile" ]; then
 
     mkdir -p $path
 
