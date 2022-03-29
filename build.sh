@@ -412,13 +412,14 @@ elif [ $compiler = "msvc" ]; then
 
 elif [ $1 = "iOS" ]; then
 
-    # FIXME iOS/qt5: For some reason, we have to call this three times to build it and deploy it
-    #            properly.
+    # FIXME iOS: For some reason, we have to call this several times to build and deploy it
+    #       properly.
     if [ $qt = "qt5" ]; then
         make $make_arguments
         make $make_arguments
         make $make_arguments
     else
+        make $make_arguments
         make $make_arguments
     fi
 
