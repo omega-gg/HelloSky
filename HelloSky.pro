@@ -152,6 +152,8 @@ OTHER_FILES += 3rdparty.sh \
                content/Main.qml \
                dist/HelloSky.rc \
                dist/script/start.sh \
+               dist/iOS/Images.xcassets/Contents.json \
+               dist/iOS/Images.xcassets/AppIcon.appiconset/Contents.json \
                dist/android/res/values/theme.xml \
                dist/android/res/drawable/splash.xml \
                dist/android/qt5/AndroidManifest.xml \
@@ -164,12 +166,14 @@ ios {
 
     QMAKE_MAC_XCODE_SETTINGS += Q_ENABLE_BITCODE
 
+    icons.files=$$_PRO_FILE_PWD_/dist/iOS/Images.xcassets
+
     framework.files = $$SK/lib/MobileVLCKit.framework
     framework.path  = Frameworks
 
     videos.files = $$_PRO_FILE_PWD_/content/videos
 
-    QMAKE_BUNDLE_DATA += framework videos
+    QMAKE_BUNDLE_DATA += icons framework videos
 } android {
     ANDROID_PACKAGE_SOURCE_DIR = $$ANDROID_PACKAGE
 
