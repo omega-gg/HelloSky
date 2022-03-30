@@ -162,7 +162,7 @@ OTHER_FILES += 3rdparty.sh \
                dist/android/qt6/AndroidManifest.xml \
 
 ios {
-    # NOTE: This is required for MobileVLCKit.
+    # NOTE iOS: This is required for MobileVLCKit.
     Q_ENABLE_BITCODE.name = ENABLE_BITCODE
     Q_ENABLE_BITCODE.value = NO
 
@@ -172,6 +172,7 @@ ios {
 
     icons.files=$$_PRO_FILE_PWD_/dist/iOS/Images.xcassets
 
+    # NOTE iOS: We need to specify this in Info.plist.
     launch.files=$$_PRO_FILE_PWD_/dist/iOS/Launch.storyboard
 
     framework.files = $$SK/lib/MobileVLCKit.framework
