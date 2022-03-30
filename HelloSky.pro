@@ -152,6 +152,7 @@ OTHER_FILES += 3rdparty.sh \
                content/Main.qml \
                dist/HelloSky.rc \
                dist/script/start.sh \
+               dist/iOS/Info.plist \
                dist/iOS/LaunchScreen.storyboard \
                dist/iOS/Images.xcassets/Contents.json \
                dist/iOS/Images.xcassets/AppIcon.appiconset/Contents.json \
@@ -167,9 +168,11 @@ ios {
 
     QMAKE_MAC_XCODE_SETTINGS += Q_ENABLE_BITCODE
 
+    QMAKE_INFO_PLIST = $$_PRO_FILE_PWD_/dist/iOS/Info.plist
+
     icons.files=$$_PRO_FILE_PWD_/dist/iOS/Images.xcassets
 
-    launch.files=$$_PRO_FILE_PWD_/dist/iOS/LaunchScreen.storyboard
+    launch.files=$$_PRO_FILE_PWD_/dist/iOS/Launch.storyboard
 
     framework.files = $$SK/lib/MobileVLCKit.framework
     framework.path  = Frameworks
