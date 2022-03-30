@@ -152,6 +152,7 @@ OTHER_FILES += 3rdparty.sh \
                content/Main.qml \
                dist/HelloSky.rc \
                dist/script/start.sh \
+               dist/iOS/LaunchScreen.storyboard \
                dist/iOS/Images.xcassets/Contents.json \
                dist/iOS/Images.xcassets/AppIcon.appiconset/Contents.json \
                dist/android/res/values/theme.xml \
@@ -168,12 +169,14 @@ ios {
 
     icons.files=$$_PRO_FILE_PWD_/dist/iOS/Images.xcassets
 
+    launch.files=$$_PRO_FILE_PWD_/dist/iOS/LaunchScreen.storyboard
+
     framework.files = $$SK/lib/MobileVLCKit.framework
     framework.path  = Frameworks
 
     videos.files = $$_PRO_FILE_PWD_/content/videos
 
-    QMAKE_BUNDLE_DATA += icons framework videos
+    QMAKE_BUNDLE_DATA += icons launch framework videos
 } android {
     ANDROID_PACKAGE_SOURCE_DIR = $$ANDROID_PACKAGE
 
