@@ -14,12 +14,13 @@
     <string>${PRODUCT_NAME}</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
-    <key>CFBundleShortVersionString</key>
-    <string>1.0.1</string>
     <key>CFBundleSignature</key>
     <string>${QMAKE_PKGINFO_TYPEINFO}</string>
+    <!-- NOTE iOS: The bundle has a three period integer format. -->
     <key>CFBundleVersion</key>
-    <string>1.0.1-1</string>
+    <string>1.0.11</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.1</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>MinimumOSVersion</key>
