@@ -64,7 +64,7 @@ Application
         window.setDefaultGeometry();
 
         //-----------------------------------------------------------------------------------------
-        // Android
+        // iOS
 
         window.borderSize = 0;
 
@@ -72,38 +72,41 @@ Application
         button.visible = false;
 //#END
 
-        st.ratio = 1.0;
+        path = "../dist/pictures/iOS";
 
-        window.width  = 1024;
-        window.height = 500;
+        st.ratio = 3.0;
 
-        sk.wait(1000);
+        saveShot(path + "/HelloSkyA.jpg", -1, 1242, 2688);
+        saveShot(path + "/HelloSkyB.jpg", -1, 1242, 2208);
+
+        st.ratio = 2.0;
+
+        saveShot(path + "/HelloSkyC.jpg", -1, 2732, 2048);
+
+        //-----------------------------------------------------------------------------------------
+        // Android
 
         path = "../dist/pictures/android";
 
-        saveShot(path + "/HelloSky.jpg", 90);
+        st.ratio = 1.0;
+
+        saveShot(path + "/HelloSky.jpg", 90, 1024, 500);
 
         st.ratio = 3.497;
 
-        window.width  = 1440;
-        window.height = 2560;
-
-        sk.wait(1000);
-
-        saveShot(path + "/HelloSkyMobileA.jpg", -1);
-
-        window.width  = 2560;
-        window.height = 1440;
-
-        sk.wait(1000);
-
-        saveShot(path + "/HelloSkyMobileB.jpg", -1);
+        saveShot(path + "/HelloSkyMobileA.jpg", -1, 1440, 2560);
+        saveShot(path + "/HelloSkyMobileB.jpg", -1, 2560, 1440);
 
         window.close();
     }
 
-    function saveShot(path, quality)
+    function saveShot(path, quality, width, height)
     {
+        window.width  = width;
+        window.height = height;
+
+        sk.wait(1000);
+
         window.saveShot(path, 0, 0, -1, -1, "jpg", quality);
     }
 //#END
