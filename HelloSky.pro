@@ -109,9 +109,9 @@ win32-msvc*:LIBS += shell32.lib User32.lib
 
 macx:LIBS += -L$$SK/lib -lvlc
 
-unix:!macx:!ios:!android:LIBS += -lvlc
-
 ios:LIBS += -framework MobileVLCKit
+
+unix:!macx:!ios:!android:LIBS += -lvlc
 
 android:LIBS += -L$$ANDROID_LIB -lvlc \
 
@@ -181,6 +181,7 @@ ios {
     videos.files = $$_PRO_FILE_PWD_/content/videos
 
     QMAKE_BUNDLE_DATA += icons launch framework videos
+
 } android {
     ANDROID_PACKAGE_SOURCE_DIR = $$ANDROID_PACKAGE
 

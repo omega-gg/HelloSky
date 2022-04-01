@@ -23,11 +23,12 @@ content="../content"
 
 bin="../bin"
 
-android="../dist/android"
+#--------------------------------------------------------------------------------------------------
+# Android
 
-data="$android/data"
+data="android/data"
 
-videos="$android/assets/videos"
+videos="android/assets/videos"
 
 #--------------------------------------------------------------------------------------------------
 # environment
@@ -194,13 +195,13 @@ if [ $os = "mobile" -o "$2" = "all" -o "$2" = "deploy" ]; then
 
         echo "COPYING android"
 
-        copyAndroid $android/res
+        copyAndroid android/res
 
         if [ $qt = "qt5" ]; then
 
-            qtX="$android/qt5"
+            qtX="android/qt5"
         else
-            qtX="$android/qt6"
+            qtX="android/qt6"
         fi
 
         copyAndroid $qtX/*.xml
@@ -214,7 +215,7 @@ if [ $os = "mobile" -o "$2" = "all" -o "$2" = "deploy" ]; then
 
         cp -r $content/videos/* $videos
 
-        copyAndroid $android/assets
+        copyAndroid android/assets
 
     elif [ "$2" = "all" ]; then
 
