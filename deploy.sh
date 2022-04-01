@@ -531,8 +531,6 @@ fi
 
 if [ $os != "mobile" ]; then
 
-    mkdir -p $path
-
     cp -r content/videos $deploy
 
     rm $deploy/videos/.gitignore
