@@ -29,3 +29,5 @@ SOURCES += $$SK_CORE/controllers/WController.cpp \
            $$SK_GUI/controllers/WControllerView.cpp \
            $$SK_GUI/controllers/WControllerPlaylist.cpp \
            $$SK_MEDIA/controllers/WControllerMedia.cpp \
+
+ios:OBJECTIVE_SOURCES += $$SK_CORE/controllers/WControllerApplication.mm \
