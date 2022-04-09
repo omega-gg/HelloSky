@@ -259,7 +259,7 @@ echo ""
 
 if [ $qt = "qt4" ]; then
 
-    version=1.1
+    imports="QtQuick=1.1"
 
     defines="QT_4"
 else
@@ -272,9 +272,9 @@ else
 
     if [ $1 = "linux" ]; then
 
-        version=2.7
+        imports="QtQuick=2.7"
     else
-        version=2.14
+        imports="QtQuick=2.14"
     fi
 fi
 
@@ -312,4 +312,4 @@ $SkyTouch/StyleTouch.qml \
 $SkyTouch/BaseButtonTouch.qml \
 $SkyTouch/ButtonTouch.qml"
 
-"$Sky"/deploy/deployer $path $version qrc/HelloSky.qrc "$defines" $files
+"$Sky"/deploy/deployer $path $imports qrc/HelloSky.qrc "$defines" $files
