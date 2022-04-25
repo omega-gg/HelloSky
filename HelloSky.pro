@@ -77,6 +77,7 @@ include(src/declarative/declarative.pri)
 include(src/media/media.pri)
 include(src/vlc/vlc.pri)
 
+include(src/3rdparty/Qt/Qt.pri)
 include(src/3rdparty/qtsingleapplication/qtsingleapplication.pri)
 
 INCLUDEPATH += $$SK/include/SkCore \
