@@ -42,6 +42,17 @@
 #include <WDeclarativePlayer>
 
 //-------------------------------------------------------------------------------------------------
+// Static variables
+
+#ifndef SK_DEPLOY
+#ifdef Q_OS_MAC
+static const QString PATH_STORAGE = "/../../..";
+#else
+static const QString PATH_STORAGE = "";
+#endif
+#endif
+
+//-------------------------------------------------------------------------------------------------
 // Functions
 //-------------------------------------------------------------------------------------------------
 
@@ -68,7 +79,7 @@ int main(int argc, char * argv[])
 #ifdef SK_DEPLOY
     path = QDir::fromNativeSeparators(WControllerFile::pathWritable());
 #else
-    path = QDir::currentPath();
+    path = QDir::currentPath() + PATH_STORAGE;
 #endif
 
     wControllerFile->setPathStorage(path);
