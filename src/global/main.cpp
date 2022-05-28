@@ -78,6 +78,9 @@ int main(int argc, char * argv[])
 
 #ifdef SK_DEPLOY
     path = QDir::fromNativeSeparators(WControllerFile::pathWritable());
+
+    // NOTE: It seems we have to create this folder manually on some platforms.
+    wControllerFile->startCreateFolder(path);
 #else
     path = QDir::currentPath() + PATH_STORAGE;
 #endif
