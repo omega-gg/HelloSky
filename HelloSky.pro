@@ -86,6 +86,7 @@ include(src/media/media.pri)
 include(src/vlc/vlc.pri)
 
 include(src/3rdparty/qtsingleapplication/qtsingleapplication.pri)
+include(src/3rdparty/quazip/quazip.pri)
 
 INCLUDEPATH += $$SK/include/SkCore \
                $$SK/include/SkGui \
