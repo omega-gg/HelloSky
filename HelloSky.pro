@@ -112,6 +112,10 @@ unix:!macx:!android:greaterThan(QT_MAJOR_VERSION, 4) {
     INCLUDEPATH += $$SK/include/$$QTX/QtDBus
 }
 
+win32-msvc*:INCLUDEPATH += $$[QT_INSTALL_PREFIX]/include/QtZlib
+
+win32:!win32-msvc*:LIBS += -L$$SK/lib -lz
+
 win32:LIBS += -L$$SK/lib -llibvlc
 
 # Windows dependency for ShellExecuteA and PostMessage
@@ -120,6 +124,8 @@ win32-msvc*:LIBS += shell32.lib User32.lib
 macx:LIBS += -L$$SK/lib -lvlc
 
 ios:LIBS += -framework MobileVLCKit
+
+unix:LIBS += -lz
 
 unix:!macx:!ios:!android:LIBS += -lvlc
 
