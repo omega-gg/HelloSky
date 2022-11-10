@@ -84,8 +84,6 @@ makeAndroid()
 
     make INSTALL_ROOT=android-build install
 
-    cat android-build/build.gradle
-
     cd ..
 }
 
