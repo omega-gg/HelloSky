@@ -35,8 +35,8 @@ android {
      *******************************************************/
 
     compileSdkVersion androidCompileSdkVersion.toInteger()
+
     buildToolsVersion androidBuildToolsVersion
-    ndkVersion androidNdkVersion
 
     sourceSets {
         main {
@@ -73,5 +73,7 @@ android {
         resConfig "en"
         minSdkVersion = qtMinSdkVersion
         targetSdkVersion = qtTargetSdkVersion
+        // NOTE Qt5: This line was added manually to remove debug symbol(s).
+        ndk.debugSymbolLevel "none"
     }
 }

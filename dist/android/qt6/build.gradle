@@ -35,7 +35,9 @@ android {
      *******************************************************/
 
     compileSdkVersion androidCompileSdkVersion.toInteger()
+
     buildToolsVersion androidBuildToolsVersion
+
     ndkVersion androidNdkVersion
 
     sourceSets {
@@ -74,5 +76,7 @@ android {
         minSdkVersion qtMinSdkVersion
         targetSdkVersion qtTargetSdkVersion
         ndk.abiFilters = qtTargetAbiList.split(",")
+        // NOTE Qt5: This line was added manually to remove debug symbol(s).
+        ndk.debugSymbolLevel "none"
     }
 }
