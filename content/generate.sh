@@ -205,6 +205,9 @@ if [ $os = "mobile" -o "$2" = "all" -o "$2" = "deploy" ]; then
         fi
 
         copyAndroid $qtX/*.xml
+        # NOTE: You can comment this if you want to let Qt generate the gradle files.
+        copyAndroid $qtX/*.gradle
+        copyAndroid $qtX/gradle
 
         applyManifest armeabi-v7a 032
         applyManifest arm64-v8a   064
