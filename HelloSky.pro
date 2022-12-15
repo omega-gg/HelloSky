@@ -124,7 +124,9 @@ win32-msvc*:LIBS += shell32.lib User32.lib
 
 macx:LIBS += -L$$SK/lib -lvlc
 
-ios:LIBS += -framework MobileVLCKit
+# NOTE iOS: MediaPlayer is required for MP* classes.
+ios:LIBS += -framework MobileVLCKit \
+            -framework MediaPlayer
 
 unix:LIBS += -lz
 
