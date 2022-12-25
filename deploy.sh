@@ -389,6 +389,12 @@ elif [ $1 = "macOS" ]; then
     cp -r "$path"/plugins $deploy
 
     cp "$path"/libvlc*.dylib $deploy
+
+elif [ $1 = "linux" ]; then
+
+    cp -r "$path"/vlc $deploy
+
+    cp "$path"/libvlc*.so* $deploy
 fi
 
 echo "-------------"

@@ -106,14 +106,10 @@ jobs:
     vmImage: "ubuntu-latest"
   steps:
   - bash: |
-      docker run -d --name ubuntu -v $PWD:/HelloSky amd64/ubuntu:20.04 tail -f /dev/null
-      docker exec -t ubuntu bash -c "cd /HelloSky;
-                                     apt-get update;
-                                     apt-get -y install sudo curl zip git;
-                                     sh environment.sh qt4;
-                                     sh build.sh linux all;
-                                     cd deploy;
-                                     zip -rq ../HelloSky.zip *"
+      sh environment.sh qt4
+      sh build.sh linux all
+      cd deploy
+      zip -rq ../HelloSky.zip *
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-linux64-qt4
 
@@ -139,13 +135,9 @@ jobs:
     vmImage: "ubuntu-latest"
   steps:
   - bash: |
-      docker run -d --name ubuntu -v $PWD:/HelloSky amd64/ubuntu:20.04 tail -f /dev/null
-      docker exec -t ubuntu bash -c "cd /HelloSky;
-                                     apt-get update;
-                                     apt-get -y install sudo curl zip git;
-                                     sh build.sh linux all;
-                                     cd deploy;
-                                     zip -rq ../HelloSky.zip *"
+      sh build.sh linux all
+      cd deploy
+      zip -rq ../HelloSky.zip *
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-linux64-qt5
 
@@ -156,14 +148,10 @@ jobs:
     vmImage: "ubuntu-latest"
   steps:
   - bash: |
-      docker run -d --name ubuntu -v $PWD:/HelloSky amd64/ubuntu:20.04 tail -f /dev/null
-      docker exec -t ubuntu bash -c "cd /HelloSky;
-                                     apt-get update;
-                                     apt-get -y install sudo curl zip git;
-                                     sh environment.sh qt6;
-                                     sh build.sh linux all;
-                                     cd deploy;
-                                     zip -rq ../HelloSky.zip *"
+      sh environment.sh qt6
+      sh build.sh linux all
+      cd deploy
+      zip -rq ../HelloSky.zip *
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-linux64-qt6
 
@@ -176,13 +164,9 @@ jobs:
     vmImage: "ubuntu-latest"
   steps:
   - bash: |
-      docker run -d --name ubuntu -v $PWD:/HelloSky amd64/ubuntu:20.04 tail -f /dev/null
-      docker exec -t ubuntu bash -c "cd /HelloSky;
-                                     apt-get update;
-                                     apt-get -y install sudo curl zip unzip git;
-                                     sh build.sh android all;
-                                     cd deploy;
-                                     zip -rq ../HelloSky.zip *"
+      sh build.sh android all
+      cd deploy
+      zip -rq ../HelloSky.zip *
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-android-qt5
 
@@ -191,13 +175,9 @@ jobs:
     vmImage: "ubuntu-latest"
   steps:
   - bash: |
-      docker run -d --name ubuntu -v $PWD:/HelloSky amd64/ubuntu:20.04 tail -f /dev/null
-      docker exec -t ubuntu bash -c "cd /HelloSky;
-                                     apt-get update;
-                                     apt-get -y install sudo curl zip unzip git;
-                                     sh environment.sh qt6;
-                                     sh build.sh android all;
-                                     cd deploy;
-                                     zip -rq ../HelloSky.zip *"
+      sh environment.sh qt6
+      sh build.sh android all
+      cd deploy
+      zip -rq ../HelloSky.zip *
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-android-qt6
