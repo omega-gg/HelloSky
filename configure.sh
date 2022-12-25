@@ -216,8 +216,9 @@ elif [ $1 = "linux" ]; then
     echo "COPYING VLC"
 
     rm -rf bin/vlc
+    mkdir  bin/vlc
 
-    cp -r "$VLC"/vlc bin
+    cp -r "$VLC"/plugins vlc
 
     cp "$VLC"/libvlc*.so* bin
 
