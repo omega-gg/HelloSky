@@ -220,7 +220,7 @@ elif [ $1 = "linux" ]; then
     rm -rf bin/vlc
     mkdir  bin/vlc
 
-    cp -r "$path"/plugins vlc
+    cp -r "$path"/vlc bin
 
     cp "$path"/libvlc*.so* bin
 
