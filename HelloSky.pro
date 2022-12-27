@@ -122,15 +122,13 @@ win32:LIBS += -L$$SK/lib -llibvlc
 # Windows dependency for ShellExecuteA and PostMessage
 win32-msvc*:LIBS += shell32.lib User32.lib
 
-macx:LIBS += -L$$SK/lib -lvlc
+unix:!ios:!android:LIBS += -L$$SK/lib -lvlc
 
 # NOTE iOS: MediaPlayer is required for MP* classes.
 ios:LIBS += -framework MobileVLCKit \
             -framework MediaPlayer
 
 unix:LIBS += -lz
-
-unix:!macx:!ios:!android:LIBS += -lvlc
 
 android:LIBS += -L$$ANDROID_LIB -lvlc \
 
