@@ -315,9 +315,9 @@ elif [ $1 = "linux" ]; then
 
         #cp "$path"/libz.so.* $deploy
 
-        #cp "$path"/libicudata.so.* $deploy
-        #cp "$path"/libicui18n.so.* $deploy
-        #cp "$path"/libicuuc.so.*   $deploy
+        cp "$path"/libicudata.so.* $deploy
+        cp "$path"/libicui18n.so.* $deploy
+        cp "$path"/libicuuc.so.*   $deploy
 
         #cp "$path"/libdouble-conversion.so.* $deploy
         #cp "$path"/libpng16.so.*             $deploy
