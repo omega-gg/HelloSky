@@ -223,11 +223,7 @@ elif [ $1 = "linux" ]; then
 
     cp -r "$VLC"/plugins bin/vlc
 
-    cp "$VLC"/libvlc*.so.* bin
-
-    cp /snap/vlc/current/lib/x86_64-linux-gnu/libidn.so.11 "$Sky"/lib
-
-    ls -la "$Sky"/lib
+    cp "$VLC"/lib*.so.* bin
 
 elif [ $1 = "android" ]; then
 

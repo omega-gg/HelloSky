@@ -133,7 +133,8 @@ jobs:
 
 - job: linux64_qt5
   pool:
-    vmImage: "ubuntu-latest"
+    # NOTE: We need an older versoin to package the application.
+    vmImage: "ubuntu-18.04"
   steps:
   - bash: |
       sh build.sh linux all
