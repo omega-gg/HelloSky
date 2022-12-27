@@ -96,6 +96,8 @@ fi
 
 VLC="$external/VLC/$VLC_version"
 
+path="$Sky/deploy"
+
 #--------------------------------------------------------------------------------------------------
 # Clean
 #--------------------------------------------------------------------------------------------------
@@ -197,9 +199,9 @@ if [ $os = "windows" ]; then
 
     rm -rf bin/plugins
 
-    cp -r "$VLC"/plugins bin
+    cp -r "$path"/plugins bin
 
-    cp "$VLC"/libvlc*.dll bin
+    cp "$path"/libvlc*.dll bin
 
 elif [ $1 = "macOS" ]; then
 
@@ -207,9 +209,9 @@ elif [ $1 = "macOS" ]; then
 
     rm -rf bin/plugins
 
-    cp -r "$VLC"/plugins bin
+    cp -r "$path"/plugins bin
 
-    cp "$VLC"/lib/libvlc*.dylib bin
+    cp "$path"/lib/libvlc*.dylib bin
 
 elif [ $1 = "linux" ]; then
 
@@ -218,9 +220,9 @@ elif [ $1 = "linux" ]; then
     rm -rf bin/vlc
     mkdir  bin/vlc
 
-    cp -r "$VLC"/plugins vlc
+    cp -r "$path"/plugins vlc
 
-    cp "$VLC"/libvlc*.so* bin
+    cp "$path"/libvlc*.so* bin
 
 elif [ $1 = "android" ]; then
 
