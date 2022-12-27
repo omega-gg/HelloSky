@@ -209,9 +209,10 @@ elif [ $1 = "macOS" ]; then
     rm -rf bin/plugins
     mkdir  bin/plugins
 
-    cp -r "$VLC"/plugins bin
+    cp -r "$VLC"/plugins/*.dylib bin/plugins
 
-    cp "$VLC"/libvlc*.dylib bin
+    cp "$VLC"/lib/libvlc.5.dylib     bin/libvlc.dylib
+    cp "$VLC"/lib/libvlccore.9.dylib bin/libvlccore.dylib
 
 elif [ $1 = "linux" ]; then
 
@@ -222,7 +223,8 @@ elif [ $1 = "linux" ]; then
 
     cp -r "$VLC"/plugins bin/vlc
 
-    cp "$VLC"/libvlc*.so* bin
+    cp "$VLC"/libvlc.so.5     bin/libvlc.so
+    cp "$VLC"/libvlccore.so.9 bin/libvlccore.so
 
 elif [ $1 = "android" ]; then
 
