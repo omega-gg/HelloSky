@@ -225,6 +225,10 @@ elif [ $1 = "linux" ]; then
 
     cp "$VLC"/libvlc*.so.* bin
 
+    cp /snap/vlc/current/lib/x86_64-linux-gnu/libidn.so.11 "$Sky"/lib
+
+    ls -la "$Sky"/lib
+
 elif [ $1 = "android" ]; then
 
     echo "COPYING VLC"
