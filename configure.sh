@@ -211,7 +211,7 @@ elif [ $1 = "macOS" ]; then
 
     cp -r "$path"/plugins bin
 
-    cp "$path"/lib/libvlc*.dylib bin
+    cp "$path"/libvlc*.dylib bin
 
 elif [ $1 = "linux" ]; then
 
