@@ -109,7 +109,7 @@ greaterThan(QT_MAJOR_VERSION, 4) {
                    $$SK/include/$$QTX/QtQuick
 }
 
-unix:!macx:!android:greaterThan(QT_MAJOR_VERSION, 4) {
+unix:!macx:!ios:!android:greaterThan(QT_MAJOR_VERSION, 4) {
     INCLUDEPATH += $$SK/include/$$QTX/QtDBus
 }
 
@@ -132,7 +132,7 @@ unix:LIBS += -lz
 
 android:LIBS += -L$$ANDROID_LIB -lvlc \
 
-unix:!macx:!android:contains(QT_MAJOR_VERSION, 4) {
+unix:!macx:!ios:!android:contains(QT_MAJOR_VERSION, 4) {
     LIBS += -lX11
 }
 
