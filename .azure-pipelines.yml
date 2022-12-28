@@ -133,7 +133,7 @@ jobs:
 
 - job: linux64_qt5
   pool:
-    # NOTE: We need an older versoin to package the application.
+    # NOTE: We need an older version to package the application.
     vmImage: "ubuntu-18.04"
   steps:
   - bash: |
