@@ -125,6 +125,7 @@ jobs:
       docker exec -t ubuntu bash -c "cd /HelloSky;
                                      apt-get update;
                                      apt-get -y install sudo curl zip git;
+                                     snap list;
                                      sh build.sh linux all;
                                      cd deploy;
                                      zip -rq ../HelloSky.zip *"
