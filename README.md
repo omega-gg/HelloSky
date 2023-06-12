@@ -1,4 +1,4 @@
-<a href="http://omega.gg/Sky"><img src="dist/pictures/HelloSky.png" alt="HelloSky" width="512px"></a>
+<a href="https://omega.gg/Sky"><img src="dist/pictures/HelloSky.png" alt="HelloSky" width="512px"></a>
 ---
 [![azure](https://dev.azure.com/bunjee/HelloSky/_apis/build/status/omega-gg.HelloSky)](https://dev.azure.com/bunjee/HelloSky/_build)
 [![appveyor](https://ci.appveyor.com/api/projects/status/yto6yi6aepvvl805?svg=true)](https://ci.appveyor.com/project/3unjee/HelloSky)
@@ -55,7 +55,7 @@ You can deploy HelloSky with:
 
 ## License
 
-Copyright (C) 2015 - 2020 HelloSky authors | http://omega.gg/HelloSky
+Copyright (C) 2015 - 2020 HelloSky authors | https://omega.gg/HelloSky
 
 ### Authors
 
