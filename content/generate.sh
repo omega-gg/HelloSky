@@ -204,6 +204,20 @@ if [ $os = "mobile" -o "$2" = "all" -o "$2" = "deploy" ]; then
             qtX="android/qt6"
         fi
 
+        cp -r "$Sky"/dist/android/src/* $qtX/src
+
+        if [ $qt = "qt5" ]; then
+
+            expression='s/org.qtproject.qt./org.qtproject.qt5./g'
+
+            apply $expression $qtX/src/gg/omega/WActivity.java
+
+            expression='s/gg.omega.provider/gg.omega.hellosky.provider/g'
+
+            apply $expression $qtX/src/gg/omega/WActivity.java
+        fi
+
+        copyAndroid $qtX/src
         copyAndroid $qtX/*.xml
 
         #------------------------------------------------------------------------------------------

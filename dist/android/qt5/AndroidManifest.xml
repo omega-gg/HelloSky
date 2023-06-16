@@ -27,7 +27,7 @@
 
         <!-- NOTE: We need singleInstance and an empty taskAffinity for sharing to work properly. -->
         <!-- NOTE: The 'exported' attribute is required for Android 12. -->
-        <activity android:name="org.qtproject.qt5.android.bindings.QtActivity"
+        <activity android:name="gg.omega.WActivity"
                   android:label="-- %%INSERT_APP_NAME%% --"
                   android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density"
                   android:screenOrientation="unspecified"
