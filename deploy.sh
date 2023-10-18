@@ -362,9 +362,9 @@ elif [ $1 = "linux" ]; then
         cp "$path"/imageformats/libqsvg.so  $deploy/imageformats
         cp "$path"/imageformats/libqjpeg.so $deploy/imageformats
 
-        if [ -f "$path"/imageformats/libqjpeg.so ]; then
+        if [ -f "$path"/imageformats/libqwebp.so ]; then
 
-            cp "$path"/imageformats/libqjpeg.so $deploy/imageformats
+            cp "$path"/imageformats/libqwebp.so $deploy/imageformats
         fi
 
         cp "$path"/xcbglintegrations/libqxcb-egl-integration.so $deploy/xcbglintegrations
