@@ -269,7 +269,11 @@ Application
 
             text: qsTr("Exit")
 
+//#QT_4
             onClicked: sk.quit()
+//#ELSE
+            onClicked: Qt.callLater(sk.quit);
+//#END
         }
 //#END
     }
