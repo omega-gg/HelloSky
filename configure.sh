@@ -25,9 +25,9 @@ MinGW_version="11.2.0"
 
 JDK_version="11.0.2"
 
-TOOLS_version="31.0.0"
+TOOLS_version="33.0.0"
 
-SDK_version="31"
+SDK_version="33"
 
 #--------------------------------------------------------------------------------------------------
 # environment
