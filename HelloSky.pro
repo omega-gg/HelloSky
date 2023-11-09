@@ -87,6 +87,7 @@ include(src/media/media.pri)
 include(src/vlc/vlc.pri)
 
 include(src/3rdparty/qtsingleapplication/qtsingleapplication.pri)
+include(src/3rdparty/zlib/zlib.pri)
 include(src/3rdparty/quazip/quazip.pri)
 
 INCLUDEPATH += $$SK/include/SkCore \
@@ -113,10 +114,6 @@ unix:!macx:!ios:!android:greaterThan(QT_MAJOR_VERSION, 4) {
     INCLUDEPATH += $$SK/include/$$QTX/QtDBus
 }
 
-win32-msvc*:INCLUDEPATH += $$[QT_INSTALL_PREFIX]/include/QtZlib
-
-win32:!win32-msvc*:LIBS += -L$$SK/lib -lz
-
 win32:LIBS += -L$$SK/lib -llibvlc
 
 # Windows dependency for ShellExecuteA and PostMessage
@@ -127,8 +124,6 @@ unix:!ios:!android:LIBS += -L$$SK/lib -lvlc
 # NOTE iOS: MediaPlayer is required for MP* classes.
 ios:LIBS += -framework MobileVLCKit \
             -framework MediaPlayer
-
-unix:LIBS += -lz
 
 android:LIBS += -L$$ANDROID_LIB -lvlc \
 
