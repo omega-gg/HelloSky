@@ -436,9 +436,9 @@ elif [ $1 = "android" ]; then
     #----------------------------------------------------------------------------------------------
     # FIXME android/Qt: We have to call androiddeployqt to generate a release apk.
 
-    # NOTE android/Qt: We use a custom androiddeployqt that supports the latest NDK.
     if [ $qt = "qt5" ]; then
 
+        # NOTE android/Qt5: We use a custom androiddeployqt that supports the latest NDK.
         androiddeployqt="$Sky/deploy/androiddeployqt"
     else
         androiddeployqt="$QtBin/androiddeployqt"
