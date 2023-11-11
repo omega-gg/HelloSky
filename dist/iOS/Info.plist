@@ -18,9 +18,9 @@
     <string>${QMAKE_PKGINFO_TYPEINFO}</string>
     <!-- NOTE iOS: The bundle has a three period integer format. -->
     <key>CFBundleVersion</key>
-    <string>1.8.1</string> <!-- 1.8.1-2 -->
+    <string>1.8.1</string> <!-- 1.8.1-3 -->
     <key>CFBundleShortVersionString</key>
-    <string>1.8.1</string> <!-- 1.8.1-2 -->
+    <string>1.8.1</string> <!-- 1.8.1-3 -->
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>MinimumOSVersion</key>
