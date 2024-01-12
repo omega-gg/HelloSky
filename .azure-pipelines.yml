@@ -62,7 +62,6 @@ jobs:
     vmImage: "macOS-11"
   steps:
   - bash: |
-      python3 --version
       sh build.sh iOS all
       cd deploy
       zip -rq ../HelloSky.zip *
