@@ -59,9 +59,10 @@ jobs:
 - job: iOS_qt5
   pool:
     # NOTE: macOS Big sur is required for iOS.
-    vmImage: "macOS-latest"
+    vmImage: "macOS-11"
   steps:
   - bash: |
+      python3 --version
       sh build.sh iOS all
       cd deploy
       zip -rq ../HelloSky.zip *
