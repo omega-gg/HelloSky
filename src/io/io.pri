@@ -12,6 +12,7 @@ HEADERS += $$SK_CORE/io/WAbstractLoader.h \
            $$SK_CORE/io/WFileWatcher_p.h \
            $$SK_CORE/io/WCache.h \
            $$SK_CORE/io/WCache_p.h \
+           $$SK_CORE/io/WZipper.h \
            $$SK_CORE/io/WUnzipper.h \
            $$SK_CORE/io/WYamlReader.h \
            $$SK_GUI/io/WBackendLoader.h \
@@ -23,6 +24,7 @@ SOURCES += $$SK_CORE/io/WAbstractLoader.cpp \
            $$SK_CORE/io/WLocalObject.cpp \
            $$SK_CORE/io/WFileWatcher.cpp \
            $$SK_CORE/io/WCache.cpp \
+           $$SK_CORE/io/WZipper.cpp \
            $$SK_CORE/io/WUnzipper.cpp \
            $$SK_CORE/io/WYamlReader.cpp \
            $$SK_GUI/io/WBackendLoader.cpp \
