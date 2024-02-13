@@ -17,6 +17,7 @@ HEADERS += $$SK_CORE/io/WAbstractLoader.h \
            $$SK_CORE/io/WYamlReader.h \
            $$SK_GUI/io/WBackendLoader.h \
            $$SK_GUI/io/WBackendLoader_p.h \
+           $$SK_BACKEND/io/WBackendCache.h \
 
 SOURCES += $$SK_CORE/io/WAbstractLoader.cpp \
            $$SK_CORE/io/WLoaderNetwork.cpp \
@@ -28,3 +29,4 @@ SOURCES += $$SK_CORE/io/WAbstractLoader.cpp \
            $$SK_CORE/io/WUnzipper.cpp \
            $$SK_CORE/io/WYamlReader.cpp \
            $$SK_GUI/io/WBackendLoader.cpp \
+           $$SK_BACKEND/io/WBackendCache.cpp \

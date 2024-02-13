@@ -1,8 +1,9 @@
 SK = $$_PRO_FILE_PWD_/../Sky
 
-SK_CORE  = $$SK/src/SkCore/src
-SK_GUI   = $$SK/src/SkGui/src
-SK_MEDIA = $$SK/src/SkMedia/src
+SK_CORE    = $$SK/src/SkCore/src
+SK_GUI     = $$SK/src/SkGui/src
+SK_BACKEND = $$SK/src/SkBackend/src
+SK_MEDIA   = $$SK/src/SkMedia/src
 
 TARGET = HelloSky
 
@@ -45,7 +46,7 @@ contains(QT_MAJOR_VERSION, 4) {
 }
 
 DEFINES += QUAZIP_BUILD \
-           SK_CORE_LIBRARY SK_GUI_LIBRARY SK_MEDIA_LIBRARY
+           SK_CORE_LIBRARY SK_GUI_LIBRARY SK_BACKEND_LIBRARY SK_MEDIA_LIBRARY
 
 !win32-msvc*:!ios:!android:DEFINES += CAN_COMPILE_SSE2
 
@@ -92,6 +93,7 @@ include(src/3rdparty/quazip/quazip.pri)
 
 INCLUDEPATH += $$SK/include/SkCore \
                $$SK/include/SkGui \
+               $$SK/include/SkBackend \
                $$SK/include/SkMedia \
                $$SK/include
 

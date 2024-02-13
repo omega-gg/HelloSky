@@ -22,6 +22,8 @@ HEADERS += $$SK_GUI/media/WBackendNet.h \
            $$SK_GUI/media/WTabsTrack_p.h \
            $$SK_GUI/media/WTabTrack.h \
            $$SK_GUI/media/WTabTrack_p.h \
+           $$SK_BACKEND/media/WBackendUniversal.h \
+           $$SK_BACKEND/media/WBackendUniversal_p.h \
            $$SK_MEDIA/media/WBackendVlc.h \
            $$SK_MEDIA/media/WBackendVlc_p.h \
            $$SK_MEDIA/media/WBackendSubtitle.h \
@@ -40,5 +42,6 @@ SOURCES += $$SK_GUI/media/WBackendNet.cpp \
            $$SK_GUI/media/WTabTrack.cpp \
            $$SK_GUI/media/WTabTrack_patch.cpp \
            $$SK_GUI/media/WTabsTrack.cpp \
+           $$SK_BACKEND/media/WBackendUniversal.cpp \
            $$SK_MEDIA/media/WBackendVlc.cpp \
            $$SK_MEDIA/media/WBackendSubtitle.cpp \
