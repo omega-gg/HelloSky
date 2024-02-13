@@ -10,7 +10,7 @@ TARGET = HelloSky
 !android:DESTDIR = $$_PRO_FILE_PWD_/bin
 
 contains(QT_MAJOR_VERSION, 4) {
-    QT += opengl declarative network xml xmlpatterns svg
+    QT += opengl declarative network script xml xmlpatterns svg
 
 } else:contains(QT_MAJOR_VERSION, 5) {
 
