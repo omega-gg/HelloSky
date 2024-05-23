@@ -55,7 +55,7 @@ You can deploy HelloSky with:
 
 ## License
 
-Copyright (C) 2015 - 2020 HelloSky authors | https://omega.gg/HelloSky
+Copyright (C) 2015 - 2024 HelloSky authors | https://omega.gg/HelloSky
 
 ### Authors
 
