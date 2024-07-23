@@ -37,6 +37,7 @@ android {
 
     compileSdkVersion androidCompileSdkVersion.toInteger()
     buildToolsVersion androidBuildToolsVersion
+    ndkVersion        androidNdkVersion
 
     // Extract native libraries from the APK
     packagingOptions.jniLibs.useLegacyPackaging true
