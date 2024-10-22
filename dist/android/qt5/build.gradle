@@ -79,7 +79,7 @@ android {
         // SDK_version
         minSdkVersion 21
         // SDK_version_minimum
-        targetSdkVersion 33
+        targetSdkVersion 34
     }
 
     // NOTE Qt5: This line was added manually to remove debug symbol(s).
