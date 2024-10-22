@@ -46,7 +46,7 @@ JDK_version="11.0.2"
 SDK_version="34"
 SDK_version_minimum="21"
 
-NDK_version="25"
+NDK_version="26"
 
 #--------------------------------------------------------------------------------------------------
 # environment
