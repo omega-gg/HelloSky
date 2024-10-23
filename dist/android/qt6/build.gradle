@@ -79,7 +79,7 @@ android {
         // SDK_version
         minSdkVersion 21
         // SDK_version_minimum
-        targetSdkVersion 33
+        targetSdkVersion 34
 
         ndk.abiFilters = qtTargetAbiList.split(",")
     }
