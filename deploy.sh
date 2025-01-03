@@ -206,6 +206,7 @@ if [ $os = "windows" ]; then
 
             cp "$path/$QtX"QmlModels.dll       $deploy
             cp "$path/$QtX"QmlWorkerScript.dll $deploy
+            cp "$path/$QtX"QmlMeta.dll         $deploy
         fi
 
         cp "$path"/platforms/qwindows.dll $deploy/platforms
@@ -264,6 +265,7 @@ elif [ $1 = "macOS" ]; then
 
             cp "$path"/QtQmlModels.dylib       $deploy
             cp "$path"/QtQmlWorkerScript.dylib $deploy
+            cp "$path"/QtQmlMeta.dylib         $deploy
         fi
 
         cp "$path"/platforms/libqcocoa.dylib $deploy/platforms
@@ -355,6 +357,7 @@ elif [ $1 = "linux" ]; then
 
             cp "$path/lib$QtX"QmlModels.so.$qx       $deploy
             cp "$path/lib$QtX"QmlWorkerScript.so.$qx $deploy
+            cp "$path/lib$QtX"QmlMeta.so.$qx         $deploy
         fi
 
         cp "$path"/platforms/libqxcb.so $deploy/platforms
