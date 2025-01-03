@@ -200,13 +200,13 @@ if [ $os = "windows" ]; then
             cp "$path/$QtX"WinExtras.dll   $deploy
         else
             cp "$path/$QtX"Core5Compat.dll $deploy
+            cp "$path/$QtX"QmlMeta.dll     $deploy
         fi
 
         if [ -f "$path/$QtX"QmlModels.dll ]; then
 
             cp "$path/$QtX"QmlModels.dll       $deploy
             cp "$path/$QtX"QmlWorkerScript.dll $deploy
-            cp "$path/$QtX"QmlMeta.dll         $deploy
         fi
 
         cp "$path"/platforms/qwindows.dll $deploy/platforms
@@ -259,13 +259,13 @@ elif [ $1 = "macOS" ]; then
             cp "$path"/QtXmlPatterns.dylib $deploy
         else
             cp "$path"/QtCore5Compat.dylib $deploy
+            cp "$path"/QtQmlMeta.dylib     $deploy
         fi
 
         if [ -f "$path"/QtQmlModels.dylib ]; then
 
             cp "$path"/QtQmlModels.dylib       $deploy
             cp "$path"/QtQmlWorkerScript.dylib $deploy
-            cp "$path"/QtQmlMeta.dylib         $deploy
         fi
 
         cp "$path"/platforms/libqcocoa.dylib $deploy/platforms
@@ -351,13 +351,13 @@ elif [ $1 = "linux" ]; then
             cp "$path/lib$QtX"XmlPatterns.so.$qx $deploy
         else
             cp "$path/lib$QtX"Core5Compat.so.$qx $deploy
+            cp "$path/lib$QtX"QmlMeta.so.$qx     $deploy
         fi
 
         if [ -f "$path/lib$QtX"QmlModels.so.$qx ]; then
 
             cp "$path/lib$QtX"QmlModels.so.$qx       $deploy
             cp "$path/lib$QtX"QmlWorkerScript.so.$qx $deploy
-            cp "$path/lib$QtX"QmlMeta.so.$qx         $deploy
         fi
 
         cp "$path"/platforms/libqxcb.so $deploy/platforms
