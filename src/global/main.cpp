@@ -45,7 +45,7 @@
 // Static variables
 
 #ifndef SK_DEPLOY
-#ifdef Q_OS_MACX
+#ifdef Q_OS_MACOS
 static const QString PATH_STORAGE = "/../../..";
 #else
 static const QString PATH_STORAGE = "";
