@@ -71,7 +71,7 @@ else
     compiler="default"
 fi
 
-VLC="$external/VLC/$VLC_version"
+path="$Sky/deploy"
 
 #--------------------------------------------------------------------------------------------------
 # Clean
