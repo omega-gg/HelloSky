@@ -184,7 +184,11 @@ elif [ $1 = "linux" ]; then
     cp -r "$path"/vlc bin
 
     cp "$path"/libvlc*.so* bin
-    cp "$path"/libidn.so*  bin
+
+    if [ -f "$path"/libidn.so* ]; then
+
+        cp "$path"/libidn.so* bin
+    fi
 
 elif [ $1 = "android" ]; then
 
