@@ -12,24 +12,6 @@ external="../3rdparty"
 assets="../assets"
 
 #--------------------------------------------------------------------------------------------------
-
-VLC_version="3.0.21"
-
-#--------------------------------------------------------------------------------------------------
-# Windows
-
-MinGW_version="13.1.0"
-
-#--------------------------------------------------------------------------------------------------
-# Android
-
-JDK_version="11.0.2"
-
-TOOLS_version="33.0.0"
-
-SDK_version="34"
-
-#--------------------------------------------------------------------------------------------------
 # environment
 
 compiler_win="mingw"
@@ -65,9 +47,9 @@ if [ $# != 1 -a $# != 2 ] \
    [ $1 != "win32" -a $1 != "win64" -a $1 != "macOS" -a $1 != "iOS" -a $1 != "linux" -a \
      $1 != "android" ] \
    || \
-   [ $# = 2 -a "$2" != "sky" -a "$2" != "clean" ]; then
+   [ $# = 2 -a "$2" != "clean" ]; then
 
-    echo "Usage: configure <win32 | win64 | macOS | iOS | linux | android> [sky | clean]"
+    echo "Usage: configure <win32 | win64 | macOS | iOS | linux | android> [clean]"
 
     exit 1
 fi
@@ -83,11 +65,6 @@ if [ $1 = "win32" -o $1 = "win64" ]; then
     os="windows"
 
     compiler="$compiler_win"
-
-    if [ $compiler = "mingw" ]; then
-
-        MinGW="$external/MinGW/$MinGW_version/bin"
-    fi
 else
     os="default"
 
@@ -126,26 +103,8 @@ if [ "$2" = "clean" ]; then
 fi
 
 #--------------------------------------------------------------------------------------------------
-# Sky
-#--------------------------------------------------------------------------------------------------
-
-if [ "$2" = "sky" ]; then
-
-    echo "CONFIGURING Sky"
-    echo "---------------"
-
-    cd "$Sky"
-
-    sh configure.sh $1
-
-    cd -
-
-    echo "---------------"
-    echo ""
-fi
-
-#--------------------------------------------------------------------------------------------------
 # assets
+#--------------------------------------------------------------------------------------------------
 
 cp "$assets"/videos/sky.mp4 content/videos
 
@@ -158,9 +117,11 @@ echo "--------------------"
 
 if [ $compiler = "mingw" ]; then
 
-    cp "$MinGW"/libgcc_s_*-1.dll    bin
-    cp "$MinGW"/libstdc++-6.dll     bin
-    cp "$MinGW"/libwinpthread-1.dll bin
+    echo "COPYING MinGW"
+
+    cp "$path"/libgcc_s_*-1.dll    bin
+    cp "$path"/libstdc++-6.dll     bin
+    cp "$path"/libwinpthread-1.dll bin
 fi
 
 #--------------------------------------------------------------------------------------------------
@@ -198,9 +159,9 @@ if [ $os = "windows" ]; then
     rm -rf bin/plugins
     mkdir  bin/plugins
 
-    cp -r "$VLC"/plugins bin
+    cp -r "$path"/plugins bin
 
-    cp "$VLC"/libvlc*.dll bin
+    cp "$path"/libvlc*.dll bin
 
 elif [ $1 = "macOS" ]; then
 
@@ -209,10 +170,9 @@ elif [ $1 = "macOS" ]; then
     rm -rf bin/plugins
     mkdir  bin/plugins
 
-    cp -r "$VLC"/plugins/*.dylib bin/plugins
+    cp -r "$path"/plugins bin
 
-    cp "$VLC"/lib/libvlc.5.dylib     bin/libvlc.dylib
-    cp "$VLC"/lib/libvlccore.9.dylib bin/libvlccore.dylib
+    cp "$path"/libvlc*.dylib bin
 
 elif [ $1 = "linux" ]; then
 
@@ -221,9 +181,10 @@ elif [ $1 = "linux" ]; then
     rm -rf bin/vlc
     mkdir  bin/vlc
 
-    cp -r "$VLC"/vlc bin
+    cp -r "$path"/vlc bin
 
-    cp "$VLC"/lib*.so.* bin
+    cp "$path"/libvlc*.so* bin
+    cp "$path"/libidn.so*  bin
 
 elif [ $1 = "android" ]; then
 
