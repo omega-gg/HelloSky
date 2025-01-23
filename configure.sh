@@ -71,7 +71,7 @@ else
     compiler="default"
 fi
 
-path="$Sky/deploy"
+deploy="$Sky/deploy"
 
 #--------------------------------------------------------------------------------------------------
 # Clean
@@ -119,9 +119,9 @@ if [ $compiler = "mingw" ]; then
 
     echo "COPYING MinGW"
 
-    cp "$path"/libgcc_s_*-1.dll    bin
-    cp "$path"/libstdc++-6.dll     bin
-    cp "$path"/libwinpthread-1.dll bin
+    cp "$deploy"/libgcc_s_*-1.dll    bin
+    cp "$deploy"/libstdc++-6.dll     bin
+    cp "$deploy"/libwinpthread-1.dll bin
 fi
 
 #--------------------------------------------------------------------------------------------------
@@ -159,9 +159,9 @@ if [ $os = "windows" ]; then
     rm -rf bin/plugins
     mkdir  bin/plugins
 
-    cp -r "$path"/plugins bin
+    cp -r "$deploy"/plugins bin
 
-    cp "$path"/libvlc*.dll bin
+    cp "$deploy"/libvlc*.dll bin
 
 elif [ $1 = "macOS" ]; then
 
@@ -170,9 +170,9 @@ elif [ $1 = "macOS" ]; then
     rm -rf bin/plugins
     mkdir  bin/plugins
 
-    cp -r "$path"/plugins bin
+    cp -r "$deploy"/plugins bin
 
-    cp "$path"/libvlc*.dylib bin
+    cp "$deploy"/libvlc*.dylib bin
 
 elif [ $1 = "linux" ]; then
 
@@ -181,13 +181,13 @@ elif [ $1 = "linux" ]; then
     rm -rf bin/vlc
     mkdir  bin/vlc
 
-    cp -r "$path"/vlc bin
+    cp -r "$deploy"/vlc bin
 
-    cp "$path"/libvlc*.so* bin
+    cp "$deploy"/libvlc*.so* bin
 
-    if [ -f "$path"/libidn.so* ]; then
+    if [ -f "$deploy"/libidn.so* ]; then
 
-        cp "$path"/libidn.so* bin
+        cp "$deploy"/libidn.so* bin
     fi
 
 elif [ $1 = "android" ]; then
