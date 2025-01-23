@@ -203,7 +203,7 @@ elif [ $1 = "android" ]; then
 
     echo "COPYING VLC"
 
-    copyAndroid "$VLC"
+    copyAndroid "$deploy"/vlc
 fi
 
 echo "--------------------"
