@@ -164,8 +164,9 @@ int main(int argc, char * argv[])
     //---------------------------------------------------------------------------------------------
     // Context
 
-    wControllerDeclarative->setContextProperty("sk",             sk);
-    wControllerDeclarative->setContextProperty("controllerFile", wControllerFile);
+    wControllerDeclarative->setContextProperty("sk",              sk);
+    wControllerDeclarative->setContextProperty("controllerFile",  wControllerFile);
+    wControllerDeclarative->setContextProperty("controllerMedia", wControllerMedia);
 
 #ifdef Q_OS_ANDROID
     //---------------------------------------------------------------------------------------------

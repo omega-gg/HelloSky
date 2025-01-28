@@ -220,7 +220,8 @@ Application
 
             anchors.margins: st.dp24
 
-            text: "Sky " + sk.versionSky + "\nQt  " + sk.versionQt
+            text: "Sky " + sk.versionSky + "\nQt  " + sk.versionQt + "\nVLC "
+                  + controllerMedia.versionVlc
 
             color: st.text2_color
 
