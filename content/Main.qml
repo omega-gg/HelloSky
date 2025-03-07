@@ -36,8 +36,12 @@ Application
     property url sourceLogo      : "pictures/logo.svg"
 
 //#!DEPLOY+MAC
-    // NOTE macOS: We want to get a path outside the application bundle.
+// NOTE macOS: We want to get a path outside the application bundle.
+//#QT_OLD
     property url sourceVideo: controllerFile.pathStorage + "/videos/sky.mp4"
+//#ELSE
+    property url sourceVideo: Qt.resolvedUrl(controllerFile.pathStorage + "/videos/sky.mp4")
+//#END
 //#ELIF ANDROID
     property url sourceVideo: "file://" + controllerFile.pathStorage + "/sky.mp4"
 //#ELSE
