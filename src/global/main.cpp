@@ -71,7 +71,11 @@ int main(int argc, char * argv[])
     //---------------------------------------------------------------------------------------------
 
 #ifdef Q_OS_LINUX
+#ifdef SK_DEPLOY
     sk->setIcon(":/icons/icon.svg");
+#else
+    sk->setIcon("icons/icon.svg");
+#endif
 #endif
 
     QString path;
