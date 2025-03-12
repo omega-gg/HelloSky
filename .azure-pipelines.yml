@@ -14,7 +14,7 @@ jobs:
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-win32-qt5
 
-- job: win64_qt5
+- job: win64_qt6
   pool:
     vmImage: "windows-latest"
   steps:
@@ -23,7 +23,7 @@ jobs:
       cd deploy
       7z a ../HelloSky.zip *
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
-    artifact: HelloSky-win64-qt5
+    artifact: HelloSky-win64-qt6
 
 #--------------------------------------------------------------------------------------------------
 # macOS
@@ -135,6 +135,17 @@ jobs:
   pool:
     vmImage: "ubuntu-latest"
   steps:
+  - bash: |
+      sh build.sh linux all
+      cd deploy
+      zip -rq ../HelloSky.zip *
+  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
+    artifact: HelloSky-linux64-qt5
+
+- job: linux64_qt6
+  pool:
+    vmImage: "ubuntu-latest"
+  steps:
   # NOTE: We need an older version to package the application.
   # NOTE Qt6: 20.04 is required for glibc.
   - bash: |
@@ -142,23 +153,10 @@ jobs:
       docker exec -t ubuntu bash -c "cd /HelloSky;
                                      apt-get update;
                                      apt-get -y install sudo curl zip git;
+                                     sh environment.sh qt6;
                                      sh build.sh linux all;
                                      cd deploy;
                                      zip -rq ../HelloSky.zip *"
-  - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
-    artifact: HelloSky-linux64-qt5
-
-#--------------------------------------------------------------------------------------------------
-
-- job: linux64_qt6
-  pool:
-    vmImage: "ubuntu-latest"
-  steps:
-  - bash: |
-      sh environment.sh qt6
-      sh build.sh linux all
-      cd deploy
-      zip -rq ../HelloSky.zip *
   - publish: $(System.DefaultWorkingDirectory)/HelloSky.zip
     artifact: HelloSky-linux64-qt6
 
