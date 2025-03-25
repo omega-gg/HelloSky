@@ -77,9 +77,9 @@ android {
         resConfig "en"
 
         // SDK_version
-        minSdkVersion 21
-        // SDK_version_minimum
         targetSdkVersion 34
+        // SDK_version_minimum
+        minSdkVersion 24
 
         ndk.abiFilters = qtTargetAbiList.split(",")
     }
