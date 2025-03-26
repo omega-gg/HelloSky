@@ -51,7 +51,7 @@ SDK_version_minimum="24"
 
 compiler_win="mingw"
 
-qt="qt5"
+qt="qt6"
 
 vlc="vlc3"
 
