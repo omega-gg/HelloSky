@@ -133,7 +133,21 @@ Application
 //#END
 
 //#MOBILE
-        onDoubleClicked: fullScreen = !(fullScreen)
+        onDoubleClicked:
+        {
+            if (fullScreen)
+            {
+                fullScreen = false;
+
+                sk.forceLandscape(false);
+            }
+            else
+            {
+                fullScreen = true;
+
+                if (sk.isPortrait()) sk.forceLandscape(true);
+            }
+        }
 //#END
 
         /* QML_EVENT */ onKeyPressed: function(event)
