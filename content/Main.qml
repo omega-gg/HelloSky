@@ -139,13 +139,13 @@ Application
             {
                 fullScreen = false;
 
-                sk.forceLandscape(false);
+                sk.requestLandscape(false);
             }
             else
             {
                 fullScreen = true;
 
-                if (sk.isPortrait()) sk.forceLandscape(true);
+                sk.requestLandscape(true);
             }
         }
 //#END
