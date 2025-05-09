@@ -104,6 +104,10 @@ int main(int argc, char * argv[])
 
     wControllerFile->initMessageHandler();
 
+#ifndef SK_DEPLOY
+    wControllerMedia->startLog();
+#endif
+
     //---------------------------------------------------------------------------------------------
     // QML
     //---------------------------------------------------------------------------------------------
