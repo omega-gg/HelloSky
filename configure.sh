@@ -5,6 +5,8 @@ set -e
 # Settings
 #--------------------------------------------------------------------------------------------------
 
+target="HelloSky"
+
 Sky="../Sky"
 
 external="../3rdparty"
@@ -121,7 +123,7 @@ cp "$assets"/videos/sky.mp4 content/videos
 # MinGW
 #--------------------------------------------------------------------------------------------------
 
-echo "CONFIGURING HelloSky"
+echo "CONFIGURING $target"
 echo "--------------------"
 
 if [ $compiler = "mingw" ]; then
