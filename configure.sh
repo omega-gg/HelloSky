@@ -39,6 +39,11 @@ copyAndroid()
     cp -r "$1"/arm64-v8a   $data/arm64-v8a/libs
     cp -r "$1"/x86         $data/x86/libs
     cp -r "$1"/x86_64      $data/x86_64/libs
+
+    cp "$1"/*.jar $data/armeabi-v7a/libs
+    cp "$1"/*.jar $data/arm64-v8a/libs
+    cp "$1"/*.jar $data/x86/libs
+    cp "$1"/*.jar $data/x86_64/libs
 }
 
 cleanAndroid()
@@ -106,6 +111,8 @@ if [ $1 = "android" ]; then
     cleanAndroid arm64-v8a
     cleanAndroid x86
     cleanAndroid x86_64
+
+    rm -f "$data/$1/libs"/*.jar
 fi
 
 if [ "$2" = "clean" ]; then
