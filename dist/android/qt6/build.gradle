@@ -7,7 +7,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.1'
+        classpath 'com.android.tools.build:gradle:8.10.1'
     }
 }
 
@@ -38,6 +38,8 @@ android {
      * updated by QtCreator and androiddeployqt tools.
      * Changing them manually might break the compilation!
      *******************************************************/
+
+    namespace 'gg.omega.hellosky'
 
     compileSdkVersion androidCompileSdkVersion
     buildToolsVersion androidBuildToolsVersion
