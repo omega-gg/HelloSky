@@ -39,11 +39,6 @@ copyAndroid()
     cp -r "$1"/arm64-v8a   $data/arm64-v8a/libs
     cp -r "$1"/x86         $data/x86/libs
     cp -r "$1"/x86_64      $data/x86_64/libs
-
-    cp "$1"/*.jar $data/armeabi-v7a/libs
-    cp "$1"/*.jar $data/arm64-v8a/libs
-    cp "$1"/*.jar $data/x86/libs
-    cp "$1"/*.jar $data/x86_64/libs
 }
 
 cleanAndroid()
@@ -212,7 +207,14 @@ elif [ $1 = "android" ]; then
 
     echo "COPYING VLC"
 
-    copyAndroid "$deploy"/vlc
+    path="$deploy/vlc"
+
+    copyAndroid "$path"
+
+    cp "$path"/*.jar $data/armeabi-v7a/libs
+    cp "$path"/*.jar $data/arm64-v8a/libs
+    cp "$path"/*.jar $data/x86/libs
+    cp "$path"/*.jar $data/x86_64/libs
 fi
 
 echo "--------------------"
