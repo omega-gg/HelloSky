@@ -90,4 +90,7 @@ android {
 
     // NOTE Qt5: This line was added manually to remove debug symbol(s).
     buildTypes.release.ndk.debugSymbolLevel "none"
+
+    // NOTE Qt5: This is required aidl support.
+    buildFeatures.aidl true
 }
