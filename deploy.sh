@@ -51,6 +51,7 @@ deployMacOS()
          multimedia \
          QtQuick \
          QtQml \
+         QtMultimedia \
          QtWebView \
          QtWebEngine \
          QtWebChannel \
