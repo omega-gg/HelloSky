@@ -16,17 +16,25 @@ compiler_win="mingw"
 
 qt="qt6"
 
+storage="storageDefault"
+
 #--------------------------------------------------------------------------------------------------
 # Functions
 #--------------------------------------------------------------------------------------------------
 
 copyAndroid()
 {
-    path="build/$1/android-build/build/outputs"
+    if [ $storage = "storageLight" ]; then
 
-    cp $path/apk/release/android-build-release-unsigned.apk $deploy/$target-$1.apk
+        mv build/$target-$1.apk $deploy
+        mv build/$target-$1.aab $deploy
+    else
+        path="build/$1/android-build/build/outputs"
 
-    cp $path/bundle/release/android-build-release.aab $deploy/$target-$1.aab
+        cp $path/apk/release/android-build-release-unsigned.apk $deploy/$target-$1.apk
+
+        cp $path/bundle/release/android-build-release.aab $deploy/$target-$1.aab
+    fi
 }
 
 deployMacOS()

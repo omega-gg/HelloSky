@@ -18,6 +18,8 @@ vlc="vlc3"
 
 mobile="simulator"
 
+storage="storageDefault"
+
 #--------------------------------------------------------------------------------------------------
 # Functions
 #--------------------------------------------------------------------------------------------------
@@ -56,23 +58,26 @@ getOs()
     esac
 }
 
+
 #--------------------------------------------------------------------------------------------------
 # Syntax
 #--------------------------------------------------------------------------------------------------
 
 if [ $# != 1 -a $# != 2 ] \
    || \
-   [ $1 != "mingw"     -a $1 != "msvc" -a \
-     $1 != "qt4"       -a $1 != "qt5"  -a $1 != "qt6" -a \
-     $1 != "vlc3"      -a $1 != "vlc4" -a \
-     $1 != "simulator" -a $1 != "device" ] \
+   [ $1 != "mingw"           -a $1 != "msvc"   -a \
+     $1 != "qt4"             -a $1 != "qt5"    -a $1 != "qt6" -a \
+     $1 != "vlc3"            -a $1 != "vlc4"   -a \
+     $1 != "simulator"       -a $1 != "device" -a \
+     $1 != "storageDefault"  -a $1 != "storageLight" ] \
    || \
    [ $# = 2 -a "$2" != "all" ]; then
 
     echo "Usage: environment <mingw | msvc"
     echo "                    qt4 | qt5 | qt6 |"
     echo "                    vlc3 | vlc4 |"
-    echo "                    simulator | device> [all]"
+    echo "                    simulator | device |"
+    echo "                    storageDefault | storageLight> [all]"
 
     exit 1
 fi
@@ -106,17 +111,25 @@ fi
 # Replacements
 #--------------------------------------------------------------------------------------------------
 
-if [ $1 = "msvc" -o $1 = "mingw" ]; then
+if [ $1 = "msvc" ]; then
 
-    replace compiler_win $compiler_win $1
+    replace compiler_win $compiler_win msvc
 
-elif [ $1 = "qt4" -o $1 = "qt5" -o $1 = "qt6" ]; then
+elif [ $1 = "mingw" ]; then
 
-    replace qt $qt $1
+    replace compiler_win $compiler_win mingw
 
 elif [ $1 = "vlc3" -o $1 = "vlc4" ]; then
 
     replace vlc $vlc $1
-else
+
+elif [ $1 = "simulator" -o $1 = "device" ]; then
+
     replace mobile $mobile $1
+
+elif [ $1 = "storageDefault" -o $1 = "storageLight" ]; then
+
+    replace storage $storage $1
+else
+    replace qt $qt $1
 fi

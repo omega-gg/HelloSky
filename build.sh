@@ -57,6 +57,8 @@ vlc="vlc3"
 
 mobile="simulator"
 
+storage="storageDefault"
+
 #--------------------------------------------------------------------------------------------------
 # Functions
 #--------------------------------------------------------------------------------------------------
@@ -86,6 +88,11 @@ makeAndroid()
 
     make INSTALL_ROOT=android-build install
 
+    if [ $storage = "storageLight" ]; then
+
+        make clean
+    fi
+
     cd ..
 }
 
@@ -101,7 +108,20 @@ deployAndroid()
                        --android-platform android-$SDK_version \
                        --jdk $JAVA_HOME
 
-    cd -
+    if [ $storage = "storageLight" ]; then
+
+        path="android-build/build/outputs"
+
+        mv $path/apk/release/android-build-release-unsigned.apk ../$target-$1.apk
+
+        mv $path/bundle/release/android-build-release.aab ../$target-$1.aab
+
+        cd -
+
+        rm -rf $1
+    else
+        cd -
+    fi
 }
 
 #--------------------------------------------------------------------------------------------------
