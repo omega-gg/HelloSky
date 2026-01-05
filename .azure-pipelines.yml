@@ -206,6 +206,7 @@ jobs:
   - bash: |
       sh environment.sh qt6
       sh environment.sh vlc4
+      sh environment.sh storageLight
       sh build.sh android all
       cd deploy
       zip -rq ../HelloSky.zip *
