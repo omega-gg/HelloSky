@@ -83,7 +83,7 @@ android {
         resConfig "en"
 
         // SDK_version
-        targetSdkVersion 34
+        targetSdkVersion 35
         // SDK_version_minimum
         minSdkVersion 24
     }
