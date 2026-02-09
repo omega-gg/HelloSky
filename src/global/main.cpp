@@ -145,7 +145,7 @@ int main(int argc, char * argv[])
     qmlRegisterType<WDeclarativeGradient>    ("Sky", 1,0, "ScaleGradient");
     qmlRegisterType<WDeclarativeGradientStop>("Sky", 1,0, "ScaleGradientStop");
 
-    qmlRegisterType<WDeclarativeImage>     ("Sky", 1,0, "Image");
+    qmlRegisterType<WDeclarativeImage>     ("Sky", 1,0, "SkyImage");
     qmlRegisterType<WDeclarativeImageScale>("Sky", 1,0, "ImageScale");
     qmlRegisterType<WDeclarativeImageSvg>  ("Sky", 1,0, "ImageSvg");
 

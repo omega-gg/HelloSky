@@ -191,7 +191,7 @@ Application
 
             source: sourceBackground
 
-            fillMode: Image.PreserveAspectCrop
+            fillMode: SkyImage.PreserveAspectCrop
 
             cache: false
         }
