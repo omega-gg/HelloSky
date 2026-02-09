@@ -330,7 +330,7 @@ fi
 
 files="\
 $SkyBase/Style.qml \
-$SkyBase/WindowSky.qml \
+$SkyBase/SkyWindow.qml \
 $SkyBase/RectangleBorders.qml \
 $SkyBase/TextBase.qml \
 $SkyBase/BaseButton.qml \
