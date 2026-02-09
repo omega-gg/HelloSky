@@ -138,7 +138,7 @@ int main(int argc, char * argv[])
     //---------------------------------------------------------------------------------------------
     // Declarative
 
-    qmlRegisterType<WDeclarativeMouseArea>("Sky", 1,0, "MouseArea");
+    qmlRegisterType<WDeclarativeMouseArea>("Sky", 1,0, "SkyMouseArea");
 
     qmlRegisterType<WDeclarativeBorders>("Sky", 1,0, "Borders");
 
