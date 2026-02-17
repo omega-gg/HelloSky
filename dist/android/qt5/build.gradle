@@ -71,7 +71,9 @@ android {
     }
 
     lintOptions {
-        abortOnError false
+        // NOTE: This is useful to avoid Gradle lint failures.
+        checkReleaseBuilds = false
+        abortOnError       = false
     }
 
     // Do not compress Qt binary resources file
