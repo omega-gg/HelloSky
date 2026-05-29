@@ -307,7 +307,7 @@ fi
 
 if [ $os = "windows" ]; then
 
-    defines="$defines DESKTOP WINDOWS"
+    defines="$defines DESKTOP WINDOWS WINDOW_NATIVE"
 
 elif [ $1 = "macOS" ]; then
 
