@@ -204,7 +204,11 @@ Application
 
             visible: (isLoading == false && isPlaying)
 
+//#VLC
             backend: BackendVlc {}
+//#ELSE
+            backend: BackendFfmpeg {}
+//#END
 
             source: sourceVideo
 
@@ -238,8 +242,13 @@ Application
 
             anchors.margins: st.dp24
 
+//#VLC
             text: "Sky " + sk.versionSky + "\nQt  " + sk.versionQt + "\nVLC "
                   + controllerMedia.versionVlc
+//#ELSE
+            text: "Sky    " + sk.versionSky + "\nQt     " + sk.versionQt + "\nFFmpeg "
+                  + controllerMedia.versionFfmpeg
+//#END
 
             color: st.text2_color
 

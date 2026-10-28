@@ -53,7 +53,7 @@ compiler_win="mingw"
 
 qt="qt6"
 
-vlc="vlc3"
+player="ffmpeg"
 
 mobile="simulator"
 
@@ -307,9 +307,9 @@ export QT_SELECT="$qt"
 
 if [ $qt = "qt4" ]; then
 
-    config="CONFIG += release $vlc"
+    config="CONFIG += release $player"
 else
-    config="CONFIG += release qtquickcompiler $vlc"
+    config="CONFIG += release qtquickcompiler $player"
 fi
 
 if [ $compiler = "mingw" ]; then

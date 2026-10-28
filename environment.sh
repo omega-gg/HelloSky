@@ -14,7 +14,7 @@ compiler_win="mingw"
 
 qt="qt6"
 
-vlc="vlc3"
+player="ffmpeg"
 
 mobile="simulator"
 
@@ -67,7 +67,7 @@ if [ $# != 1 -a $# != 2 ] \
    || \
    [ $1 != "mingw"           -a $1 != "msvc"   -a \
      $1 != "qt4"             -a $1 != "qt5"    -a $1 != "qt6" -a \
-     $1 != "vlc3"            -a $1 != "vlc4"   -a \
+     $1 != "ffmpeg"          -a $1 != "vlc3"   -a $1 != "vlc4" -a \
      $1 != "simulator"       -a $1 != "device" -a \
      $1 != "storageDefault"  -a $1 != "storageLight" ] \
    || \
@@ -75,7 +75,7 @@ if [ $# != 1 -a $# != 2 ] \
 
     echo "Usage: environment <mingw | msvc"
     echo "                    qt4 | qt5 | qt6 |"
-    echo "                    vlc3 | vlc4 |"
+    echo "                    ffmpeg | vlc3 | vlc4 |"
     echo "                    simulator | device |"
     echo "                    storageDefault | storageLight> [all]"
 
@@ -119,9 +119,9 @@ elif [ $1 = "mingw" ]; then
 
     replace compiler_win $compiler_win mingw
 
-elif [ $1 = "vlc3" -o $1 = "vlc4" ]; then
+elif [ $1 = "ffmpeg" -o $1 = "vlc3" -o $1 = "vlc4" ]; then
 
-    replace vlc $vlc $1
+    replace player $player $1
 
 elif [ $1 = "simulator" -o $1 = "device" ]; then
 

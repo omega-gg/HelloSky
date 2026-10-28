@@ -16,6 +16,8 @@ compiler_win="mingw"
 
 qt="qt6"
 
+player="ffmpeg"
+
 storage="storageDefault"
 
 #--------------------------------------------------------------------------------------------------
@@ -137,6 +139,13 @@ elif [ $qt = "qt6" ]; then
     else
         qx="6"
     fi
+fi
+
+if [ $player = "ffmpeg" -a $qt = "qt6" ]; then
+
+    engine="ffmpeg"
+else
+    engine="vlc"
 fi
 
 # NOTE windows: Ensure we use the proper find.
@@ -267,6 +276,12 @@ if [ $os = "windows" ]; then
             cp "$path/$QtX"QmlMeta.dll     $deploy
         fi
 
+        # NOTE: FFmpeg plays its audio through Qt Multimedia.
+        if [ $engine = "ffmpeg" ]; then
+
+            cp "$path/$QtX"Multimedia.dll $deploy
+        fi
+
         if [ -f "$path/$QtX"QmlModels.dll ]; then
 
             cp "$path/$QtX"QmlModels.dll       $deploy
@@ -324,6 +339,11 @@ elif [ $1 = "macOS" ]; then
         else
             cp "$path"/QtCore5Compat.dylib $deploy
             cp "$path"/QtQmlMeta.dylib     $deploy
+        fi
+
+        if [ $engine = "ffmpeg" ]; then
+
+            cp "$path"/QtMultimedia.dylib $deploy
         fi
 
         if [ -f "$path"/QtQmlModels.dylib ]; then
@@ -418,6 +438,11 @@ elif [ $1 = "linux" ]; then
             cp "$path/lib$QtX"QmlMeta.so.$qx     $deploy
         fi
 
+        if [ $engine = "ffmpeg" ]; then
+
+            cp "$path/lib$QtX"Multimedia.so.$qx $deploy
+        fi
+
         if [ -f "$path/lib$QtX"QmlModels.so.$qx ]; then
 
             cp "$path/lib$QtX"QmlModels.so.$qx       $deploy
@@ -449,30 +474,49 @@ elif [ $1 = "linux" ]; then
 fi
 
 #--------------------------------------------------------------------------------------------------
+# FFmpeg
+#--------------------------------------------------------------------------------------------------
+
+if [ $engine = "ffmpeg" ]; then
+
+    if [ $os = "windows" ]; then
+
+        cp "$path"/sk-*.dll $deploy
+
+    elif [ $1 = "macOS" -o $1 = "linux" ]; then
+
+        cp -P "$path"/libsk-* $deploy
+    fi
+fi
+
+#--------------------------------------------------------------------------------------------------
 # VLC
 #--------------------------------------------------------------------------------------------------
 
-if [ $os = "windows" ]; then
+if [ $engine = "vlc" ]; then
 
-    cp -r "$path"/plugins $deploy
+    if [ $os = "windows" ]; then
 
-    cp "$path"/libvlc*.dll $deploy
+        cp -r "$path"/plugins $deploy
 
-elif [ $1 = "macOS" ]; then
+        cp "$path"/libvlc*.dll $deploy
 
-    cp -r "$path"/plugins $deploy
+    elif [ $1 = "macOS" ]; then
 
-    cp "$path"/libvlc*.dylib $deploy
+        cp -r "$path"/plugins $deploy
 
-elif [ $1 = "linux" ]; then
+        cp "$path"/libvlc*.dylib $deploy
 
-    cp -r "$path"/vlc $deploy
+    elif [ $1 = "linux" ]; then
 
-    cp "$path"/libvlc*.so* $deploy
+        cp -r "$path"/vlc $deploy
 
-    if [ -f "$path"/libidn.so* ]; then
+        cp "$path"/libvlc*.so* $deploy
 
-        cp "$path"/libidn.so* $deploy
+        if [ -f "$path"/libidn.so* ]; then
+
+            cp "$path"/libidn.so* $deploy
+        fi
     fi
 fi
 
@@ -498,10 +542,13 @@ elif [ $1 = "macOS" ]; then
     #----------------------------------------------------------------------------------------------
     # VLC
 
-    install_name_tool -change @rpath/libvlccore.dylib \
-                              @loader_path/libvlccore.dylib libvlc.dylib
+    if [ $engine = "vlc" ]; then
 
-    otool -L libvlc.dylib
+        install_name_tool -change @rpath/libvlccore.dylib \
+                                  @loader_path/libvlccore.dylib libvlc.dylib
+
+        otool -L libvlc.dylib
+    fi
 
     #----------------------------------------------------------------------------------------------
 

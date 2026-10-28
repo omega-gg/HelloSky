@@ -48,17 +48,16 @@ contains(QT_MAJOR_VERSION, 4) {
 DEFINES += QUAZIP_BUILD \
            SK_CORE_LIBRARY SK_GUI_LIBRARY SK_BACKEND_LIBRARY SK_MEDIA_LIBRARY
 
+win32|macx:contains(QT_MAJOR_VERSION, 6) {
+    DEFINES += QWK_CORE_LIBRARY QWK_QUICK_LIBRARY
+}
+
 !win32-msvc*:!ios:!android:DEFINES += CAN_COMPILE_SSE2
 
 #DEFINES += SK_SOFTWARE
 
-contains(QT_MAJOR_VERSION, 4) {
-    CONFIG(release, debug|release) {
-
-        win32:DEFINES += SK_WIN_NATIVE
-    }
-} else {
-    win32:DEFINES += SK_WIN_NATIVE
+win32|macx:contains(QT_MAJOR_VERSION, 6) {
+    DEFINES += SK_WINDOW_NATIVE
 }
 
 deploy|ios|android {
@@ -85,17 +84,33 @@ include(src/image/image.pri)
 include(src/graphicsview/graphicsview.pri)
 include(src/declarative/declarative.pri)
 include(src/media/media.pri)
-include(src/vlc/vlc.pri)
+
+contains(DEFINES, SK_VLC) {
+    include(src/vlc/vlc.pri)
+} else {
+    include(src/ffmpeg/ffmpeg.pri)
+}
 
 include(src/3rdparty/qtsingleapplication/qtsingleapplication.pri)
 include(src/3rdparty/zlib/zlib.pri)
 include(src/3rdparty/quazip/quazip.pri)
+
+win32|macx:contains(QT_MAJOR_VERSION, 6) {
+    include(src/3rdparty/qwindowkit/qwindowkit.pri)
+}
 
 INCLUDEPATH += $$SK/include/SkCore \
                $$SK/include/SkGui \
                $$SK/include/SkBackend \
                $$SK/include/SkMedia \
                $$SK/include
+
+# NOTE: FFmpeg plays its audio through Qt Multimedia.
+!contains(DEFINES, SK_VLC) {
+    QT += multimedia
+
+    INCLUDEPATH += $$SK/include/ffmpeg
+}
 
 unix:contains(QT_MAJOR_VERSION, 4) {
     INCLUDEPATH += $$SK/include/$$QTX \
@@ -112,27 +127,60 @@ greaterThan(QT_MAJOR_VERSION, 4) {
                    $$SK/include/$$QTX/QtQuick
 }
 
+win32|macx:contains(QT_MAJOR_VERSION, 6) {
+    INCLUDEPATH += $$SK/include/SkGui/QWKCore \
+                   $$SK/include/SkGui/QWKCore/private \
+                   $$SK/include/SkGui/QWKQuick \
+                   $$SK/include/SkGui/QWKQuick/private
+}
+
 unix:!macx:!ios:!android:greaterThan(QT_MAJOR_VERSION, 4) {
     INCLUDEPATH += $$SK/include/$$QTX/QtDBus
 }
 
-win32:LIBS += -L$$SK/lib -llibvlc
+contains(DEFINES, SK_VLC) {
+
+    ENGINE = -lvlc
+
+    win32:ENGINE = -llibvlc
+
+    vlc4 {
+        ios:LIBS += -framework VLCKit
+    } else {
+        ios:LIBS += -framework MobileVLCKit
+    }
+} else {
+    # NOTE: Our FFmpeg libraries are prefixed with sk beside Qt Multimedia's FFmpeg.
+
+    ENGINE = -lsk-avformat \
+             -lsk-avcodec \
+             -lsk-avfilter \
+             -lsk-avutil \
+             -lsk-swscale \
+             -lsk-swresample
+
+    ios:LIBS += -framework sk-avformat \
+                -framework sk-avcodec \
+                -framework sk-avfilter \
+                -framework sk-avutil \
+                -framework sk-swscale \
+                -framework sk-swresample
+}
+
+win32:LIBS += -L$$SK/lib $$ENGINE
 
 # Windows dependency for ShellExecuteA and PostMessage
 win32-msvc*:LIBS += shell32.lib User32.lib
 
-unix:!ios:!android:LIBS += -L$$SK/lib -lvlc
+# Windows dependency for qwindowkit
+win32:LIBS += -lgdi32
 
-vlc4 {
-    ios:LIBS += -framework VLCKit
-} else {
-    ios:LIBS += -framework MobileVLCKit
-}
+unix:!ios:!android:LIBS += -L$$SK/lib $$ENGINE
 
 # NOTE iOS: MediaPlayer is required for MP* classes.
 ios:LIBS += -framework MediaPlayer
 
-android:LIBS += -L$$ANDROID_LIB -lvlc \
+android:LIBS += -L$$ANDROID_LIB $$ENGINE
 
 unix:!macx:!ios:!android:contains(QT_MAJOR_VERSION, 4) {
     LIBS += -lX11
@@ -141,6 +189,7 @@ unix:!macx:!ios:!android:contains(QT_MAJOR_VERSION, 4) {
 macx {
     PATH=$${DESTDIR}/$${TARGET}.app/Contents/MacOS
 
+contains(DEFINES, SK_VLC) {
     QMAKE_POST_LINK = install_name_tool -change @rpath/libvlccore.dylib \
                       @loader_path/libvlccore.dylib $${DESTDIR}/libvlc.dylib;
 
@@ -151,6 +200,11 @@ macx {
 
     QMAKE_POST_LINK += $${QMAKE_COPY} $${DESTDIR}/libvlc.dylib     $$PATH;
     QMAKE_POST_LINK += $${QMAKE_COPY} $${DESTDIR}/libvlccore.dylib $$PATH;
+} else {
+    QMAKE_POST_LINK = install_name_tool -add_rpath @loader_path $$PATH/$${TARGET};
+
+    QMAKE_POST_LINK += $${QMAKE_COPY} -P $${DESTDIR}/libsk-* $$PATH;
+}
 }
 
 macx:ICON = dist/icon.icns
@@ -198,11 +252,20 @@ ios {
     # NOTE iOS: We need to specify this in Info.plist.
     launch.files=$$_PRO_FILE_PWD_/dist/iOS/Launch.storyboard
 
+contains(DEFINES, SK_VLC) {
     vlc4 {
         framework.files = $$SK/lib/VLCKit.framework
     } else {
         framework.files = $$SK/lib/MobileVLCKit.framework
     }
+} else {
+    framework.files = $$SK/lib/sk-avformat.framework \
+                      $$SK/lib/sk-avcodec.framework \
+                      $$SK/lib/sk-avfilter.framework \
+                      $$SK/lib/sk-avutil.framework \
+                      $$SK/lib/sk-swscale.framework \
+                      $$SK/lib/sk-swresample.framework
+}
 
     framework.path = Frameworks
 

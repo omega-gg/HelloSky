@@ -29,6 +29,8 @@ compiler_win="mingw"
 
 qt="qt6"
 
+player="ffmpeg"
+
 #--------------------------------------------------------------------------------------------------
 # Functions
 #--------------------------------------------------------------------------------------------------
@@ -83,6 +85,13 @@ else
 fi
 
 deploy="$Sky/deploy"
+
+if [ $player = "ffmpeg" -a $qt = "qt6" ]; then
+
+    engine="ffmpeg"
+else
+    engine="vlc"
+fi
 
 #--------------------------------------------------------------------------------------------------
 # Clean
@@ -162,59 +171,88 @@ if [ $1 = "android" ]; then
 fi
 
 #--------------------------------------------------------------------------------------------------
+# FFmpeg
+#--------------------------------------------------------------------------------------------------
+
+if [ $engine = "ffmpeg" ]; then
+
+    if [ $os = "windows" ]; then
+
+        echo "COPYING FFmpeg"
+
+        cp "$deploy"/sk-*.dll bin
+
+    elif [ $1 = "macOS" -o $1 = "linux" ]; then
+
+        echo "COPYING FFmpeg"
+
+        cp -P "$deploy"/libsk-* bin
+
+    elif [ $1 = "android" ]; then
+
+        echo "COPYING FFmpeg"
+
+        copyAndroid "$deploy"/ffmpeg
+    fi
+fi
+
+#--------------------------------------------------------------------------------------------------
 # VLC
 #--------------------------------------------------------------------------------------------------
 
-if [ $os = "windows" ]; then
+if [ $engine = "vlc" ]; then
 
-    echo "COPYING VLC"
+    if [ $os = "windows" ]; then
 
-    rm -rf bin/plugins
-    mkdir  bin/plugins
+        echo "COPYING VLC"
 
-    cp -r "$deploy"/plugins bin
+        rm -rf bin/plugins
+        mkdir  bin/plugins
 
-    cp "$deploy"/libvlc*.dll bin
+        cp -r "$deploy"/plugins bin
 
-elif [ $1 = "macOS" ]; then
+        cp "$deploy"/libvlc*.dll bin
 
-    echo "COPYING VLC"
+    elif [ $1 = "macOS" ]; then
 
-    rm -rf bin/plugins
-    mkdir  bin/plugins
+        echo "COPYING VLC"
 
-    cp -r "$deploy"/plugins bin
+        rm -rf bin/plugins
+        mkdir  bin/plugins
 
-    cp "$deploy"/libvlc*.dylib bin
+        cp -r "$deploy"/plugins bin
 
-elif [ $1 = "linux" ]; then
+        cp "$deploy"/libvlc*.dylib bin
 
-    echo "COPYING VLC"
+    elif [ $1 = "linux" ]; then
 
-    rm -rf bin/vlc
-    mkdir  bin/vlc
+        echo "COPYING VLC"
 
-    cp -r "$deploy"/vlc bin
+        rm -rf bin/vlc
+        mkdir  bin/vlc
 
-    cp "$deploy"/libvlc*.so* bin
+        cp -r "$deploy"/vlc bin
 
-    if [ -f "$deploy"/libidn.so* ]; then
+        cp "$deploy"/libvlc*.so* bin
 
-        cp "$deploy"/libidn.so* bin
+        if [ -f "$deploy"/libidn.so* ]; then
+
+            cp "$deploy"/libidn.so* bin
+        fi
+
+    elif [ $1 = "android" ]; then
+
+        echo "COPYING VLC"
+
+        path="$deploy/vlc"
+
+        copyAndroid "$path"
+
+        cp "$path"/*.jar $data/armeabi-v7a/libs
+        cp "$path"/*.jar $data/arm64-v8a/libs
+        cp "$path"/*.jar $data/x86/libs
+        cp "$path"/*.jar $data/x86_64/libs
     fi
-
-elif [ $1 = "android" ]; then
-
-    echo "COPYING VLC"
-
-    path="$deploy/vlc"
-
-    copyAndroid "$path"
-
-    cp "$path"/*.jar $data/armeabi-v7a/libs
-    cp "$path"/*.jar $data/arm64-v8a/libs
-    cp "$path"/*.jar $data/x86/libs
-    cp "$path"/*.jar $data/x86_64/libs
 fi
 
 echo "--------------------"

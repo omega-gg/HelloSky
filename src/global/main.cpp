@@ -33,7 +33,11 @@
 #include <WViewResizer>
 #include <WViewDrag>
 #include <WWindow>
+#ifdef SK_VLC
 #include <WBackendVlc>
+#else
+#include <WBackendFfmpeg>
+#endif
 #include <WImageFilterColor>
 #include <WDeclarativeApplication>
 #include <WDeclarativeBorders>
@@ -161,7 +165,11 @@ int main(int argc, char * argv[])
     qmlRegisterUncreatableType<WAbstractBackend>("Sky", 1,0, "AbstractBackend",
                                                  "AbstractBackend is abstract");
 
+#ifdef SK_VLC
     qmlRegisterType<WBackendVlc>("Sky", 1,0, "BackendVlc");
+#else
+    qmlRegisterType<WBackendFfmpeg>("Sky", 1,0, "BackendFfmpeg");
+#endif
 
     //---------------------------------------------------------------------------------------------
     // Events

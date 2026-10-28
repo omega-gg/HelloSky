@@ -35,6 +35,8 @@ videos="android/assets/videos"
 
 qt="qt6"
 
+player="ffmpeg"
+
 #--------------------------------------------------------------------------------------------------
 # Functions
 #--------------------------------------------------------------------------------------------------
@@ -311,7 +313,7 @@ if [ $os = "windows" ]; then
 
 elif [ $1 = "macOS" ]; then
 
-    defines="$defines DESKTOP MAC"
+    defines="$defines DESKTOP MAC WINDOW_NATIVE"
 
 elif [ $1 = "iOS" ]; then
 
@@ -327,6 +329,11 @@ fi
 if [ "$2" = "deploy" ]; then
 
     defines="$defines DEPLOY"
+fi
+
+if [ $player != "ffmpeg" -o $qt != "qt6" ]; then
+
+    defines="$defines VLC"
 fi
 
 files="\
