@@ -74,6 +74,9 @@ ios:QMAKE_LFLAGS += -F$$SK/lib
 unix:QMAKE_LFLAGS += "-Wl,-rpath,'\$$ORIGIN'"
 
 include($$SK/src/Sk.pri)
+
+!contains(DEFINES, SK_VLC):DEFINES += SK_NO_MEDIADOWNLOAD
+
 include(src/global/global.pri)
 include(src/controllers/controllers.pri)
 include(src/kernel/kernel.pri)
