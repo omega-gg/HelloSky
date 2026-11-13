@@ -204,5 +204,9 @@ int main(int argc, char * argv[])
 
     sk->startScript();
 
-    return application->exec();
+    int result = application->exec();
+
+    delete application;
+
+    return result;
 }
